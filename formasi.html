@@ -39,8 +39,8 @@ body{
 
     background-image:
         linear-gradient(
-            rgba(255,255,255,0.35),
-            rgba(255,255,255,0.35)
+            rgba(255,255,255,0.12),
+            rgba(255,255,255,0.12)
         ),
         url('ABC.jpg');
 
@@ -140,11 +140,13 @@ body{
 
     font-weight:900;
 
-    color:#164c3a;
+    color:#000000;
 
-    font-size:clamp(17px,3.2vw,22px);
+    font-size:clamp(18px,3.4vw,23px);
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,0.8);
 }
-
 
 /* =====================================================
    FILTER
@@ -388,11 +390,14 @@ tbody td:last-child{
 
     text-align:center;
 
-    font-size:clamp(17px,3.2vw,21px);
+    font-size:clamp(21px,4.5vw,28px);
 
     font-weight:900;
 
     color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
 }
 
 tbody tr:nth-child(even){
