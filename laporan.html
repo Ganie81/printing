@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-
-<link rel="manifest" href="manifest.json">
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#002B1F">
-<meta name="mobile-web-app-capable" content="yes">
-
-<meta name="viewport"
+<meta name="mobile-web-app-capable" content="yes"><meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>LAPORAN PRODUKSI HARIAN</title>
-
-<style>
+<title>LAPORAN PRODUKSI HARIAN</title><style>
 
 /* =====================================================
    DASAR
@@ -33,11 +22,6 @@ body{
     margin:0;
     padding:20px;
     color:#1e2d36;
-
-    /* =================================================
-       GROUNDING LAPAK
-       GAMBAR LAPRO.jpg MENJADI BACKGROUND SELURUH HALAMAN
-    ================================================= */
 
     background-color:#dfe8ed;
 
@@ -73,7 +57,7 @@ body{
 
 
 /* =====================================================
-   HEADER
+   HEADER — COKELAT MUDA GLOSSY 3D
 ===================================================== */
 
 .header{
@@ -86,79 +70,76 @@ body{
 
     border-radius:22px;
 
-    background-color:#c9e4f2;
+    background-color:#d8b08a;
 
     background-image:
 
-        radial-gradient(
-            ellipse 30px 18px at 0% 50%,
-            transparent 52%,
-            rgba(33,75,103,.12) 54%,
-            rgba(33,75,103,.12) 62%,
-            transparent 64%
-        ),
-
-        radial-gradient(
-            ellipse 30px 18px at 50% 0%,
-            transparent 52%,
-            rgba(33,75,103,.12) 54%,
-            rgba(33,75,103,.12) 62%,
-            transparent 64%
-        ),
-
-        radial-gradient(
-            circle 4px at 25% 25%,
-            rgba(33,75,103,.16) 0%,
-            rgba(33,75,103,.16) 45%,
-            transparent 50%
-        ),
-
-        radial-gradient(
-            circle 4px at 75% 75%,
-            rgba(33,75,103,.16) 0%,
-            rgba(33,75,103,.16) 45%,
-            transparent 50%
+        linear-gradient(
+            115deg,
+            rgba(255,255,255,.72) 0%,
+            rgba(255,255,255,.28) 18%,
+            transparent 38%,
+            transparent 62%,
+            rgba(255,255,255,.18) 82%,
+            rgba(120,72,35,.10) 100%
         ),
 
         linear-gradient(
-            135deg,
-            rgba(255,255,255,.42),
-            transparent 35%,
-            transparent 65%,
-            rgba(255,255,255,.18)
+            145deg,
+            #efd0a8 0%,
+            #d8ae82 45%,
+            #c69567 100%
         );
-
-    background-size:
-        72px 72px,
-        72px 72px,
-        72px 72px,
-        72px 72px,
-        100% 100%;
-
-    background-position:
-        0 0,
-        36px 36px,
-        0 0,
-        36px 36px,
-        0 0;
 
     border:
         1px solid
-        rgba(80,80,80,.55);
+        rgba(125,78,39,.50);
 
     box-shadow:
 
         10px 10px 22px
-        rgba(0,0,0,.20),
+        rgba(70,40,20,.28),
 
         -7px -7px 15px
-        rgba(255,255,255,.95),
+        rgba(255,255,255,.92),
 
-        inset 2px 2px 4px
-        rgba(255,255,255,.9),
+        inset 2px 2px 5px
+        rgba(255,255,255,.85),
 
-        inset -2px -2px 5px
-        rgba(0,0,0,.08);
+        inset -3px -3px 6px
+        rgba(92,51,25,.18);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+/* KILAU GLOSSY */
+
+.header::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:8%;
+
+    width:84%;
+    height:38%;
+
+    border-radius:
+        0 0 50% 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.48),
+            rgba(255,255,255,.10),
+            transparent
+        );
+
+    pointer-events:none;
 }
 
 
@@ -166,6 +147,9 @@ body{
 
 .header h1{
     margin:0;
+
+    position:relative;
+    z-index:1;
 
     font-size:
         clamp(
@@ -178,7 +162,7 @@ body{
 
     letter-spacing:.6px;
 
-    color:#203e55;
+    color:#70431f;
 
     cursor:pointer;
 
@@ -187,13 +171,13 @@ body{
     text-shadow:
 
         2px 2px 0
-        #ffffff,
+        #fff2df,
 
         4px 4px 0
-        rgba(45,78,101,.20),
+        rgba(111,67,31,.22),
 
         6px 7px 9px
-        rgba(0,0,0,.28);
+        rgba(65,35,15,.32);
 
     transition:
         transform .15s ease,
@@ -212,13 +196,16 @@ body{
     text-shadow:
 
         1px 1px 0
-        #ffffff,
+        #fff2df,
 
         2px 3px 4px
-        rgba(0,0,0,.25);
+        rgba(65,35,15,.25);
 }
 
 .header .subtitle{
+    position:relative;
+    z-index:1;
+
     margin-top:7px;
 
     font-size:
@@ -232,15 +219,15 @@ body{
 
     letter-spacing:2px;
 
-    color:#506d80;
+    color:#865a37;
 
     text-shadow:
 
         1px 2px 0
-        #ffffff,
+        #fff3e3,
 
         2px 3px 4px
-        rgba(0,0,0,.22);
+        rgba(70,40,20,.24);
 }
 
 
@@ -478,7 +465,7 @@ body{
 
 
 /* =====================================================
-   SECTION
+   SECTION — COKELAT MUDA GLOSSY 3D
 ===================================================== */
 
 .section{
@@ -491,35 +478,69 @@ body{
     background:
         linear-gradient(
             145deg,
-            #c9e4f2,
-            #9fc7dc
+            #f0d0a9 0%,
+            #d8ad80 45%,
+            #c39061 100%
         );
 
     border:
         1px solid
-        rgba(255,255,255,.9);
+        rgba(119,73,37,.50);
 
     box-shadow:
 
         10px 10px 21px
-        rgba(0,0,0,.22),
+        rgba(67,39,20,.30),
 
         -6px -6px 14px
-        rgba(255,255,255,.95),
+        rgba(255,255,255,.92),
 
         inset 2px 2px 5px
-        rgba(255,255,255,.75),
+        rgba(255,255,255,.78),
 
         inset -4px -4px 7px
-        rgba(0,0,0,.13);
+        rgba(91,52,25,.18);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+/* KILAU PADA KOTAK SECTION */
+
+.section::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:6%;
+
+    width:88%;
+    height:32%;
+
+    border-radius:
+        0 0 50% 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.42),
+            rgba(255,255,255,.10),
+            transparent
+        );
+
+    pointer-events:none;
 }
 
 .section.secondary{
     background:
         linear-gradient(
             145deg,
-            #c9e4f2,
-            #9fc7dc
+            #efd0a8 0%,
+            #d5a97b 45%,
+            #bf895b 100%
         );
 }
 
@@ -529,6 +550,9 @@ body{
 ===================================================== */
 
 .section-title{
+    position:relative;
+    z-index:1;
+
     text-align:center;
 
     padding:
@@ -543,20 +567,20 @@ body{
 
     font-weight:900;
 
-    color:#214b67;
+    color:#70421f;
 
     letter-spacing:.5px;
 
     text-shadow:
 
         2px 2px 0
-        #ffffff,
+        #fff0dc,
 
         4px 4px 0
-        rgba(42,84,108,.22),
+        rgba(91,53,27,.22),
 
         5px 6px 8px
-        rgba(0,0,0,.27);
+        rgba(55,30,13,.28);
 }
 
 
@@ -574,10 +598,13 @@ body{
     box-shadow:
 
         6px 7px 14px
-        rgba(0,0,0,.25),
+        rgba(66,39,21,.28),
 
         -2px -2px 5px
-        rgba(255,255,255,.60);
+        rgba(255,255,255,.65);
+
+    position:relative;
+    z-index:1;
 }
 
 table{
@@ -592,7 +619,7 @@ table{
 
 
 /* =====================================================
-   HEADER SEMUA TABEL
+   HEADER SEMUA TABEL — COKELAT GLOSSY
 ===================================================== */
 
 thead th{
@@ -610,54 +637,64 @@ thead th{
 
     text-align:center;
 
-    color:#ffffff;
+    color:#fffaf4;
 
     background:
+
+        linear-gradient(
+            110deg,
+            rgba(255,255,255,.40),
+            transparent 25%,
+            transparent 70%,
+            rgba(255,255,255,.16)
+        ),
+
         linear-gradient(
             145deg,
-            #4f86a8,
-            #285b7b
+            #b97842,
+            #955b31 48%,
+            #75421f
         );
 
     border-right:
         1px solid
-        rgba(255,255,255,.35);
+        rgba(255,235,210,.40);
 
     border-top:
         1px solid
-        rgba(255,255,255,.45);
+        rgba(255,255,255,.50);
 
     text-shadow:
 
         2px 2px 0
-        rgba(0,0,0,.25),
+        rgba(72,37,15,.38),
 
         1px 2px 3px
-        rgba(0,0,0,.45);
+        rgba(45,22,8,.50);
 
     box-shadow:
 
         inset 2px 2px 4px
-        rgba(255,255,255,.40),
+        rgba(255,255,255,.42),
 
         inset -3px -4px 6px
-        rgba(0,0,0,.22),
+        rgba(66,31,11,.30),
 
         0 3px 5px
-        rgba(0,0,0,.12);
+        rgba(56,29,13,.18);
 }
 
 
 /* =====================================================
-   TABEL 1
+   TABEL 1 — COKELAT MUDA
 ===================================================== */
 
 .table-flat{
-    background:#e5f4fb;
+    background:#ead0b1;
 
     box-shadow:
         inset 0 0 0 1px
-        rgba(255,255,255,.8);
+        rgba(255,255,255,.75);
 }
 
 .table-flat tbody td{
@@ -675,27 +712,41 @@ thead th{
 
     font-weight:900;
 
-    color:#294454;
+    color:#5b3922;
 
     border-bottom:
         1px solid
-        #b8d7e5;
+        #cda982;
 
     border-right:
         1px solid
-        #c7e1eb;
+        #d9bb9b;
 
     text-shadow:
         2px 2px 3px
-        rgba(0,0,0,.17);
+        rgba(69,39,20,.18);
+
+    box-shadow:
+        inset 1px 1px 2px
+        rgba(255,255,255,.25);
 }
 
 .table-flat tbody tr:nth-child(even){
-    background:#d8edf6;
+    background:
+        linear-gradient(
+            145deg,
+            #e8c7a3,
+            #d9b287
+        );
 }
 
 .table-flat tbody tr:nth-child(odd){
-    background:#edf9fd;
+    background:
+        linear-gradient(
+            145deg,
+            #f2d9ba,
+            #e6c6a4
+        );
 }
 
 
@@ -713,39 +764,53 @@ thead th{
             22px
         ) !important;
 
+    color:#583319;
+
     text-shadow:
-        2px 2px 4px
-        rgba(0,0,0,.23);
+
+        1px 1px 0
+        #fff0dc,
+
+        2px 3px 4px
+        rgba(69,37,17,.25);
 }
 
 
 /* =====================================================
-   BARIS TOTAL TABEL 1
+   BARIS TOTAL TABEL 1 — GLOSSY
 ===================================================== */
 
 .total-row td{
     background:
+
+        linear-gradient(
+            110deg,
+            rgba(255,255,255,.42),
+            transparent 35%,
+            rgba(255,255,255,.12)
+        ),
+
         linear-gradient(
             145deg,
-            #b8d9e8,
-            #8ebbd1
+            #d5a36f,
+            #b97d49
         ) !important;
 
     font-weight:900 !important;
 
-    color:#183c51 !important;
+    color:#4c2a14 !important;
 
     border-top:
         3px solid
-        #5f8da5;
+        #8c542c;
 
     box-shadow:
 
-        inset 0 2px 4px
-        rgba(255,255,255,.65),
+        inset 2px 2px 4px
+        rgba(255,255,255,.60),
 
-        inset 0 -3px 5px
-        rgba(0,0,0,.12);
+        inset -3px -3px 5px
+        rgba(79,39,15,.16);
 }
 
 .total-row .angka{
@@ -774,28 +839,32 @@ thead th{
             22px
         ) !important;
 
-    color:#173f59;
+    color:#61391e;
 
     text-shadow:
 
         2px 2px 0
-        #ffffff,
+        #fff1df,
 
         3px 4px 5px
-        rgba(0,0,0,.22);
+        rgba(71,37,17,.24);
 }
 
 
 /* =====================================================
-   TABEL 2
+   TABEL 2 — COKELAT MUDA
 ===================================================== */
 
 .table-secondary{
-    background:#f1f3f4;
+    background:#ead0b1;
 
     border:
         1px solid
-        #9eb4c1;
+        #ad7b51;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,.65);
 }
 
 .table-secondary tbody td{
@@ -813,34 +882,49 @@ thead th{
 
     font-weight:900;
 
-    color:#37474f;
+    color:#5a3924;
 
-    background:#eef1f3;
+    background:
+        linear-gradient(
+            145deg,
+            #f1d9bc,
+            #e2c09c
+        );
 
     border-bottom:
         1px solid
-        #c7cdd1;
+        #cba67e;
 
     border-right:
         1px solid
-        #d4dade;
+        #d8b997;
 
     text-shadow:
         2px 2px 4px
-        rgba(0,0,0,.18);
+        rgba(66,37,19,.18);
 }
 
 .table-secondary tbody tr:nth-child(even) td{
-    background:#e4e8ea;
+    background:
+        linear-gradient(
+            145deg,
+            #e3bd98,
+            #d5aa80
+        );
 }
 
 .table-secondary tbody tr:nth-child(odd) td{
-    background:#f2f4f5;
+    background:
+        linear-gradient(
+            145deg,
+            #f2dac0,
+            #e5c5a5
+        );
 }
 
 
 /* =====================================================
-   TOTAL TABEL 2
+   TOTAL TABEL 2 — GLOSSY
 ===================================================== */
 
 .table-secondary .total-proses{
@@ -853,19 +937,38 @@ thead th{
             21px
         );
 
-    color:#183c51;
+    color:#4e2d17;
 
     background:
+
+        linear-gradient(
+            110deg,
+            rgba(255,255,255,.45),
+            transparent 40%,
+            rgba(255,255,255,.14)
+        ),
+
         linear-gradient(
             145deg,
-            #d8e7ee,
-            #b8cfd9
+            #d8a873,
+            #b97b46
         ) !important;
 
     text-shadow:
 
-        2px 2px 3px
-        rgba(0,0,0,.20);
+        1px 1px 0
+        #ffeeda,
+
+        2px 3px 4px
+        rgba(67,35,16,.23);
+
+    box-shadow:
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.55),
+
+        inset -3px -3px 5px
+        rgba(72,35,13,.16);
 }
 
 
@@ -1114,15 +1217,11 @@ thead th{
         loadingFloat 1.6s ease-in-out infinite;
 }
 
-
 .loading-chart svg{
     width:100%;
     height:100%;
     overflow:visible;
 }
-
-
-/* BATANG GRAFIK */
 
 .loading-chart .bar{
     fill:#d99a22;
@@ -1137,7 +1236,6 @@ thead th{
         barGrow 1.25s ease-in-out infinite;
 }
 
-
 .loading-chart .b1{
     animation-delay:0s;
 }
@@ -1149,9 +1247,6 @@ thead th{
 .loading-chart .b3{
     animation-delay:.30s;
 }
-
-
-/* PANAH */
 
 .loading-chart .arrow{
     fill:none;
@@ -1169,9 +1264,6 @@ thead th{
         arrowMove 1.5s ease-in-out infinite;
 }
 
-
-/* UJUNG PANAH */
-
 .loading-chart .arrow-head{
     fill:none;
 
@@ -1188,9 +1280,6 @@ thead th{
         arrowHeadMove 1.5s ease-in-out infinite;
 }
 
-
-/* GERAK NAIK-TURUN HALUS */
-
 @keyframes loadingFloat{
 
     0%,100%{
@@ -1206,9 +1295,6 @@ thead th{
     }
 }
 
-
-/* BATANG TUMBUH */
-
 @keyframes barGrow{
 
     0%,100%{
@@ -1221,9 +1307,6 @@ thead th{
         opacity:1;
     }
 }
-
-
-/* PANAH BERJALAN */
 
 @keyframes arrowMove{
 
@@ -1248,9 +1331,6 @@ thead th{
     }
 }
 
-
-/* UJUNG PANAH */
-
 @keyframes arrowHeadMove{
 
     0%{
@@ -1274,376 +1354,151 @@ thead th{
     }
 }
 
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<div class="header">
-
-<h1
+</style></head><body><div class="container"><div class="header"><h1
     onclick="toggleFilter()"
     title="Ketuk untuk membuka filter"
 >
     LAPORAN PRODUKSI HARIAN
-</h1>
-
-<div class="subtitle">
+</h1><div class="subtitle">
     DEPARTEMEN PRINTING
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     FILTER
-===================================================== -->
-
-<div
+</div></div><div
     class="filter-panel"
     id="filterPanel"
+><div class="filter-box"><label>
+    HARI YANG DIPILIH
+</label>
+
+<input
+    type="date"
+    id="tanggal"
 >
 
-<div class="filter-box">
+</div><div class="filter-box"><label>
+    GRUP
+</label>
 
-    <label>
-        HARI YANG DIPILIH
-    </label>
+<select id="grup">
 
-    <input
-        type="date"
-        id="tanggal"
-    >
+    <option value="">
+        SEMUA GRUP
+    </option>
 
-</div>
-
-
-<div class="filter-box">
-
-    <label>
-        GRUP
-    </label>
-
-    <select id="grup">
-
-        <option value="">
-            SEMUA GRUP
-        </option>
-
-        <option value="A">
-            GRUP A
-        </option>
-
-        <option value="B">
-            GRUP B
-        </option>
-
-        <option value="C">
-            GRUP C
-        </option>
-
-    </select>
-
-</div>
-
-
-<button
-    class="refresh-btn"
-    onclick="ambilData()"
->
-    ↻ REFRESH DATA
-</button>
-
-</div>
-
-
-<!-- =====================================================
-     INFO
-===================================================== -->
-
-<div class="info-bar">
-
-<div class="info-chip">
-
-    TANGGAL :
-
-    <span id="infoTanggal">
-        -
-    </span>
-
-</div>
-
-
-<div class="info-chip">
-
-    <span id="infoGrup">
+    <option value="A">
         GRUP A
-    </span>
+    </option>
 
-</div>
+    <option value="B">
+        GRUP B
+    </option>
 
-</div>
+    <option value="C">
+        GRUP C
+    </option>
 
+</select>
 
-<!-- =====================================================
-     LOADING
-===================================================== -->
+</div><button
+class="refresh-btn"
+onclick="ambilData()"
 
-<div
+«»
+
+↻ REFRESH DATA
+
+</button></div><div class="info-bar"><div class="info-chip">TANGGAL :
+
+<span id="infoTanggal">
+    -
+</span>
+
+</div><div class="info-chip"><span id="infoGrup">
+    GRUP A
+</span>
+
+</div></div><div
     id="loading"
     class="loading"
 >
     ⏳ SABAR..,biar di sayang Allah ﷻ
-</div>
-
-
-<!-- =====================================================
-     TABEL 1
-===================================================== -->
-
-<div class="section">
-
-<div class="section-title">
+</div><div class="section"><div class="section-title">
     PRODUKSI FLATBED PRINT
-</div>
-
-
-<div class="table-wrap">
-
-<table class="table-flat">
-
-<thead>
-
-<tr>
-
-<th>
+</div><div class="table-wrap"><table class="table-flat"><thead><tr><th>
     MC
-</th>
-
-<th>
+</th><th>
     KODE PRODUK
-</th>
-
-<th>
+</th><th>
     QTY (Pcs)
-</th>
-
-<th>
+</th><th>
     KD
-</th>
-
-<th>
+</th><th>
     TARGET (KD)
-</th>
-
-<th>
+</th><th>
     ACV (%)
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="flatBody">
-
-<tr>
-
-<td
+</th></tr></thead><tbody id="flatBody"><tr><td
     colspan="6"
     class="empty"
 >
     Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     TABEL 2
-===================================================== -->
-
-<div class="section secondary">
-
-<div class="section-title">
+</td></tr></tbody></table></div></div><div class="section secondary"><div class="section-title">
     STEAM, CURING, WASHING &amp; DLVR
-</div>
-
-
-<div class="table-wrap">
-
-<table class="table-secondary">
-
-<thead>
-
-<tr>
-
-<th>
+</div><div class="table-wrap"><table class="table-secondary"><thead><tr><th>
     PROSES
-</th>
-
-<th>
+</th><th>
     KODE PRODUK
-</th>
-
-<th>
+</th><th>
     QTY
-</th>
-
-<th>
+</th><th>
     SATUAN
-</th>
-
-<th>
+</th><th>
     TOTAL
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="formBody">
-
-<tr>
-
-<td
+</th></tr></thead><tbody id="formBody"><tr><td
     colspan="5"
     class="empty"
 >
     Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<div class="footer">
-
-LAPORAN PRODUKSI HARIAN
+</td></tr></tbody></table></div></div><div class="footer">LAPORAN PRODUKSI HARIAN
 •
 DEPARTEMEN PRINTING
 
-</div>
-
-</div>
-
-
-<script>
-
-
-/* =====================================================
-   URL APPS SCRIPT
-===================================================== */
+</div></div><script>
 
 const WEB_APP_URL =
 "https://script.google.com/macros/s/AKfycbwzhYbVJLh8X6yOveOsz1mpXVoOrGTXXOzPM-zpo6_sh31tTeeM5YFT1B2SZ2xTfAdt/exec";
 
-
-/* =====================================================
-   KEY PENYIMPANAN GRUP USER
-===================================================== */
-
 const STORAGE_KEY_GRUP =
     "LAPORAN_PRODUKSI_HARIAN_GRUP_V1";
-
-
-/* =====================================================
-   TARGET PER MESIN
-===================================================== */
 
 const TARGET_MC = {
 
     "FLAT 1":100,
-
     "FLAT 2":100,
-
     "FLAT 4":100,
-
     "FLAT 5":133,
-
     "FLAT 6":133,
-
     "FLAT 7":133
 
 };
 
-
-/* =====================================================
-   ELEMENT
-===================================================== */
-
 const tanggalInput =
-    document.getElementById(
-        "tanggal"
-    );
-
+    document.getElementById("tanggal");
 
 const grupInput =
-    document.getElementById(
-        "grup"
-    );
-
+    document.getElementById("grup");
 
 const loading =
-    document.getElementById(
-        "loading"
-    );
-
+    document.getElementById("loading");
 
 const flatBody =
-    document.getElementById(
-        "flatBody"
-    );
-
+    document.getElementById("flatBody");
 
 const formBody =
-    document.getElementById(
-        "formBody"
-    );
-
+    document.getElementById("formBody");
 
 const filterPanel =
-    document.getElementById(
-        "filterPanel"
-    );
-
-
-/* =====================================================
-   FILTER BUKA / TUTUP
-===================================================== */
+    document.getElementById("filterPanel");
 
 let filterTerbuka =
     false;
-
 
 function kunciFilter(){
 
@@ -1654,7 +1509,6 @@ function kunciFilter(){
         "none";
 
 }
-
 
 function toggleFilter(){
 
@@ -1668,23 +1522,10 @@ function toggleFilter(){
 
 }
 
-
-/* =====================================================
-   TANGGAL HARI INI
-===================================================== */
-
 function tanggalHariIni(){
 
     const sekarang =
         new Date();
-
-
-    /* =============================================
-       HARI PRODUKSI BERGANTI SETIAP JAM 07:00
-
-       00:00 - 06:59 = tanggal kemarin
-       07:00 - 23:59 = tanggal hari ini
-    ============================================= */
 
     if(
         sekarang.getHours() < 7
@@ -1696,25 +1537,18 @@ function tanggalHariIni(){
 
     }
 
-
     const tahun =
         sekarang.getFullYear();
 
     const bulan =
         String(
             sekarang.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
+        ).padStart(2,"0");
 
     const hari =
         String(
             sekarang.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
+        ).padStart(2,"0");
 
     return (
         tahun +
@@ -1725,11 +1559,6 @@ function tanggalHariIni(){
     );
 
 }
-
-
-/* =====================================================
-   FORMAT TANGGAL INDONESIA
-===================================================== */
 
 function formatTanggalIndonesia(
     tanggal
@@ -1781,11 +1610,6 @@ function formatTanggalIndonesia(
 
 }
 
-
-/* =====================================================
-   UPDATE INFO
-===================================================== */
-
 function updateInfo(){
 
     const tanggal =
@@ -1810,11 +1634,6 @@ function updateInfo(){
 
 }
 
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
 function escapeHTML(
     value
 ){
@@ -1830,37 +1649,13 @@ function escapeHTML(
 
     return String(value)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
-
-
-/* =====================================================
-   FORMAT ANGKA
-===================================================== */
 
 function formatAngka(
     angka
@@ -1874,11 +1669,6 @@ function formatAngka(
     );
 
 }
-
-
-/* =====================================================
-   AMBIL TARGET MC
-===================================================== */
 
 function ambilTargetMC(
     mc
@@ -1902,9 +1692,7 @@ function ambilTargetMC(
     }
 
     const angkaMC =
-        nama.match(
-            /\d+/
-        );
+        nama.match(/\d+/);
 
     if(angkaMC){
 
@@ -1925,11 +1713,6 @@ function ambilTargetMC(
     return 0;
 
 }
-
-
-/* =====================================================
-   HITUNG ACV
-===================================================== */
 
 function hitungACV(
     kd,
@@ -1958,14 +1741,7 @@ function hitungACV(
 
 }
 
-
-/* =====================================================
-   AMBIL DATA
-   STABIL + PARALEL + ANTI REQUEST BENTROK
-===================================================== */
-
 let requestDataID = 0;
-
 
 async function ambilData(){
 
@@ -1977,15 +1753,8 @@ async function ambilData(){
 
     updateInfo();
 
-
-    /* =================================================
-       ID REQUEST TERBARU
-       Mencegah request lama menimpa request baru
-    ================================================= */
-
     const requestID =
         ++requestDataID;
-
 
     loading.style.display =
         "block";
@@ -1993,15 +1762,9 @@ async function ambilData(){
     loading.textContent =
         "⏳ SABAR, biar di sayang Allah ﷻ";
 
-
-    /* =================================================
-       URL FLAT
-    ================================================= */
-
     let urlFlat =
         WEB_APP_URL +
         "?action=flat";
-
 
     if(tanggal){
 
@@ -2013,7 +1776,6 @@ async function ambilData(){
 
     }
 
-
     if(grup){
 
         urlFlat +=
@@ -2023,17 +1785,11 @@ async function ambilData(){
             );
 
     }
-
-
-    /* =================================================
-       URL FORM
-    ================================================= */
 
     let urlForm =
         WEB_APP_URL +
         "?action=form";
 
-
     if(tanggal){
 
         urlForm +=
@@ -2043,7 +1799,6 @@ async function ambilData(){
             );
 
     }
-
 
     if(grup){
 
@@ -2055,12 +1810,7 @@ async function ambilData(){
 
     }
 
-
     try{
-
-        /* =================================================
-           FLAT + FORM DIAMBIL BERSAMAAN
-        ================================================= */
 
         const [
             responseFlat,
@@ -2084,13 +1834,6 @@ async function ambilData(){
 
             ]);
 
-
-        /* =================================================
-           CEK REQUEST
-           Kalau sudah ada request baru,
-           request lama langsung berhenti.
-        ================================================= */
-
         if(
             requestID !== requestDataID
         ){
@@ -2099,18 +1842,12 @@ async function ambilData(){
 
         }
 
-
-        /* =================================================
-           PROSES FLAT
-        ================================================= */
-
         if(
             responseFlat.ok
         ){
 
             const hasilFlat =
                 await responseFlat.json();
-
 
             if(
                 hasilFlat.sukses
@@ -2137,18 +1874,12 @@ async function ambilData(){
 
         }
 
-
-        /* =================================================
-           PROSES FORM
-        ================================================= */
-
         if(
             responseForm.ok
         ){
 
             const hasilForm =
                 await responseForm.json();
-
 
             if(
                 hasilForm.sukses
@@ -2175,11 +1906,6 @@ async function ambilData(){
 
         }
 
-
-        /* =================================================
-           SELESAI
-        ================================================= */
-
         if(
             requestID === requestDataID
         ){
@@ -2189,19 +1915,12 @@ async function ambilData(){
 
         }
 
-
     }catch(error){
 
         console.error(
             "Gagal mengambil data:",
             error
         );
-
-
-        /* =================================================
-           PENTING:
-           JANGAN HAPUS DATA YANG SUDAH TAMPIL
-        ================================================= */
 
         if(
             requestID === requestDataID
@@ -2216,18 +1935,12 @@ async function ambilData(){
 
 }
 
-
-/* =====================================================
-   TABEL 1
-===================================================== */
-
 function tampilkanFlat(
     data
 ){
 
     flatBody.innerHTML =
         "";
-
 
     if(
         !data ||
@@ -2251,9 +1964,7 @@ function tampilkanFlat(
 
     }
 
-
     const kelompok = {};
-
 
     data.forEach(
         function(row){
@@ -2265,7 +1976,6 @@ function tampilkanFlat(
                 .trim()
                 .toUpperCase();
 
-
             const kodeProduk =
                 String(
                     row.kodeProduk ||
@@ -2275,12 +1985,10 @@ function tampilkanFlat(
                 .trim()
                 .toUpperCase();
 
-
             const key =
                 mc +
                 "||" +
                 kodeProduk;
-
 
             if(
                 !kelompok[key]
@@ -2301,10 +2009,8 @@ function tampilkanFlat(
 
             }
 
-
             kelompok[key].qty +=
                 Number(row.qty) || 0;
-
 
             kelompok[key].kd +=
                 Number(row.kd) || 0;
@@ -2312,15 +2018,12 @@ function tampilkanFlat(
         }
     );
 
-
     const hasil =
         Object.values(
             kelompok
         );
 
-
     const totalMesin = {};
-
 
     hasil.forEach(
         function(row){
@@ -2341,7 +2044,6 @@ function tampilkanFlat(
         }
     );
 
-
     hasil.sort(
         function(a,b){
 
@@ -2355,7 +2057,6 @@ function tampilkanFlat(
                     }
                 );
 
-
             if(
                 urutMC !== 0
             ){
@@ -2363,7 +2064,6 @@ function tampilkanFlat(
                 return urutMC;
 
             }
-
 
             return String(
                 a.kodeProduk
@@ -2378,13 +2078,11 @@ function tampilkanFlat(
         }
     );
 
-
     let totalQty =
         0;
 
     let totalKD =
         0;
-
 
     hasil.forEach(
         function(row){
@@ -2398,7 +2096,6 @@ function tampilkanFlat(
         }
     );
 
-
     hasil.forEach(
         function(row,index){
 
@@ -2407,22 +2104,18 @@ function tampilkanFlat(
                     "tr"
                 );
 
-
             const mc =
                 row.mc || "-";
-
 
             const target =
                 ambilTargetMC(
                     mc
                 );
 
-
             const totalKDmesin =
                 totalMesin[mc]
                 ? totalMesin[mc].kd
                 : 0;
-
 
             const acv =
                 hitungACV(
@@ -2430,15 +2123,12 @@ function tampilkanFlat(
                     target
                 );
 
-
             const barisBerikutnya =
                 hasil[index + 1];
-
 
             const barisTerakhirMC =
                 !barisBerikutnya ||
                 barisBerikutnya.mc !== mc;
-
 
             tr.innerHTML =
                 `
@@ -2491,7 +2181,6 @@ function tampilkanFlat(
 
                 `;
 
-
             flatBody.appendChild(
                 tr
             );
@@ -2499,16 +2188,13 @@ function tampilkanFlat(
         }
     );
 
-
     const totalRow =
         document.createElement(
             "tr"
         );
 
-
     totalRow.className =
         "total-row";
-
 
     totalRow.innerHTML =
         `
@@ -2541,19 +2227,11 @@ function tampilkanFlat(
 
         `;
 
-
     flatBody.appendChild(
         totalRow
     );
 
 }
-
-
-/* =====================================================
-   TABEL 2
-   TOTAL QTY PER PROSES
-   HANYA MUNCUL 1x PER PROSES
-===================================================== */
 
 function tampilkanForm(
     data
@@ -2561,7 +2239,6 @@ function tampilkanForm(
 
     formBody.innerHTML =
         "";
-
 
     if(
         !data ||
@@ -2588,12 +2265,6 @@ function tampilkanForm(
 
     }
 
-
-    /* =============================================
-       URUTKAN PROSES A-Z
-       Proses yang sama otomatis berkumpul
-       ============================================= */
-
     data = [...data].sort(
         function(a,b){
 
@@ -2618,13 +2289,7 @@ function tampilkanForm(
         }
     );
 
-
-    /* =============================================
-       HITUNG TOTAL QTY PER PROSES
-    ============================================= */
-
     const totalProses = {};
-
 
     data.forEach(
         function(row){
@@ -2635,7 +2300,6 @@ function tampilkanForm(
                 )
                 .trim()
                 .toUpperCase();
-
 
             if(
                 !totalProses[proses]
@@ -2655,7 +2319,6 @@ function tampilkanForm(
 
             }
 
-
             totalProses[proses].qty +=
                 Number(
                     row.qty
@@ -2664,17 +2327,7 @@ function tampilkanForm(
         }
     );
 
-
-    /* =============================================
-       PENANDA PROSES YANG SUDAH DITAMPILKAN
-    ============================================= */
-
     const prosesSudahTampil = {};
-
-
-    /* =============================================
-       TAMPILKAN DATA
-    ============================================= */
 
     data.forEach(
         function(row){
@@ -2684,7 +2337,6 @@ function tampilkanForm(
                     "tr"
                 );
 
-
             const proses =
                 String(
                     row.proses || "-"
@@ -2692,26 +2344,19 @@ function tampilkanForm(
                 .trim()
                 .toUpperCase();
 
-
             const satuan =
                 String(
                     row.satuan || "-"
                 )
                 .trim();
 
-
             const total =
                 totalProses[proses]
                 ? totalProses[proses].qty
                 : 0;
 
-
             let tampilTotal =
                 "";
-
-
-            /* TOTAL HANYA BARIS PERTAMA
-               DARI PROSES YANG SAMA */
 
             if(
                 !prosesSudahTampil[proses]
@@ -2729,7 +2374,6 @@ function tampilkanForm(
                     true;
 
             }
-
 
             tr.innerHTML =
                 `
@@ -2766,7 +2410,6 @@ function tampilkanForm(
 
                 `;
 
-
             formBody.appendChild(
                 tr
             );
@@ -2775,11 +2418,6 @@ function tampilkanForm(
     );
 
 }
-
-
-/* =====================================================
-   EVENT TANGGAL
-===================================================== */
 
 tanggalInput.addEventListener(
     "change",
@@ -2791,12 +2429,6 @@ tanggalInput.addEventListener(
 
     }
 );
-
-
-/* =====================================================
-   EVENT GRUP
-   SIMPAN PILIHAN GRUP USER
-===================================================== */
 
 grupInput.addEventListener(
     "change",
@@ -2814,37 +2446,15 @@ grupInput.addEventListener(
     }
 );
 
-
-/* =====================================================
-   START
-   FILTER TERTUTUP
-   TANGGAL = HARI INI
-   GRUP = TERSIMPAN
-===================================================== */
-
 kunciFilter();
 
 tanggalInput.value =
     tanggalHariIni();
 
-
-/* =====================================================
-   AMBIL GRUP TERAKHIR YANG TERSIMPAN
-===================================================== */
-
 const grupTersimpan =
     localStorage.getItem(
         STORAGE_KEY_GRUP
     );
-
-
-/* =====================================================
-   GRUP YANG DIIZINKAN:
-   ""  = SEMUA GRUP
-   A   = GRUP A
-   B   = GRUP B
-   C   = GRUP C
-===================================================== */
 
 if(
     grupTersimpan === "" ||
@@ -2858,26 +2468,16 @@ if(
 
 }else{
 
-    /* =============================================
-       BELUM ADA PILIHAN TERSIMPAN
-       DEFAULT = GRUP A
-    ============================================= */
-
     grupInput.value =
         "A";
 
 }
 
-
 updateInfo();
-
 
 ambilData();
 
-
-</script>
-
-<script>
+</script><script>
 
 if ("serviceWorker" in navigator) {
 
@@ -2915,7 +2515,5 @@ if ("serviceWorker" in navigator) {
 
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
