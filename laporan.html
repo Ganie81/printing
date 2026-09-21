@@ -1,9 +1,23 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#002B1F">
-<meta name="mobile-web-app-capable" content="yes"><meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="id">
+<head>
 
-<title>LAPORAN PRODUKSI HARIAN</title><style>
+<meta charset="UTF-8">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#002B1F">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>LAPORAN PRODUKSI HARIAN</title>
+
+<style>
 
 /* =====================================================
    DASAR
@@ -114,9 +128,6 @@ body{
     overflow:hidden;
 }
 
-
-/* KILAU GLOSSY */
-
 .header::before{
     content:"";
 
@@ -141,9 +152,6 @@ body{
 
     pointer-events:none;
 }
-
-
-/* JUDUL SEKALIGUS TOMBOL FILTER */
 
 .header h1{
     margin:0;
@@ -505,9 +513,6 @@ body{
 
     overflow:hidden;
 }
-
-
-/* KILAU PADA KOTAK SECTION */
 
 .section::before{
     content:"";
@@ -973,6 +978,36 @@ thead th{
 
 
 /* =====================================================
+   ANGKA TOTAL TABEL 2 — DIPERJELAS UNTUK HP
+===================================================== */
+
+.table-secondary .total-angka{
+    display:inline-block;
+
+    font-weight:1000 !important;
+
+    font-size:
+        clamp(
+            19px,
+            5vw,
+            24px
+        ) !important;
+
+    color:#3f210d !important;
+
+    text-shadow:
+
+        1px 1px 0
+        #fff2df,
+
+        2px 3px 4px
+        rgba(61,30,10,.30);
+
+    letter-spacing:.3px;
+}
+
+
+/* =====================================================
    LOADING
 ===================================================== */
 
@@ -1167,6 +1202,14 @@ thead th{
         white-space:nowrap;
     }
 
+    /* ANGKA TOTAL TABEL 2 DI HP */
+    .table-secondary .total-angka{
+        font-size:
+            22px !important;
+
+        font-weight:1000 !important;
+    }
+
 }
 
 
@@ -1354,17 +1397,38 @@ thead th{
     }
 }
 
-</style></head><body><div class="container"><div class="header"><h1
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1
     onclick="toggleFilter()"
     title="Ketuk untuk membuka filter"
 >
     LAPORAN PRODUKSI HARIAN
-</h1><div class="subtitle">
+</h1>
+
+<div class="subtitle">
     DEPARTEMEN PRINTING
-</div></div><div
+</div>
+
+</div>
+
+
+<div
     class="filter-panel"
     id="filterPanel"
-><div class="filter-box"><label>
+>
+
+<div class="filter-box">
+
+<label>
     HARI YANG DIPILIH
 </label>
 
@@ -1373,7 +1437,12 @@ thead th{
     id="tanggal"
 >
 
-</div><div class="filter-box"><label>
+</div>
+
+
+<div class="filter-box">
+
+<label>
     GRUP
 </label>
 
@@ -1397,76 +1466,198 @@ thead th{
 
 </select>
 
-</div><button
+</div>
+
+
+<button
 class="refresh-btn"
-onclick="ambilData()"
-
-«»
-
+onclick="ambilData"
+>
 ↻ REFRESH DATA
+</button>
 
-</button></div><div class="info-bar"><div class="info-chip">TANGGAL :
+</div>
+
+
+<div class="info-bar">
+
+<div class="info-chip">
+TANGGAL :
 
 <span id="infoTanggal">
     -
 </span>
 
-</div><div class="info-chip"><span id="infoGrup">
+</div>
+
+
+<div class="info-chip">
+
+<span id="infoGrup">
     GRUP A
 </span>
 
-</div></div><div
+</div>
+
+</div>
+
+
+<div
     id="loading"
     class="loading"
 >
     ⏳ SABAR..,biar di sayang Allah ﷻ
-</div><div class="section"><div class="section-title">
+</div>
+
+
+<div class="section">
+
+<div class="section-title">
     PRODUKSI FLATBED PRINT
-</div><div class="table-wrap"><table class="table-flat"><thead><tr><th>
+</div>
+
+
+<div class="table-wrap">
+
+<table class="table-flat">
+
+<thead>
+
+<tr>
+
+<th>
     MC
-</th><th>
+</th>
+
+<th>
     KODE PRODUK
-</th><th>
+</th>
+
+<th>
     QTY (Pcs)
-</th><th>
+</th>
+
+<th>
     KD
-</th><th>
+</th>
+
+<th>
     TARGET (KD)
-</th><th>
+</th>
+
+<th>
     ACV (%)
-</th></tr></thead><tbody id="flatBody"><tr><td
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="flatBody">
+
+<tr>
+
+<td
     colspan="6"
     class="empty"
 >
     Belum ada data
-</td></tr></tbody></table></div></div><div class="section secondary"><div class="section-title">
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="section secondary">
+
+<div class="section-title">
     STEAM, CURING, WASHING &amp; DLVR
-</div><div class="table-wrap"><table class="table-secondary"><thead><tr><th>
+</div>
+
+
+<div class="table-wrap">
+
+<table class="table-secondary">
+
+<thead>
+
+<tr>
+
+<th>
     PROSES
-</th><th>
+</th>
+
+<th>
     KODE PRODUK
-</th><th>
+</th>
+
+<th>
     QTY
-</th><th>
+</th>
+
+<th>
     SATUAN
-</th><th>
+</th>
+
+<th>
     TOTAL
-</th></tr></thead><tbody id="formBody"><tr><td
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="formBody">
+
+<tr>
+
+<td
     colspan="5"
     class="empty"
 >
     Belum ada data
-</td></tr></tbody></table></div></div><div class="footer">LAPORAN PRODUKSI HARIAN
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+LAPORAN PRODUKSI HARIAN
 •
 DEPARTEMEN PRINTING
 
-</div></div><script>
+</div>
+
+</div>
+
+
+<script>
 
 const WEB_APP_URL =
 "https://script.google.com/macros/s/AKfycbwzhYbVJLh8X6yOveOsz1mpXVoOrGTXXOzPM-zpo6_sh31tTeeM5YFT1B2SZ2xTfAdt/exec";
 
+
 const STORAGE_KEY_GRUP =
     "LAPORAN_PRODUKSI_HARIAN_GRUP_V1";
+
 
 const TARGET_MC = {
 
@@ -1479,26 +1670,34 @@ const TARGET_MC = {
 
 };
 
+
 const tanggalInput =
     document.getElementById("tanggal");
+
 
 const grupInput =
     document.getElementById("grup");
 
+
 const loading =
     document.getElementById("loading");
+
 
 const flatBody =
     document.getElementById("flatBody");
 
+
 const formBody =
     document.getElementById("formBody");
+
 
 const filterPanel =
     document.getElementById("filterPanel");
 
+
 let filterTerbuka =
     false;
+
 
 function kunciFilter(){
 
@@ -1509,6 +1708,7 @@ function kunciFilter(){
         "none";
 
 }
+
 
 function toggleFilter(){
 
@@ -1521,6 +1721,7 @@ function toggleFilter(){
         : "none";
 
 }
+
 
 function tanggalHariIni(){
 
@@ -1559,6 +1760,7 @@ function tanggalHariIni(){
     );
 
 }
+
 
 function formatTanggalIndonesia(
     tanggal
@@ -1610,6 +1812,7 @@ function formatTanggalIndonesia(
 
 }
 
+
 function updateInfo(){
 
     const tanggal =
@@ -1634,6 +1837,7 @@ function updateInfo(){
 
 }
 
+
 function escapeHTML(
     value
 ){
@@ -1657,6 +1861,7 @@ function escapeHTML(
 
 }
 
+
 function formatAngka(
     angka
 ){
@@ -1669,6 +1874,7 @@ function formatAngka(
     );
 
 }
+
 
 function ambilTargetMC(
     mc
@@ -1714,6 +1920,7 @@ function ambilTargetMC(
 
 }
 
+
 function hitungACV(
     kd,
     target
@@ -1741,7 +1948,9 @@ function hitungACV(
 
 }
 
+
 let requestDataID = 0;
+
 
 async function ambilData(){
 
@@ -1762,9 +1971,11 @@ async function ambilData(){
     loading.textContent =
         "⏳ SABAR, biar di sayang Allah ﷻ";
 
+
     let urlFlat =
         WEB_APP_URL +
         "?action=flat";
+
 
     if(tanggal){
 
@@ -1776,6 +1987,7 @@ async function ambilData(){
 
     }
 
+
     if(grup){
 
         urlFlat +=
@@ -1785,11 +1997,13 @@ async function ambilData(){
             );
 
     }
+
 
     let urlForm =
         WEB_APP_URL +
         "?action=form";
 
+
     if(tanggal){
 
         urlForm +=
@@ -1800,6 +2014,7 @@ async function ambilData(){
 
     }
 
+
     if(grup){
 
         urlForm +=
@@ -1809,6 +2024,7 @@ async function ambilData(){
             );
 
     }
+
 
     try{
 
@@ -1834,6 +2050,7 @@ async function ambilData(){
 
             ]);
 
+
         if(
             requestID !== requestDataID
         ){
@@ -1841,6 +2058,7 @@ async function ambilData(){
             return;
 
         }
+
 
         if(
             responseFlat.ok
@@ -1874,6 +2092,7 @@ async function ambilData(){
 
         }
 
+
         if(
             responseForm.ok
         ){
@@ -1906,6 +2125,7 @@ async function ambilData(){
 
         }
 
+
         if(
             requestID === requestDataID
         ){
@@ -1915,12 +2135,14 @@ async function ambilData(){
 
         }
 
+
     }catch(error){
 
         console.error(
             "Gagal mengambil data:",
             error
         );
+
 
         if(
             requestID === requestDataID
@@ -1935,12 +2157,14 @@ async function ambilData(){
 
 }
 
+
 function tampilkanFlat(
     data
 ){
 
     flatBody.innerHTML =
         "";
+
 
     if(
         !data ||
@@ -1964,7 +2188,9 @@ function tampilkanFlat(
 
     }
 
+
     const kelompok = {};
+
 
     data.forEach(
         function(row){
@@ -1976,6 +2202,7 @@ function tampilkanFlat(
                 .trim()
                 .toUpperCase();
 
+
             const kodeProduk =
                 String(
                     row.kodeProduk ||
@@ -1985,10 +2212,12 @@ function tampilkanFlat(
                 .trim()
                 .toUpperCase();
 
+
             const key =
                 mc +
                 "||" +
                 kodeProduk;
+
 
             if(
                 !kelompok[key]
@@ -2009,8 +2238,10 @@ function tampilkanFlat(
 
             }
 
+
             kelompok[key].qty +=
                 Number(row.qty) || 0;
+
 
             kelompok[key].kd +=
                 Number(row.kd) || 0;
@@ -2018,12 +2249,15 @@ function tampilkanFlat(
         }
     );
 
+
     const hasil =
         Object.values(
             kelompok
         );
 
+
     const totalMesin = {};
+
 
     hasil.forEach(
         function(row){
@@ -2044,6 +2278,7 @@ function tampilkanFlat(
         }
     );
 
+
     hasil.sort(
         function(a,b){
 
@@ -2057,6 +2292,7 @@ function tampilkanFlat(
                     }
                 );
 
+
             if(
                 urutMC !== 0
             ){
@@ -2064,6 +2300,7 @@ function tampilkanFlat(
                 return urutMC;
 
             }
+
 
             return String(
                 a.kodeProduk
@@ -2078,11 +2315,13 @@ function tampilkanFlat(
         }
     );
 
+
     let totalQty =
         0;
 
     let totalKD =
         0;
+
 
     hasil.forEach(
         function(row){
@@ -2096,6 +2335,7 @@ function tampilkanFlat(
         }
     );
 
+
     hasil.forEach(
         function(row,index){
 
@@ -2104,18 +2344,22 @@ function tampilkanFlat(
                     "tr"
                 );
 
+
             const mc =
                 row.mc || "-";
+
 
             const target =
                 ambilTargetMC(
                     mc
                 );
 
+
             const totalKDmesin =
                 totalMesin[mc]
                 ? totalMesin[mc].kd
                 : 0;
+
 
             const acv =
                 hitungACV(
@@ -2123,12 +2367,15 @@ function tampilkanFlat(
                     target
                 );
 
+
             const barisBerikutnya =
                 hasil[index + 1];
+
 
             const barisTerakhirMC =
                 !barisBerikutnya ||
                 barisBerikutnya.mc !== mc;
+
 
             tr.innerHTML =
                 `
@@ -2181,6 +2428,7 @@ function tampilkanFlat(
 
                 `;
 
+
             flatBody.appendChild(
                 tr
             );
@@ -2188,13 +2436,16 @@ function tampilkanFlat(
         }
     );
 
+
     const totalRow =
         document.createElement(
             "tr"
         );
 
+
     totalRow.className =
         "total-row";
+
 
     totalRow.innerHTML =
         `
@@ -2227,11 +2478,13 @@ function tampilkanFlat(
 
         `;
 
+
     flatBody.appendChild(
         totalRow
     );
 
 }
+
 
 function tampilkanForm(
     data
@@ -2239,6 +2492,7 @@ function tampilkanForm(
 
     formBody.innerHTML =
         "";
+
 
     if(
         !data ||
@@ -2265,6 +2519,7 @@ function tampilkanForm(
 
     }
 
+
     data = [...data].sort(
         function(a,b){
 
@@ -2275,12 +2530,14 @@ function tampilkanForm(
                 .trim()
                 .toUpperCase();
 
+
             const prosesB =
                 String(
                     b.proses || "-"
                 )
                 .trim()
                 .toUpperCase();
+
 
             return prosesA.localeCompare(
                 prosesB
@@ -2289,7 +2546,9 @@ function tampilkanForm(
         }
     );
 
+
     const totalProses = {};
+
 
     data.forEach(
         function(row){
@@ -2300,6 +2559,7 @@ function tampilkanForm(
                 )
                 .trim()
                 .toUpperCase();
+
 
             if(
                 !totalProses[proses]
@@ -2319,6 +2579,7 @@ function tampilkanForm(
 
             }
 
+
             totalProses[proses].qty +=
                 Number(
                     row.qty
@@ -2327,7 +2588,9 @@ function tampilkanForm(
         }
     );
 
+
     const prosesSudahTampil = {};
+
 
     data.forEach(
         function(row){
@@ -2337,6 +2600,7 @@ function tampilkanForm(
                     "tr"
                 );
 
+
             const proses =
                 String(
                     row.proses || "-"
@@ -2344,19 +2608,23 @@ function tampilkanForm(
                 .trim()
                 .toUpperCase();
 
+
             const satuan =
                 String(
                     row.satuan || "-"
                 )
                 .trim();
 
+
             const total =
                 totalProses[proses]
                 ? totalProses[proses].qty
                 : 0;
 
+
             let tampilTotal =
                 "";
+
 
             if(
                 !prosesSudahTampil[proses]
@@ -2364,16 +2632,20 @@ function tampilkanForm(
 
                 tampilTotal =
                     `
-                    ${formatAngka(total)}
+                    <span class="total-angka">
+                        ${formatAngka(total)}
+                    </span>
                     ${escapeHTML(
                         satuan
                     )}
                     `;
 
+
                 prosesSudahTampil[proses] =
                     true;
 
             }
+
 
             tr.innerHTML =
                 `
@@ -2410,6 +2682,7 @@ function tampilkanForm(
 
                 `;
 
+
             formBody.appendChild(
                 tr
             );
@@ -2418,6 +2691,7 @@ function tampilkanForm(
     );
 
 }
+
 
 tanggalInput.addEventListener(
     "change",
@@ -2429,6 +2703,7 @@ tanggalInput.addEventListener(
 
     }
 );
+
 
 grupInput.addEventListener(
     "change",
@@ -2446,15 +2721,19 @@ grupInput.addEventListener(
     }
 );
 
+
 kunciFilter();
+
 
 tanggalInput.value =
     tanggalHariIni();
+
 
 const grupTersimpan =
     localStorage.getItem(
         STORAGE_KEY_GRUP
     );
+
 
 if(
     grupTersimpan === "" ||
@@ -2473,11 +2752,15 @@ if(
 
 }
 
+
 updateInfo();
 
 ambilData();
 
-</script><script>
+</script>
+
+
+<script>
 
 if ("serviceWorker" in navigator) {
 
@@ -2515,5 +2798,7 @@ if ("serviceWorker" in navigator) {
 
 }
 
-</script></body>
-</html>
+</script>
+
+</body>
+   </html>
