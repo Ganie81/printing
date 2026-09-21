@@ -1110,11 +1110,16 @@ function tampilkanData(data){
     html += '<tbody>';
 
 
-    data.posisi.forEach(
-        function(item){
-              if(item.posisi === 'FLAT 7'){
-    return;
-}
+data.posisi.forEach(
+    function(item){
+
+        if(
+            String(item.posisi)
+                .trim()
+                .toUpperCase() === 'FLAT 7'
+        ){
+            return;
+        }
 
             html += '<tr>';
 
