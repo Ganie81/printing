@@ -156,6 +156,7 @@ body{
         0 1px 1px rgba(255,255,255,0.8);
 }
 
+
 /* =====================================================
    FILTER
 ===================================================== */
@@ -416,6 +417,58 @@ tbody tr:nth-child(even){
 
 
 /* =====================================================
+   IKON ORANG DALAM KOTAK
+===================================================== */
+
+.jumlah-orang{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    font-size:clamp(21px,4.5vw,28px);
+
+    font-weight:900;
+
+    color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+.ikon-orang{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:25px;
+
+    height:25px;
+
+    border:1px solid #000000;
+
+    border-radius:5px;
+
+    background:rgba(255,255,255,0.38);
+
+    font-size:14px;
+
+    line-height:1;
+
+    text-shadow:none;
+
+    flex-shrink:0;
+}
+
+
+/* =====================================================
    RINGKASAN
 ===================================================== */
 
@@ -463,6 +516,14 @@ tbody tr:nth-child(even){
 .summary-value{
 
     margin-top:6px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
 
     font-size:clamp(24px,4vw,32px);
 
@@ -810,7 +871,11 @@ tbody tr:nth-child(even){
                     class="summary-value"
                     id="totalKaryawan">
 
-                    0 👥
+                    <span>0</span>
+
+                    <span class="ikon-orang">
+                        👤
+                    </span>
 
                 </div>
 
@@ -827,7 +892,11 @@ tbody tr:nth-child(even){
                     class="summary-value"
                     id="hadir">
 
-                    0 👥
+                    <span>0</span>
+
+                    <span class="ikon-orang">
+                        👤
+                    </span>
 
                 </div>
 
@@ -844,7 +913,11 @@ tbody tr:nth-child(even){
                     class="summary-value"
                     id="tidakHadir">
 
-                    0 👥
+                    <span>0</span>
+
+                    <span class="ikon-orang">
+                        👤
+                    </span>
 
                 </div>
 
@@ -1110,18 +1183,28 @@ function tampilkanData(data){
     html += '<tbody>';
 
 
-data.posisi.forEach(
-    function(item){
+    data.posisi.forEach(
+        function(item){
 
-        if(
-            String(item.posisi)
-                .trim()
-                .toUpperCase() === 'FLAT 7'
-        ){
-            return;
-        }
+            /* -------------------------------------------
+               FLAT 7 HIDDEN
+            ------------------------------------------- */
+
+            if(
+                String(item.posisi)
+                    .trim()
+                    .toUpperCase() === 'FLAT 7'
+            ){
+                return;
+            }
+
 
             html += '<tr>';
+
+
+            /* -------------------------------------------
+               POSISI
+            ------------------------------------------- */
 
             html +=
                 '<td>' +
@@ -1130,11 +1213,28 @@ data.posisi.forEach(
                 ) +
                 '</td>';
 
+
+            /* -------------------------------------------
+               JUMLAH ORANG
+            ------------------------------------------- */
+
             html +=
                 '<td>' +
-                Number(item.jumlah || 0) +
-                ' 👥' +
+
+                '<span class="jumlah-orang">' +
+
+                '<span>' +
+                Number(
+                    item.jumlah || 0
+                ) +
+                '</span>' +
+
+                '<span class="ikon-orang">👤</span>' +
+
+                '</span>' +
+
                 '</td>';
+
 
             html += '</tr>';
 
@@ -1158,29 +1258,41 @@ data.posisi.forEach(
 
     document.getElementById(
         'totalKaryawan'
-    ).innerText =
+    ).innerHTML =
+
+        '<span>' +
         Number(
             data.totalKaryawan || 0
         ) +
-        ' 👥';
+        '</span>' +
+
+        '<span class="ikon-orang">👤</span>';
 
 
     document.getElementById(
         'hadir'
-    ).innerText =
+    ).innerHTML =
+
+        '<span>' +
         Number(
             data.hadir || 0
         ) +
-        ' 👥';
+        '</span>' +
+
+        '<span class="ikon-orang">👤</span>';
 
 
     document.getElementById(
         'tidakHadir'
-    ).innerText =
+    ).innerHTML =
+
+        '<span>' +
         Number(
             data.tidakHadir || 0
         ) +
-        ' 👥';
+        '</span>' +
+
+        '<span class="ikon-orang">👤</span>';
 
 
     /* ---------------------------------------------------
