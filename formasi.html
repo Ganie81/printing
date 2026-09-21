@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#064E3B">
+
+<title>FORMASI MAN POWER</title>
+
+<style>
+
+/* =====================================================
+   DASAR
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    min-height:100%;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+body{
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.35),
+            rgba(255,255,255,0.35)
+        ),
+        url('ABC.jpg');
+
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    color:#12352b;
+
+    padding:20px 12px 40px;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    width:100%;
+    max-width:900px;
+    margin:auto;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d9f3e8,
+            #a9d9c5,
+            #ccebdd
+        );
+
+    border-radius:18px;
+
+    padding:18px 15px;
+
+    box-shadow:
+        0 5px 0 #78ad95,
+        0 10px 22px rgba(0,0,0,0.22);
+
+    border:1px solid rgba(255,255,255,0.85);
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+.header h1{
+
+    margin:0;
+
+    font-size:clamp(24px,5vw,38px);
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff,
+        2px 3px 4px rgba(0,0,0,0.20);
+}
+
+.header .subtitle{
+
+    margin-top:5px;
+
+    font-size:clamp(14px,3vw,19px);
+
+    font-weight:bold;
+
+    color:#28654f;
+}
+
+
+/* =====================================================
+   INFO TANGGAL / GRUP
+===================================================== */
+
+.info{
+
+    margin-top:14px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    color:#164c3a;
+
+    font-size:15px;
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-box{
+
+    margin-top:12px;
+
+    padding:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e7f8ef,
+            #b9e2cf
+        );
+
+    border-radius:16px;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.9),
+        0 5px 15px rgba(0,0,0,0.18);
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+    overflow:hidden;
+
+    transition:
+        max-height .3s ease,
+        opacity .3s ease,
+        padding .3s ease,
+        margin .3s ease;
+}
+
+.filter-box.hidden{
+
+    max-height:0;
+
+    opacity:0;
+
+    padding-top:0;
+    padding-bottom:0;
+
+    margin-top:0;
+}
+
+.filter-item label{
+
+    display:block;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:5px;
+
+    color:#28654f;
+}
+
+.filter-item input,
+.filter-item select{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    padding:10px;
+
+    background:#ffffff;
+
+    color:#174c3a;
+
+    font-weight:bold;
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,0,0,0.10),
+        0 2px 5px rgba(0,0,0,0.12);
+}
+
+
+/* =====================================================
+   TOMBOL FILTER
+===================================================== */
+
+.filter-button{
+
+    grid-column:1 / -1;
+
+    border:none;
+
+    border-radius:11px;
+
+    padding:10px;
+
+    font-weight:bold;
+
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4f9b7d,
+            #287357
+        );
+
+    box-shadow:
+        0 4px 0 #19533e,
+        0 7px 12px rgba(0,0,0,0.18);
+
+    cursor:pointer;
+}
+
+.filter-button:active{
+
+    transform:translateY(3px);
+
+    box-shadow:
+        0 1px 0 #19533e,
+        0 3px 6px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   KOTAK UTAMA
+===================================================== */
+
+.card{
+
+    margin-top:16px;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e7f8ef,
+            #b6dec9,
+            #d8f0e3
+        );
+
+    border:1px solid rgba(255,255,255,0.9);
+
+    box-shadow:
+        0 5px 0 #79ad95,
+        0 10px 20px rgba(0,0,0,0.20);
+}
+
+
+/* =====================================================
+   JUDUL KOTAK
+===================================================== */
+
+.card-title{
+
+    padding:12px 15px;
+
+    font-weight:900;
+
+    color:#07583f;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c9ebda,
+            #91c8ad
+        );
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+
+/* =====================================================
+   TABEL POSISI
+===================================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+thead th{
+
+    padding:12px 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #75b99a,
+            #4d9979
+        );
+
+    color:white;
+
+    font-size:14px;
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.30);
+}
+
+tbody td{
+
+    padding:10px;
+
+    border-bottom:
+        1px solid rgba(65,120,96,0.20);
+
+    font-size:14px;
+
+    font-weight:bold;
+}
+
+tbody tr:last-child td{
+
+    border-bottom:none;
+}
+
+tbody td:last-child{
+
+    text-align:center;
+
+    font-size:15px;
+
+    color:#07583f;
+}
+
+tbody tr:nth-child(even){
+
+    background:
+        rgba(255,255,255,0.28);
+}
+
+
+/* =====================================================
+   RINGKASAN
+===================================================== */
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    padding:12px;
+}
+
+.summary-box{
+
+    text-align:center;
+
+    padding:13px 8px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dff5e9,
+            #a8d6be
+        );
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.95),
+        0 4px 9px rgba(0,0,0,0.16);
+}
+
+.summary-label{
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    color:#28654f;
+}
+
+.summary-value{
+
+    margin-top:5px;
+
+    font-size:22px;
+
+    font-weight:900;
+
+    color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+
+/* =====================================================
+   CATATAN
+===================================================== */
+
+.note{
+
+    padding:15px;
+
+    min-height:55px;
+
+    font-weight:bold;
+
+    color:#235b47;
+
+    white-space:pre-wrap;
+}
+
+
+/* =====================================================
+   GOOGLE FORM
+===================================================== */
+
+.form-button{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    border:none;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-weight:900;
+
+    font-size:16px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #65aa8b,
+            #347c5e,
+            #65aa8b
+        );
+
+    box-shadow:
+        0 5px 0 #1d5b42,
+        0 10px 18px rgba(0,0,0,0.20);
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.35);
+}
+
+.form-button:active{
+
+    transform:translateY(4px);
+
+    box-shadow:
+        0 1px 0 #1d5b42,
+        0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    text-align:center;
+
+    padding:25px;
+
+    font-weight:bold;
+
+    color:#28654f;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error{
+
+    margin-top:15px;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:#ffe5e5;
+
+    color:#9b2226;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    display:none;
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:700px){
+
+    body{
+        padding:35px 20px 50px;
+    }
+
+    .summary{
+        gap:15px;
+    }
+
+    tbody td{
+        padding:12px 15px;
+    }
+
+}
+
+
+/* =====================================================
+   HP
+===================================================== */
+
+@media(max-width:600px){
+
+    .filter-box{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .summary{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .header{
+
+        padding:15px 10px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <div class="header"
+         onclick="toggleFilter()">
+
+        <h1>FORMASI MAN POWER</h1>
+
+        <div class="subtitle">
+            DEPARTEMEN PRINTING
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         INFO
+    ================================================== -->
+
+    <div class="info"
+         id="infoTanggal">
+
+        Tanggal: -
+        &nbsp; | &nbsp;
+        Grup: -
+
+    </div>
+
+
+    <!-- =================================================
+         FILTER
+    ================================================== -->
+
+    <div class="filter-box"
+         id="filterBox">
+
+        <div class="filter-item">
+
+            <label>
+                TANGGAL
+            </label>
+
+            <input
+                type="date"
+                id="tanggal">
+
+        </div>
+
+
+        <div class="filter-item">
+
+            <label>
+                GRUP
+            </label>
+
+            <select id="grup">
+
+                <option value="A">
+                    GRUP A
+                </option>
+
+                <option value="B">
+                    GRUP B
+                </option>
+
+                <option value="C">
+                    GRUP C
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="filter-button"
+            onclick="loadData()">
+
+            🔄 TAMPILKAN DATA
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         ERROR
+    ================================================== -->
+
+    <div
+        class="error"
+        id="errorBox">
+    </div>
+
+
+    <!-- =================================================
+         TABEL POSISI
+    ================================================== -->
+
+    <div class="card">
+
+        <div class="card-title">
+
+            FORMASI POSISI MAN POWER
+
+        </div>
+
+
+        <div id="tableArea">
+
+            <div class="loading">
+
+                ⏳ Memuat data...
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RINGKASAN
+    ================================================== -->
+
+    <div class="card">
+
+        <div class="summary">
+
+            <div class="summary-box">
+
+                <div class="summary-label">
+                    JUMLAH KARYAWAN
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="totalKaryawan">
+
+                    0 👥
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <div class="summary-label">
+                    KARYAWAN HADIR
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="hadir">
+
+                    0 👥
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <div class="summary-label">
+                    TIDAK HADIR
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="tidakHadir">
+
+                    0 👥
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CATATAN
+    ================================================== -->
+
+    <div class="card">
+
+        <div class="card-title">
+            CATATAN
+        </div>
+
+        <div
+            class="note"
+            id="catatan">
+
+            -
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GOOGLE FORM
+    ================================================== -->
+
+    <a
+        class="form-button"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSd6Q0X_ds9tl7AvASCy0LFmJ07Igc1VueX5jcAF9ooz5HIPfQ/viewform?usp=pp_url&entry.452882648=1&entry.1351674041=1&entry.591460049=4&entry.1226966794=4&entry.1990644202=4&entry.1466743513=4&entry.1145224439=4&entry.2143490206=4&entry.1194690087=4&entry.1223260343=3&entry.384554897=3&entry.1401245842=6&entry.1679289820=2&entry.1116442469=1&entry.445576204=1&entry.1386901531=2&entry.1581597590=1"
+        target="_blank">
+
+        📝 ISI FORMASI MAN POWER
+
+    </a>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   URL WEB APP
+===================================================== */
+
+const WEB_APP_URL =
+'https://script.google.com/macros/s/AKfycbzF5nt1VoapVz-Sqk0yPDaJtGXaM2hBRfHE0VXz54y-6qdNeTZ-jJGP9Q5KvNh7qsiA/exec';
+
+
+/* =====================================================
+   DEFAULT TANGGAL
+===================================================== */
+
+function tanggalOperasional(){
+
+    const sekarang =
+        new Date();
+
+    const jam =
+        sekarang.getHours();
+
+    if(jam < 7){
+
+        sekarang.setDate(
+            sekarang.getDate() - 1
+        );
+
+    }
+
+    const tahun =
+        sekarang.getFullYear();
+
+    const bulan =
+        String(
+            sekarang.getMonth() + 1
+        ).padStart(2,'0');
+
+    const hari =
+        String(
+            sekarang.getDate()
+        ).padStart(2,'0');
+
+    return (
+        tahun +
+        '-' +
+        bulan +
+        '-' +
+        hari
+    );
+}
+
+
+/* =====================================================
+   FORMAT TANGGAL
+===================================================== */
+
+function formatTanggalIndonesia(tanggal){
+
+    if(!tanggal){
+        return '-';
+    }
+
+    const bagian =
+        tanggal.split('-');
+
+    if(bagian.length !== 3){
+        return tanggal;
+    }
+
+    return (
+        bagian[2] +
+        '-' +
+        bagian[1] +
+        '-' +
+        bagian[0]
+    );
+}
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+async function loadData(){
+
+    const tanggal =
+        document.getElementById(
+            'tanggal'
+        ).value;
+
+    const grup =
+        document.getElementById(
+            'grup'
+        ).value;
+
+
+    const tableArea =
+        document.getElementById(
+            'tableArea'
+        );
+
+    const errorBox =
+        document.getElementById(
+            'errorBox'
+        );
+
+
+    errorBox.style.display =
+        'none';
+
+
+    tableArea.innerHTML =
+        '<div class="loading">⏳ Memuat data...</div>';
+
+
+    try{
+
+        const url =
+            WEB_APP_URL +
+            '?tanggal=' +
+            encodeURIComponent(tanggal) +
+            '&grup=' +
+            encodeURIComponent(grup);
+
+
+        const response =
+            await fetch(url);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                'Web App tidak dapat diakses.'
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(!data.success){
+
+            throw new Error(
+                data.message ||
+                'Data gagal dibaca.'
+            );
+
+        }
+
+
+        tampilkanData(data);
+
+
+    }catch(error){
+
+        tableArea.innerHTML = '';
+
+        errorBox.innerText =
+            '❌ ' +
+            error.message;
+
+        errorBox.style.display =
+            'block';
+
+    }
+
+}
+
+
+/* =====================================================
+   TAMPILKAN DATA
+===================================================== */
+
+function tampilkanData(data){
+
+    /* ---------------------------------------------------
+       INFO
+    --------------------------------------------------- */
+
+    document.getElementById(
+        'infoTanggal'
+    ).innerHTML =
+
+        'Tanggal: ' +
+        formatTanggalIndonesia(
+            data.tanggal
+        ) +
+        ' &nbsp; | &nbsp; Grup: ' +
+        data.grup;
+
+
+    /* ---------------------------------------------------
+       TABEL
+    --------------------------------------------------- */
+
+    let html = '';
+
+    html += '<table>';
+
+    html += '<thead>';
+
+    html += '<tr>';
+
+    html += '<th>POSISI</th>';
+
+    html += '<th>JUMLAH ORANG</th>';
+
+    html += '</tr>';
+
+    html += '</thead>';
+
+    html += '<tbody>';
+
+
+    data.posisi.forEach(
+        function(item){
+
+            html += '<tr>';
+
+            html +=
+                '<td>' +
+                escapeHtml(
+                    item.posisi
+                ) +
+                '</td>';
+
+            html +=
+                '<td>' +
+                Number(item.jumlah || 0) +
+                ' 👥' +
+                '</td>';
+
+            html += '</tr>';
+
+        }
+    );
+
+
+    html += '</tbody>';
+
+    html += '</table>';
+
+
+    document.getElementById(
+        'tableArea'
+    ).innerHTML = html;
+
+
+    /* ---------------------------------------------------
+       RINGKASAN
+    --------------------------------------------------- */
+
+    document.getElementById(
+        'totalKaryawan'
+    ).innerText =
+        Number(
+            data.totalKaryawan || 0
+        ) +
+        ' 👥';
+
+
+    document.getElementById(
+        'hadir'
+    ).innerText =
+        Number(
+            data.hadir || 0
+        ) +
+        ' 👥';
+
+
+    document.getElementById(
+        'tidakHadir'
+    ).innerText =
+        Number(
+            data.tidakHadir || 0
+        ) +
+        ' 👥';
+
+
+    /* ---------------------------------------------------
+       CATATAN
+    --------------------------------------------------- */
+
+    document.getElementById(
+        'catatan'
+    ).innerText =
+        data.catatan ||
+        '-';
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(text){
+
+    return String(text)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+
+}
+
+
+/* =====================================================
+   TOGGLE FILTER
+===================================================== */
+
+function toggleFilter(){
+
+    const box =
+        document.getElementById(
+            'filterBox'
+        );
+
+    box.classList.toggle(
+        'hidden'
+    );
+
+}
+
+
+/* =====================================================
+   SET DEFAULT
+===================================================== */
+
+document.getElementById(
+    'tanggal'
+).value =
+    tanggalOperasional();
+
+
+/* =====================================================
+   LOAD AWAL
+===================================================== */
+
+loadData();
+
+</script>
+
+</body>
+      </html>
