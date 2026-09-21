@@ -139,7 +139,6 @@ body{
     color:#000000;
     font-size:clamp(18px,3.4vw,23px);
 
-    /* GROUND PUTIH TRANSPARAN */
     display:table;
     margin-left:auto;
     margin-right:auto;
@@ -348,6 +347,82 @@ body{
 
 /* =====================================================
    TABEL POSISI
+   FRAME 3D KANAN - KIRI - BAWAH
+===================================================== */
+
+#tableArea{
+
+    position:relative;
+
+    margin:0 5px 7px;
+
+    border-left:
+        5px solid #72aF91;
+
+    border-right:
+        5px solid #72aF91;
+
+    border-bottom:
+        7px solid #4f8e71;
+
+    border-radius:
+        0 0 12px 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #b9dfcc,
+            #8fbea7
+        );
+
+    box-shadow:
+
+        inset 2px 0 0 rgba(255,255,255,0.75),
+
+        inset -2px 0 0 rgba(255,255,255,0.35),
+
+        inset 0 -2px 0 rgba(255,255,255,0.45),
+
+        0 4px 0 #39745a,
+
+        0 7px 10px rgba(0,0,0,0.18);
+
+    overflow:hidden;
+}
+
+
+/* =====================================================
+   EFEK HIGHLIGHT FRAME
+===================================================== */
+
+#tableArea::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.15),
+            rgba(255,255,255,0.85),
+            rgba(255,255,255,0.15)
+        );
+
+    pointer-events:none;
+
+    z-index:3;
+}
+
+
+/* =====================================================
+   TABLE
 ===================================================== */
 
 table{
@@ -355,6 +430,13 @@ table{
     width:100%;
 
     border-collapse:collapse;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.08)
+        );
 }
 
 thead th{
@@ -376,6 +458,12 @@ thead th{
 
     text-shadow:
         1px 1px 2px rgba(0,0,0,0.30);
+
+    border-bottom:
+        3px solid #3d795e;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55);
 }
 
 tbody td{
@@ -714,6 +802,12 @@ tbody tr:nth-child(even){
         padding:14px 17px;
     }
 
+    #tableArea{
+        margin-left:7px;
+        margin-right:7px;
+        margin-bottom:9px;
+    }
+
 }
 
 
@@ -754,6 +848,18 @@ tbody tr:nth-child(even){
     tbody td{
 
         padding:12px 9px;
+
+    }
+
+    #tableArea{
+
+        margin-left:4px;
+        margin-right:4px;
+        margin-bottom:7px;
+
+        border-left-width:4px;
+        border-right-width:4px;
+        border-bottom-width:6px;
 
     }
 
