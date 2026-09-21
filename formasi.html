@@ -1112,6 +1112,9 @@ function tampilkanData(data){
 
     data.posisi.forEach(
         function(item){
+              if(item.posisi === 'FLAT 7'){
+    return;
+}
 
             html += '<tr>';
 
