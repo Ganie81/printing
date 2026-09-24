@@ -401,17 +401,17 @@ body{
 .info-bar{
     display:flex;
 
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
 
-    gap:11px;
-
-    flex-wrap:wrap;
+    width:100%;
 
     margin-bottom:22px;
 }
 
 .info-chip{
+    width:100%;
+
     padding:
         3px 16px;
 
@@ -446,6 +446,8 @@ body{
     font-weight:900;
 
     color:#405563;
+
+    text-align:left;
 
     text-shadow:
 
@@ -563,7 +565,7 @@ body{
     padding:
     0px 2px 0px;
 
-line-height:
+    line-height:
     0.8;
 
     font-size:
@@ -1110,22 +1112,24 @@ thead th{
     }
 
     .info-bar{
-        margin-left:20px;
-        margin-right:20px;
+        width:calc(100% - 60px);
 
-        gap:8px;
+        margin-left:30px;
+        margin-right:30px;
+
+        margin-bottom:22px;
     }
 
     .section{
-    width:calc(100% - 60px);
+        width:calc(100% - 60px);
 
-    margin-left:30px;
-    margin-right:30px;
+        margin-left:30px;
+        margin-right:30px;
 
-    padding:7px;
+        padding:7px;
 
-    border-radius:18px;
-}
+        border-radius:18px;
+    }
 
     .footer{
         padding-left:8px;
@@ -1153,10 +1157,14 @@ thead th{
     }
 
     .info-chip{
+        width:100%;
+
         font-size:20px;
 
         padding:
             11px 15px;
+
+        text-align:left;
     }
 
     .info-chip span{
@@ -1208,7 +1216,6 @@ thead th{
         white-space:nowrap;
     }
 
-    /* ANGKA TOTAL TABEL 2 DI HP */
     .table-secondary .total-angka{
         font-size:
             22px !important;
@@ -1236,7 +1243,7 @@ thead th{
     .info-chip{
         width:100%;
 
-        text-align:center;
+        text-align:left;
     }
 
 }
@@ -1488,16 +1495,16 @@ onclick="ambilData"
 <div class="info-bar">
 
 <div class="info-chip">
+
 TANGGAL :
 
 <span id="infoTanggal">
     -
 </span>
 
-</div>
+&nbsp;&nbsp; | &nbsp;&nbsp;
 
-
-<div class="info-chip">
+GRUP :
 
 <span id="infoGrup">
     GRUP A
