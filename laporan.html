@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-
-<meta charset="UTF-8">
-
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#002B1F">
-
-<meta name="mobile-web-app-capable" content="yes">
-
-<meta
+<!DOCTYPE html><html lang="id">
+<head><meta charset="UTF-8"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#002B1F"><meta name="mobile-web-app-capable" content="yes"><meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
->
 
-<title>LAPORAN PRODUKSI HARIAN</title>
+«»
 
-<style>
+<title>LAPORAN PRODUKSI HARIAN</title><style>
 
 /* =====================================================
    DASAR
@@ -431,14 +419,14 @@ body{
 
     box-shadow:
 
-    6px 6px 12px
-    rgba(0,0,0,.18),
+        6px 6px 12px
+        rgba(0,0,0,.18),
 
-    inset 1px 1px 3px
-    rgba(255,255,255,.9),
+        inset 1px 1px 3px
+        rgba(255,255,255,.9),
 
-    inset -2px -2px 4px
-    rgba(0,0,0,.08);
+        inset -2px -2px 4px
+        rgba(0,0,0,.08);
 
     font-size:20px;
     font-weight:900;
@@ -497,17 +485,17 @@ body{
 
     box-shadow:
 
-    10px 10px 21px
-    rgba(67,39,20,.45),
+        10px 10px 21px
+        rgba(67,39,20,.45),
 
-    -6px -6px 14px
-    rgba(255,255,255,.30),
+        -6px -6px 14px
+        rgba(255,255,255,.30),
 
-    inset 2px 2px 5px
-    rgba(255,255,255,.84),
+        inset 2px 2px 5px
+        rgba(255,255,255,.84),
 
-    inset -4px -4px 7px
-    rgba(91,52,25,.12);
+        inset -4px -4px 7px
+        rgba(91,52,25,.12);
 
     position:relative;
 
@@ -561,10 +549,10 @@ body{
     text-align:center;
 
     padding:
-    0px 2px 0px;
+        0px 2px 0px;
 
     line-height:
-    0.8;
+        0.8;
 
     font-size:
         clamp(
@@ -1110,14 +1098,14 @@ thead th{
     }
 
     .info-bar{
-    width:calc(100% - 60px);
+        width:calc(100% - 60px);
 
-    margin-left:30px;
-    margin-right:30px;
+        margin-left:30px;
+        margin-right:30px;
 
-    margin-top:28px;
-    margin-bottom:8px;
-}
+        margin-top:28px;
+        margin-bottom:8px;
+    }
 
     .section{
         width:calc(100% - 60px);
@@ -1409,251 +1397,107 @@ thead th{
     }
 }
 
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="header">
-
-<h1
+</style></head><body><div class="container"><div class="header"><h1
     onclick="toggleFilter()"
     title="Ketuk untuk membuka filter"
 >
     LAPORAN PRODUKSI HARIAN
-</h1>
-
-<div class="subtitle">
+</h1><div class="subtitle">
     DEPARTEMEN PRINTING
-</div>
-
-</div>
-
-
-<div
+</div></div><div
     class="filter-panel"
     id="filterPanel"
->
-
-<div class="filter-box">
-
-<label>
+><div class="filter-box"><label>
     HARI YANG DIPILIH
-</label>
+</label><input
+type="date"
+id="tanggal"
 
-<input
-    type="date"
-    id="tanggal"
->
+«»
 
-</div>
-
-
-<div class="filter-box">
-
-<label>
+</div><div class="filter-box"><label>
     GRUP
-</label>
+</label><select id="grup"><option value="">
+    SEMUA GRUP
+</option>
 
-<select id="grup">
+<option value="A">
+    GRUP A
+</option>
 
-    <option value="">
-        SEMUA GRUP
-    </option>
+<option value="B">
+    GRUP B
+</option>
 
-    <option value="A">
-        GRUP A
-    </option>
+<option value="C">
+    GRUP C
+</option>
 
-    <option value="B">
-        GRUP B
-    </option>
-
-    <option value="C">
-        GRUP C
-    </option>
-
-</select>
-
-</div>
-
-
-<button
+</select></div><button
 class="refresh-btn"
-onclick="ambilData"
->
+onclick="ambilData()"
+
+«»
+
 ↻ REFRESH DATA
 </button>
 
-</div>
-
-
-<div class="info-bar">
-
-<div class="info-chip">
-
-TANGGAL :
+</div><div class="info-bar"><div class="info-chip">TANGGAL :
 
 <span id="infoTanggal">
     -
-</span>
-
-&nbsp;&nbsp; | &nbsp;&nbsp;
+</span>   |   
 
 GRUP :
 
 <span id="infoGrup">
     GRUP A
-</span>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-title">
+</span></div></div><div class="section"><div class="section-title">
     PRODUKSI FLATBED PRINT
-</div>
-
-
-<div class="table-wrap">
-
-<table class="table-flat">
-
-<thead>
-
-<tr>
-
-<th>
+</div><div class="table-wrap"><table class="table-flat"><thead><tr><th>
     MC
-</th>
-
-<th>
+</th><th>
     KODE PRODUK
-</th>
-
-<th>
+</th><th>
     QTY (Pcs)
-</th>
-
-<th>
+</th><th>
     KD
-</th>
-
-<th>
+</th><th>
     TARGET (KD)
-</th>
-
-<th>
+</th><th>
     ACV (%)
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="flatBody">
-
-<tr>
-
-<td
+</th></tr></thead><tbody id="flatBody"><tr><td
     colspan="6"
     class="empty"
 >
     Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<div class="section secondary">
-
-<div class="section-title">
+</td></tr></tbody></table></div></div><div class="section secondary"><div class="section-title">
     STEAM, CURING, WASHING &amp; DLVR
-</div>
-
-
-<div class="table-wrap">
-
-<table class="table-secondary">
-
-<thead>
-
-<tr>
-
-<th>
+</div><div class="table-wrap"><table class="table-secondary"><thead><tr><th>
     PROSES
-</th>
-
-<th>
+</th><th>
     KODE PRODUK
-</th>
-
-<th>
+</th><th>
     QTY
-</th>
-
-<th>
+</th><th>
     SATUAN
-</th>
-
-<th>
+</th><th>
     TOTAL
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="formBody">
-
-<tr>
-
-<td
+</th></tr></thead><tbody id="formBody"><tr><td
     colspan="5"
     class="empty"
 >
     Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<div class="footer">
-
-LAPORAN PRODUKSI HARIAN
+</td></tr></tbody></table></div></div><div class="footer">LAPORAN PRODUKSI HARIAN
 •
 DEPARTEMEN PRINTING
 
-</div>
-
-</div>
-
-
-<script>
+</div><!-- LOADING SEKARANG BERADA PALING BAWAH --><div
+    id="loading"
+    class="loading"
+>
+    ⏳ SABAR..,biar di sayang Allah ﷻ
+</div></div><script>
 
 const WEB_APP_URL =
 "https://script.google.com/macros/s/AKfycbwzhYbVJLh8X6yOveOsz1mpXVoOrGTXXOzPM-zpo6_sh31tTeeM5YFT1B2SZ2xTfAdt/exec";
@@ -1973,7 +1817,7 @@ async function ambilData(){
         "block";
 
     loading.textContent =
-        "⏳ SABAR, biar di sayang Allah ﷻ";
+        "⏳ SABAR..,biar di sayang Allah ﷻ";
 
 
     let urlFlat =
@@ -2154,6 +1998,9 @@ async function ambilData(){
 
             loading.textContent =
                 "⚠️ Data belum dapat diperbarui";
+
+            loading.style.display =
+                "block";
 
         }
 
@@ -2761,15 +2608,7 @@ updateInfo();
 
 ambilData();
 
-</script>
-<div
-    id="loading"
-    class="loading"
->
-    ⏳ SABAR..,biar di sayang Allah ﷻ
-</div>
-
-<script>
+</script><script>
 
 if ("serviceWorker" in navigator) {
 
@@ -2807,7 +2646,5 @@ if ("serviceWorker" in navigator) {
 
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
