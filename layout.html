@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>KATALOG DOKUMEN PDF</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  color:#222;
+}
+
+.header{
+  padding:20px;
+  text-align:center;
+  background:#064e3b;
+  color:white;
+}
+
+.header h1{
+  margin:0;
+  font-size:24px;
+}
+
+.header p{
+  margin:6px 0 0;
+  font-size:13px;
+  opacity:.85;
+}
+
+#loading{
+  text-align:center;
+  padding:30px;
+  color:#666;
+}
+
+#daftar{
+  padding:15px;
+  max-width:900px;
+  margin:auto;
+}
+
+.item{
+  background:white;
+  margin-bottom:10px;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+
+.nama{
+  font-weight:bold;
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.ukuran{
+  font-size:12px;
+  color:#777;
+  margin-bottom:10px;
+}
+
+.tombol{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:8px;
+  background:#064e3b;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+}
+
+.tombol:active{
+  transform:scale(.97);
+}
+
+.kosong{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+  <h1>KATALOG DOKUMEN PDF</h1>
+
+  <p>Dokumen dari Google Drive</p>
+
+</div>
+
+<div id="loading">
+  Memuat daftar dokumen...
+</div>
+
+<div id="daftar"></div>
+
+<script>
+
+google.script.run
+  .withSuccessHandler(tampilkanPDF)
+  .withFailureHandler(function(error){
+
+    document.getElementById("loading").innerHTML =
+      "Gagal memuat data: " + error.message;
+
+  })
+  .getDaftarPDF();
+
+
+function tampilkanPDF(data){
+
+  document.getElementById("loading").style.display =
+    "none";
+
+  const daftar =
+    document.getElementById("daftar");
+
+  if(!data || data.length === 0){
+
+    daftar.innerHTML =
+      '<div class="kosong">Tidak ada PDF yang ditemukan.</div>';
+
+    return;
+  }
+
+  data.forEach(function(file){
+
+    const item =
+      document.createElement("div");
+
+    item.className = "item";
+
+    item.innerHTML = `
+
+      <div class="nama">
+        ${escapeHTML(file.nama)}
+      </div>
+
+      <div class="ukuran">
+        Ukuran: ${file.ukuran} MB
+      </div>
+
+      <a
+        class="tombol"
+        href="${file.url}"
+        target="_blank">
+        BUKA PDF
+      </a>
+
+    `;
+
+    daftar.appendChild(item);
+
+  });
+
+}
+
+
+function escapeHTML(text){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
+
+}
+
+</script>
+
+</body>
+</html>
