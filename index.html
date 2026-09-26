@@ -666,13 +666,10 @@ body{
 
 /* =========================================================
    URL WEB APP APPS SCRIPT
-   GANTI DENGAN URL DEPLOYMENT BOS
 ========================================================= */
 
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbznX4q8l1urowCrgvI8E-rRxlXG0MS2AzfOIN_rd6keO4WO16ZRu7QtZv587-dY8wtY/exec
-
-";
+  "https://script.google.com/macros/s/AKfycbznX4q8l1urowCrgvI8E-rRxlXG0MS2AzfOIN_rd6keO4WO16ZRu7QtZv587-dY8wtY/exec";
 
 
 /* =========================================================
@@ -783,7 +780,11 @@ async function api(action, params = {}){
     await response.json();
 
 
-  if(data.error){
+  if(
+    data &&
+    data.sukses === false &&
+    data.error
+  ){
 
     throw new Error(
       data.error
@@ -807,7 +808,7 @@ async function loadStatus(){
 
     const data =
       await api(
-        "cekStatusOCR"
+        "status"
       );
 
 
@@ -832,8 +833,24 @@ async function loadStatus(){
   }catch(error){
 
     console.error(
+      "STATUS ERROR:",
       error
     );
+
+    document.getElementById(
+      "totalPDF"
+    ).textContent =
+      "ERR";
+
+    document.getElementById(
+      "totalOCR"
+    ).textContent =
+      "ERR";
+
+    document.getElementById(
+      "sisaOCR"
+    ).textContent =
+      "ERR";
 
   }
 
@@ -880,7 +897,7 @@ async function cariDokumen(){
 
     const hasil =
       await api(
-        "cariPDFOCR",
+        "cari",
         {
           kata:kata
         }
@@ -936,10 +953,44 @@ function tampilkanHasil(hasil){
     "";
 
 
+  /*
+    Normalnya cariPDFOCR()
+    mengembalikan array.
+
+    Pengaman tambahan jika
+    backend mengembalikan object.
+  */
+
+  let data = [];
+
+
+  if(Array.isArray(hasil)){
+
+    data = hasil;
+
+  }
+
+  else if(
+    hasil &&
+    Array.isArray(hasil.data)
+  ){
+
+    data = hasil.data;
+
+  }
+
+  else if(
+    hasil &&
+    Array.isArray(hasil.hasil)
+  ){
+
+    data = hasil.hasil;
+
+  }
+
+
   const jumlah =
-    Array.isArray(hasil)
-      ? hasil.length
-      : 0;
+    data.length;
 
 
   document.getElementById(
@@ -963,7 +1014,7 @@ function tampilkanHasil(hasil){
     "none";
 
 
-  hasil.forEach(
+  data.forEach(
     function(item){
 
       const card =
@@ -977,15 +1028,25 @@ function tampilkanHasil(hasil){
 
 
       const nama =
-        item.nama || "Tanpa nama";
+        item.nama ||
+        item.namaPDF ||
+        item["NAMA PDF"] ||
+        "Tanpa nama";
 
 
       const wom =
-        item.noWOM || "";
+        item.noWOM ||
+        item.noWom ||
+        item.wom ||
+        item["NO WOM"] ||
+        "";
 
 
       const url =
-        item.url || "#";
+        item.url ||
+        item.urlPDF ||
+        item["URL PDF"] ||
+        "#";
 
 
       card.innerHTML = `
@@ -1054,7 +1115,7 @@ async function updateData(){
 
     const data =
       await api(
-        "updateSemuaData"
+        "update"
       );
 
 
@@ -1176,4 +1237,4 @@ loadStatus();
 </script>
 
 </body>
-  </html>
+</html>
