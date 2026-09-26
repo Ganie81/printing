@@ -16,11 +16,31 @@
   padding:0;
 }
 
+html{
+  min-height:100%;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
+
+  /* =========================
+     BACKGROUND LAYOUT.jpg
+  ========================= */
+
   background:
-    radial-gradient(circle at top,#374151 0,#111827 42%,#030712 100%);
+    linear-gradient(
+      rgba(0,0,0,.38),
+      rgba(0,0,0,.38)
+    ),
+    url("LAYOUT.jpg");
+
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+
   min-height:100vh;
+
   color:#fff;
 }
 
@@ -952,14 +972,6 @@ function tampilkanHasil(hasil){
   resultList.innerHTML =
     "";
 
-
-  /*
-    Normalnya cariPDFOCR()
-    mengembalikan array.
-
-    Pengaman tambahan jika
-    backend mengembalikan object.
-  */
 
   let data = [];
 
