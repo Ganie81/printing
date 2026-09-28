@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>KATALOG DOKUMEN PDF</title>
 
 <style>
-
 *{
   box-sizing:border-box;
 }
@@ -40,6 +36,28 @@ body{
   opacity:.85;
 }
 
+/* SEARCH */
+.searchBox{
+  max-width:900px;
+  margin:15px auto 0;
+  padding:0 15px;
+}
+
+#searchInput{
+  width:100%;
+  padding:13px 15px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
+  background:white;
+}
+
+#searchInput:focus{
+  border-color:#064e3b;
+  box-shadow:0 0 0 2px rgba(6,78,59,.12);
+}
+
 #loading{
   text-align:center;
   padding:30px;
@@ -64,6 +82,7 @@ body{
   font-weight:bold;
   font-size:16px;
   margin-bottom:6px;
+  word-break:break-word;
 }
 
 .ukuran{
@@ -92,19 +111,33 @@ body{
   color:#777;
 }
 
+.statusHasil{
+  max-width:900px;
+  margin:10px auto 0;
+  padding:0 15px;
+  font-size:13px;
+  color:#666;
+}
 </style>
-
 </head>
 
 <body>
 
 <div class="header">
-
   <h1>KATALOG DOKUMEN PDF</h1>
-
   <p>Dokumen dari Google Drive</p>
-
 </div>
+
+<div class="searchBox">
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="Cari judul PDF, WOM, atau isi OCR..."
+    autocomplete="off"
+  >
+</div>
+
+<div id="statusHasil"></div>
 
 <div id="loading">
   Memuat daftar dokumen...
@@ -114,29 +147,92 @@ body{
 
 <script>
 
-google.script.run
-  .withSuccessHandler(tampilkanPDF)
-  .withFailureHandler(function(error){
+/* =========================================================
+   URL WEB APP APPS SCRIPT
+========================================================= */
 
-    document.getElementById("loading").innerHTML =
-      "Gagal memuat data: " + error.message;
+const API_URL =
+"https://script.google.com/macros/s/AKfycbznX4q8l1urowCrgvI8E-rRxlXG0MS2AzfOIN_rd6keO4WO16ZRu7QtZv587-dY8wtY/exec";
 
-  })
-  .getDaftarPDF();
 
+/* =========================================================
+   DATA
+========================================================= */
+
+let semuaPDF = [];
+
+
+/* =========================================================
+   LOAD SEMUA PDF
+========================================================= */
+
+function muatDaftarPDF(){
+
+  const url =
+    API_URL +
+    "?action=daftar&t=" +
+    Date.now();
+
+  fetch(url)
+    .then(function(response){
+
+      if(!response.ok){
+        throw new Error(
+          "HTTP " + response.status
+        );
+      }
+
+      return response.json();
+
+    })
+    .then(function(data){
+
+      semuaPDF =
+        Array.isArray(data)
+        ? data
+        : [];
+
+      document.getElementById("loading")
+        .style.display = "none";
+
+      tampilkanPDF(semuaPDF);
+
+    })
+    .catch(function(error){
+
+      document.getElementById("loading")
+        .innerHTML =
+        "Gagal memuat data: " +
+        escapeHTML(error.message);
+
+    });
+}
+
+
+/* =========================================================
+   TAMPILKAN PDF
+========================================================= */
 
 function tampilkanPDF(data){
-
-  document.getElementById("loading").style.display =
-    "none";
 
   const daftar =
     document.getElementById("daftar");
 
+  const status =
+    document.getElementById("statusHasil");
+
+  daftar.innerHTML = "";
+
+  status.innerHTML =
+    data.length +
+    " dokumen ditemukan";
+
   if(!data || data.length === 0){
 
     daftar.innerHTML =
-      '<div class="kosong">Tidak ada PDF yang ditemukan.</div>';
+      '<div class="kosong">' +
+      'Tidak ada PDF yang ditemukan.' +
+      '</div>';
 
     return;
   }
@@ -148,24 +244,267 @@ function tampilkanPDF(data){
 
     item.className = "item";
 
-    item.innerHTML = `
+    const nama =
+      escapeHTML(file.nama || "");
 
+    const ukuran =
+      escapeHTML(String(file.ukuran || ""));
+
+    const url =
+      escapeAttribute(file.url || "");
+
+    item.innerHTML = `
       <div class="nama">
-        ${escapeHTML(file.nama)}
+        ${nama}
       </div>
 
       <div class="ukuran">
-        Ukuran: ${file.ukuran} MB
+        Ukuran: ${ukuran} MB
       </div>
 
       <a
         class="tombol"
-        href="${file.url}"
-        target="_blank">
+        href="${url}"
+        target="_blank"
+        rel="noopener"
+      >
+        BUKA PDF
+      </a>
+    `;
+
+    daftar.appendChild(item);
+
+  });
+}
+
+
+/* =========================================================
+   PENCARIAN JUDUL PDF
+========================================================= */
+
+let timerCari = null;
+
+document
+  .getElementById("searchInput")
+  .addEventListener("input", function(){
+
+    const kata =
+      this.value
+        .trim()
+        .toLowerCase();
+
+    clearTimeout(timerCari);
+
+    timerCari =
+      setTimeout(function(){
+
+        cariSemua(kata);
+
+      },300);
+
+  });
+
+
+/* =========================================================
+   CARI JUDUL DULU
+   KALAU TIDAK ADA -> OCR
+========================================================= */
+
+function cariSemua(kata){
+
+  if(!kata){
+
+    tampilkanPDF(semuaPDF);
+
+    return;
+  }
+
+
+  /* -------------------------------------------------------
+     1. CARI DI JUDUL PDF
+  ------------------------------------------------------- */
+
+  const hasilJudul =
+    semuaPDF.filter(function(file){
+
+      const nama =
+        String(file.nama || "")
+          .toLowerCase();
+
+      return nama.indexOf(kata) !== -1;
+
+    });
+
+
+  if(hasilJudul.length > 0){
+
+    tampilkanPDF(hasilJudul);
+
+    return;
+  }
+
+
+  /* -------------------------------------------------------
+     2. KALAU JUDUL TIDAK KETEMU,
+        CARI DI OCR
+  ------------------------------------------------------- */
+
+  if(kata.length < 3){
+
+    tampilkanPDF([]);
+
+    return;
+  }
+
+  cariOCR(kata);
+
+}
+
+
+/* =========================================================
+   CARI OCR
+========================================================= */
+
+function cariOCR(kata){
+
+  const daftar =
+    document.getElementById("daftar");
+
+  const status =
+    document.getElementById("statusHasil");
+
+  status.innerHTML =
+    "Judul tidak ditemukan. Mencari OCR...";
+
+  daftar.innerHTML =
+    '<div class="kosong">' +
+    'Mencari teks OCR...' +
+    '</div>';
+
+
+  const url =
+    API_URL +
+    "?action=cari&kata=" +
+    encodeURIComponent(kata) +
+    "&t=" +
+    Date.now();
+
+
+  fetch(url)
+
+    .then(function(response){
+
+      if(!response.ok){
+        throw new Error(
+          "HTTP " + response.status
+        );
+      }
+
+      return response.json();
+
+    })
+
+    .then(function(data){
+
+      if(!Array.isArray(data)){
+        data = [];
+      }
+
+      tampilkanHasilOCR(data);
+
+    })
+
+    .catch(function(error){
+
+      status.innerHTML =
+        "Gagal mencari OCR.";
+
+      daftar.innerHTML =
+        '<div class="kosong">' +
+        escapeHTML(error.message) +
+        '</div>';
+
+    });
+
+}
+
+
+/* =========================================================
+   TAMPILKAN HASIL OCR
+========================================================= */
+
+function tampilkanHasilOCR(data){
+
+  const daftar =
+    document.getElementById("daftar");
+
+  const status =
+    document.getElementById("statusHasil");
+
+  daftar.innerHTML = "";
+
+
+  status.innerHTML =
+    data.length +
+    " dokumen ditemukan dari OCR";
+
+
+  if(data.length === 0){
+
+    daftar.innerHTML =
+      '<div class="kosong">' +
+      'PDF tidak ditemukan.' +
+      '</div>';
+
+    return;
+  }
+
+
+  data.forEach(function(file){
+
+    const item =
+      document.createElement("div");
+
+    item.className = "item";
+
+
+    const nama =
+      escapeHTML(file.nama || "");
+
+    const noWOM =
+      escapeHTML(file.noWOM || "");
+
+    const url =
+      escapeAttribute(file.url || "");
+
+
+    item.innerHTML = `
+
+      <div class="nama">
+        ${nama}
+      </div>
+
+      ${
+        noWOM
+        ? `
+          <div class="ukuran">
+            WOM: ${noWOM}
+          </div>
+        `
+        : ""
+      }
+
+      <a
+        class="tombol"
+        href="${url}"
+        target="_blank"
+        rel="noopener"
+      >
         BUKA PDF
       </a>
 
     `;
+
 
     daftar.appendChild(item);
 
@@ -174,16 +513,43 @@ function tampilkanPDF(data){
 }
 
 
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
 function escapeHTML(text){
 
   const div =
     document.createElement("div");
 
-  div.textContent = text;
+  div.textContent =
+    text == null ? "" : text;
 
   return div.innerHTML;
 
 }
+
+
+/* =========================================================
+   ESCAPE ATTRIBUTE
+========================================================= */
+
+function escapeAttribute(text){
+
+  return String(text == null ? "" : text)
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+
+}
+
+
+/* =========================================================
+   MULAI
+========================================================= */
+
+muatDaftarPDF();
 
 </script>
 
