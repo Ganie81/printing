@@ -1,0 +1,3228 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#064E3B">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>••┈•🍀﷽🍀•┈••</title>
+
+<style>
+
+/* =====================================================
+   DASAR
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    padding:18px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:#fff;
+
+    min-height:300vh;
+
+    position:relative;
+
+    background:
+        url("https://raw.githubusercontent.com/Ganie81/website-saya/main/15202-25_960x960.jpg");
+
+    background-size:cover;
+
+    background-position:center center;
+
+    background-repeat:no-repeat;
+
+    background-attachment:fixed;
+
+}
+
+
+/* =====================================================
+   LAPISAN GELAP AGAR TEKS TETAP JELAS
+===================================================== */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(25,12,5,.48),
+            rgba(35,18,8,.32),
+            rgba(10,10,10,.48)
+        );
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:none;
+
+    margin:0 auto;
+
+}
+
+
+/* =====================================================
+   HEADER PERUSAHAAN
+===================================================== */
+
+.company-header{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    gap:18px;
+
+    margin:
+        2px
+        0
+        20px;
+
+    padding:
+        8px
+        10px;
+
+}
+
+
+.company-logo{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+
+    filter:
+        drop-shadow(
+            3px
+            4px
+            5px
+            rgba(0,0,0,.55)
+        );
+
+}
+
+
+.company-title{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    text-align:left;
+
+}
+
+
+.company-main{
+
+    font-size:34px;
+
+    line-height:1.05;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    color:#fff4d2;
+
+    text-shadow:
+
+        2px 2px 0 #5b2d10,
+
+        4px 4px 8px
+        rgba(0,0,0,.65);
+
+}
+
+
+.company-sub{
+
+    margin-top:7px;
+
+    font-size:22px;
+
+    line-height:1;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    color:#ffe7a4;
+
+    text-shadow:
+
+        2px 2px 4px
+        rgba(0,0,0,.55);
+
+}
+
+
+/* =====================================================
+   MENU UTAMA APLIKASI
+===================================================== */
+
+.app-menu{
+
+    width:100%;
+
+    margin-top:0;
+
+    margin-bottom:18px;
+
+    padding:18px;
+
+    border-radius:21px;
+
+    border:1px solid
+        rgba(255,255,255,.5);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(126,76,39,.98),
+            rgba(70,38,19,.98)
+        );
+
+    box-shadow:
+
+        8px 8px 18px
+        rgba(0,0,0,.45),
+
+        inset 2px 2px 5px
+        rgba(255,255,255,.16),
+
+        inset -3px -3px 6px
+        rgba(0,0,0,.35);
+
+}
+
+
+.app-menu-title{
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    font-size:23px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    color:#ffe7a4;
+
+    text-shadow:
+        2px 2px 4px
+        rgba(0,0,0,.55);
+
+}
+
+
+.app-menu-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+
+.app-menu-item{
+
+    min-height:90px;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    border:1px solid
+        rgba(255,255,255,.3);
+
+    cursor:pointer;
+
+    color:#fff;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.16),
+            rgba(0,0,0,.18)
+        );
+
+    box-shadow:
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.12),
+
+        4px 4px 8px
+        rgba(0,0,0,.3);
+
+}
+
+
+.app-menu-item:active{
+
+    transform:translateY(2px);
+
+}
+
+
+.app-menu-icon{
+
+    font-size:30px;
+
+    line-height:1;
+
+    margin-bottom:8px;
+
+}
+
+
+.app-menu-name{
+
+    font-size:15px;
+
+    font-weight:900;
+
+    letter-spacing:.3px;
+
+}
+
+
+/* =====================================================
+   IKON MESIN CUCI FRONT LOADING
+===================================================== */
+
+.washing-machine-icon{
+
+    width:42px;
+    height:42px;
+
+    margin:0 auto 8px;
+
+    border-radius:8px;
+
+    border:3px solid #ffe7a4;
+
+    background:
+        linear-gradient(
+            145deg,
+            #8f8f8f,
+            #3f3f3f
+        );
+
+    position:relative;
+
+    box-shadow:
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.35),
+
+        3px 3px 6px
+        rgba(0,0,0,.4);
+
+}
+
+
+.washing-door{
+
+    position:absolute;
+
+    width:25px;
+    height:25px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-45%);
+
+    border-radius:50%;
+
+    border:3px solid #d8d8d8;
+
+    background:#222;
+
+    box-shadow:
+        inset 2px 2px 4px
+        rgba(255,255,255,.2);
+
+}
+
+
+.washing-inner{
+
+    position:absolute;
+
+    width:15px;
+    height:15px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #777,
+            #222 70%
+        );
+
+}
+
+
+/* =====================================================
+   PENELUSURAN ROLL ID
+===================================================== */
+
+#searchArea{
+
+    display:none;
+
+}
+
+
+.search-box{
+
+    width:100%;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    border-radius:20px;
+
+    border:1px solid
+        rgba(255,255,255,.5);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(126,76,39,.98),
+            rgba(70,38,19,.98)
+        );
+
+    box-shadow:
+
+        8px 8px 18px
+        rgba(0,0,0,.45),
+
+        inset 2px 2px 5px
+        rgba(255,255,255,.16),
+
+        inset -3px -3px 6px
+        rgba(0,0,0,.35);
+
+}
+
+
+.search-label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:19px;
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+}
+
+
+.search-row{
+
+    display:flex;
+
+    gap:10px;
+
+    width:100%;
+
+}
+
+
+#rollID{
+
+    flex:1;
+
+    min-width:0;
+
+    height:56px;
+
+    padding:0 17px;
+
+    border-radius:13px;
+
+    border:2px solid
+        rgba(255,255,255,.65);
+
+    outline:none;
+
+    font-size:21px;
+
+    font-weight:700;
+
+    color:#3c210f;
+
+    background:#fffaf0;
+
+    box-shadow:
+
+        inset 2px 2px 5px
+        rgba(0,0,0,.2);
+
+}
+
+
+#rollID:focus{
+
+    border-color:#f5d27b;
+
+}
+
+
+.btn-cari{
+
+    height:56px;
+
+    padding:0 28px;
+
+    border:none;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    font-weight:900;
+
+    color:#4b260e;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #ffe8a6,
+            #d8a94c
+        );
+
+    box-shadow:
+
+        5px 5px 10px
+        rgba(0,0,0,.4),
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.65);
+
+}
+
+
+.btn-cari:active{
+
+    transform:translateY(2px);
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+#loading{
+
+    display:none;
+
+    text-align:center;
+
+    padding:16px;
+
+    margin-bottom:18px;
+
+    border-radius:15px;
+
+    font-size:19px;
+
+    font-weight:800;
+
+    background:
+        rgba(0,0,0,.35);
+
+}
+
+
+/* =====================================================
+   KOTAK UTAMA
+===================================================== */
+
+.info-box{
+
+    width:100%;
+
+    margin-bottom:22px;
+
+    border-radius:21px;
+
+    overflow:hidden;
+
+    border:1px solid
+        rgba(255,255,255,.7);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(132,79,40,.98),
+            rgba(66,35,17,.99)
+        );
+
+    box-shadow:
+
+        10px 10px 22px
+        rgba(0,0,0,.48),
+
+        inset 2px 2px 6px
+        rgba(255,255,255,.17),
+
+        inset -3px -3px 7px
+        rgba(0,0,0,.38);
+
+}
+
+
+/* =====================================================
+   BAGIAN NOMOR ROLL
+===================================================== */
+
+.roll-section{
+
+    padding:18px 20px;
+
+    border-bottom:1px solid
+        rgba(255,255,255,.24);
+
+}
+
+
+.section-title{
+
+    font-size:22px;
+
+    font-weight:900;
+
+    letter-spacing:.7px;
+
+    color:#ffe7a4;
+
+    margin-bottom:8px;
+
+}
+
+
+.roll-value{
+
+    font-size:31px;
+
+    line-height:1.2;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    color:#fff;
+
+    word-break:break-word;
+
+    text-shadow:
+
+        2px 2px 4px
+        rgba(0,0,0,.6);
+
+}
+
+
+/* =====================================================
+   INFORMASI PRODUK
+===================================================== */
+
+.product-section{
+
+    padding:18px 20px;
+
+    border-bottom:1px solid
+        rgba(255,255,255,.24);
+
+}
+
+
+.product-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:12px;
+
+}
+
+
+.product-item{
+
+    min-width:0;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.14),
+            rgba(0,0,0,.14)
+        );
+
+    border:1px solid
+        rgba(255,255,255,.24);
+
+    box-shadow:
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.12),
+
+        3px 3px 7px
+        rgba(0,0,0,.25);
+
+}
+
+
+.product-label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#f6d98e;
+
+    text-transform:uppercase;
+
+}
+
+
+.product-value{
+
+    font-size:20px;
+
+    line-height:1.35;
+
+    font-weight:800;
+
+    color:#fff;
+
+    overflow-wrap:anywhere;
+
+}
+
+
+/* =====================================================
+   STATUS PERJALANAN ROLL
+===================================================== */
+
+.status-section{
+
+    padding:18px 20px 20px;
+
+}
+
+
+.status-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+
+}
+
+
+.status-item{
+
+    min-width:0;
+
+    padding:14px 10px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    border:1px solid
+        rgba(255,255,255,.27);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(0,0,0,.18)
+        );
+
+    box-shadow:
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.1),
+
+        3px 3px 8px
+        rgba(0,0,0,.3);
+
+}
+
+
+.status-name{
+
+    font-size:21px;
+
+    font-weight:900;
+
+    margin-bottom:7px;
+
+}
+
+
+.status-icon{
+
+    font-size:32px;
+
+    font-weight:900;
+
+    line-height:1;
+
+}
+
+
+.status-ok{
+
+    color:#7dff9c;
+
+    text-shadow:
+        0 0 7px
+        rgba(90,255,120,.35);
+
+}
+
+
+.status-no{
+
+    color:#ffb0a7;
+
+}
+
+
+/* =====================================================
+   JUDUL TABEL
+===================================================== */
+
+.table-title{
+
+    width:100%;
+
+    margin:0;
+
+    padding:16px 18px;
+
+    border-radius:18px 18px 0 0;
+
+    border:1px solid
+        rgba(255,255,255,.65);
+
+    border-bottom:none;
+
+    text-align:center;
+
+    font-size:24px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    color:#fff1c4;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #84512b,
+            #593019
+        );
+
+    box-shadow:
+
+        7px 7px 15px
+        rgba(0,0,0,.4),
+
+        inset 2px 2px 5px
+        rgba(255,255,255,.15);
+
+}
+
+
+/* =====================================================
+   TABEL PROSES
+===================================================== */
+
+.table-wrap{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:
+        0 0 18px 18px;
+
+    box-shadow:
+
+        8px 8px 18px
+        rgba(0,0,0,.45);
+
+}
+
+
+.process-table{
+
+    width:100%;
+
+    min-width:850px;
+
+    border-collapse:collapse;
+
+    table-layout:fixed;
+
+    background:
+        rgba(58,31,15,.96);
+
+}
+
+
+.process-table th{
+
+    padding:16px 10px;
+
+    border:1px solid
+        rgba(255,255,255,.55);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #8d572f,
+            #5e321b
+        );
+
+    color:#ffeab0;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    text-align:center;
+
+}
+
+
+.process-table th:first-child{
+
+    width:21%;
+
+}
+
+
+.process-table td{
+
+    padding:15px 12px;
+
+    border:1px solid
+        rgba(255,255,255,.38);
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    line-height:1.35;
+
+    text-align:center;
+
+    overflow-wrap:anywhere;
+
+}
+
+
+.process-table td:first-child{
+
+    font-weight:900;
+
+    color:#f7d994;
+
+    background:
+        rgba(255,255,255,.06);
+
+}
+
+
+.process-table tr:nth-child(even) td{
+
+    background:
+        rgba(255,255,255,.045);
+
+}
+
+
+/* =====================================================
+   HASIL
+===================================================== */
+
+#hasil{
+
+    display:none;
+
+}
+
+
+.empty{
+
+    text-align:center;
+
+    padding:25px;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    color:#ffe5a1;
+
+}
+
+
+/* =====================================================
+   PENGATURAN APLIKASI
+===================================================== */
+
+#pengaturanArea{
+
+    display:none;
+
+    width:100%;
+
+    margin-bottom:20px;
+
+}
+
+
+.settings-box{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    border:1px solid
+        rgba(255,255,255,.6);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(126,76,39,.98),
+            rgba(70,38,19,.98)
+        );
+
+    box-shadow:
+
+        10px 10px 22px
+        rgba(0,0,0,.48),
+
+        inset 2px 2px 6px
+        rgba(255,255,255,.16),
+
+        inset -3px -3px 7px
+        rgba(0,0,0,.35);
+
+}
+
+
+.settings-title{
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:#ffe7a4;
+
+    letter-spacing:1px;
+
+    margin-bottom:6px;
+
+    text-shadow:
+        2px 2px 4px
+        rgba(0,0,0,.55);
+
+}
+
+
+.settings-subtitle{
+
+    text-align:center;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    opacity:.9;
+
+    margin-bottom:20px;
+
+}
+
+
+.settings-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+
+.settings-item{
+
+    min-height:100px;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    border:1px solid
+        rgba(255,255,255,.3);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.15),
+            rgba(0,0,0,.2)
+        );
+
+    box-shadow:
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.12),
+
+        4px 4px 9px
+        rgba(0,0,0,.3);
+
+}
+
+
+.settings-item:active{
+
+    transform:translateY(2px);
+
+}
+
+
+.settings-icon{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+
+.settings-name{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#ffe7a4;
+
+    margin-bottom:5px;
+
+}
+
+
+.settings-desc{
+
+    font-size:14px;
+
+    line-height:1.4;
+
+    font-weight:600;
+
+    color:#fff;
+
+    opacity:.9;
+
+}
+
+
+.settings-back{
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#4b260e;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #ffe8a6,
+            #d8a94c
+        );
+
+    box-shadow:
+
+        5px 5px 10px
+        rgba(0,0,0,.4),
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.65);
+
+}
+
+
+.settings-back:active{
+
+    transform:translateY(2px);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE TABLET
+===================================================== */
+
+@media (max-width:900px){
+
+    body{
+        padding:10px;
+    }
+
+    .product-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .status-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .company-main{
+        font-size:29px;
+    }
+
+    .company-sub{
+        font-size:20px;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE HP
+===================================================== */
+
+@media (max-width:600px){
+
+    body{
+        padding:0;
+    }
+
+    .container{
+        width:100%;
+    }
+
+    .company-header{
+
+        gap:10px;
+
+        margin:
+            10px
+            8px
+            14px;
+
+        padding:4px;
+
+        justify-content:flex-start;
+
+    }
+
+    .company-logo{
+
+        width:70px;
+
+        height:70px;
+
+    }
+
+    .company-main{
+
+        font-size:24px;
+
+        letter-spacing:1px;
+
+    }
+
+    .company-sub{
+
+        margin-top:5px;
+
+        font-size:17px;
+
+        letter-spacing:1px;
+
+    }
+
+    .app-menu{
+
+        margin-top:0;
+
+        margin-bottom:12px;
+
+        padding:12px 10px;
+
+        border-radius:0;
+
+    }
+
+    .app-menu-title{
+
+        font-size:20px;
+
+        margin-bottom:12px;
+
+    }
+
+    .app-menu-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:8px;
+
+    }
+
+    .app-menu-item{
+
+        min-height:78px;
+
+        padding:10px 7px;
+
+        border-radius:12px;
+
+    }
+
+    .app-menu-icon{
+
+        font-size:27px;
+
+        margin-bottom:6px;
+
+    }
+
+    .app-menu-name{
+
+        font-size:14px;
+
+    }
+
+    .search-box{
+
+        border-radius:0;
+
+        margin-bottom:12px;
+
+        padding:14px 10px;
+
+    }
+
+    .search-label{
+
+        font-size:18px;
+
+    }
+
+    .search-row{
+
+        gap:7px;
+
+    }
+
+    #rollID{
+
+        height:53px;
+
+        font-size:19px;
+
+        padding:0 12px;
+
+    }
+
+    .btn-cari{
+
+        height:53px;
+
+        padding:0 17px;
+
+        font-size:17px;
+
+    }
+
+    .info-box{
+
+        border-radius:0;
+
+        margin-bottom:14px;
+
+    }
+
+    .roll-section,
+    .product-section,
+    .status-section{
+
+        padding:
+            15px
+            10px;
+
+    }
+
+    .section-title{
+        font-size:18px;
+    }
+
+    .roll-value{
+        font-size:27px;
+    }
+
+    .product-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:8px;
+
+    }
+
+    .product-item{
+
+        padding:11px 9px;
+
+        border-radius:11px;
+
+    }
+
+    .product-label{
+        font-size:13px;
+    }
+
+    .product-value{
+        font-size:17px;
+    }
+
+    .status-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:8px;
+
+    }
+
+    .status-item{
+        padding:12px 7px;
+    }
+
+    .status-name{
+        font-size:17px;
+    }
+
+    .status-icon{
+        font-size:30px;
+    }
+
+    .table-title{
+
+        border-radius:0;
+
+        padding:14px 8px;
+
+        font-size:21px;
+
+    }
+
+    .table-wrap{
+
+        border-radius:0;
+
+        width:100vw;
+
+        overflow-x:auto;
+
+    }
+
+    .process-table{
+        min-width:760px;
+    }
+
+    .process-table th{
+
+        padding:
+            14px
+            8px;
+
+        font-size:17px;
+
+    }
+
+    .process-table td{
+
+        padding:
+            14px
+            8px;
+
+        font-size:17px;
+
+    }
+
+
+    /* =================================================
+       PENGATURAN HP
+    ================================================= */
+
+    #pengaturanArea{
+
+        margin-bottom:12px;
+
+    }
+
+
+    .settings-box{
+
+        width:100%;
+
+        max-width:none;
+
+        padding:15px 10px;
+
+        border-radius:0;
+
+    }
+
+
+    .settings-title{
+
+        font-size:22px;
+
+        margin-bottom:5px;
+
+    }
+
+
+    .settings-subtitle{
+
+        font-size:14px;
+
+        margin-bottom:15px;
+
+    }
+
+
+    .settings-grid{
+
+        grid-template-columns:
+            1fr;
+
+        gap:9px;
+
+    }
+
+
+    .settings-item{
+
+        min-height:82px;
+
+        padding:14px;
+
+        border-radius:12px;
+
+    }
+
+
+    .settings-icon{
+
+        font-size:27px;
+
+        margin-bottom:5px;
+
+    }
+
+
+    .settings-name{
+
+        font-size:16px;
+
+        margin-bottom:4px;
+
+    }
+
+
+    .settings-desc{
+
+        font-size:13px;
+
+    }
+
+
+    .settings-back{
+
+        margin-top:12px;
+
+        padding:14px;
+
+        font-size:17px;
+
+        border-radius:12px;
+
+    }
+
+}
+
+
+/* =====================================================
+   HP SANGAT KECIL
+===================================================== */
+
+@media (max-width:380px){
+
+    .company-logo{
+
+        width:62px;
+
+        height:62px;
+
+    }
+
+    .company-main{
+        font-size:21px;
+    }
+
+    .company-sub{
+        font-size:15px;
+    }
+
+    .product-value{
+        font-size:16px;
+    }
+
+    .status-name{
+        font-size:16px;
+    }
+
+    .process-table th,
+    .process-table td{
+        font-size:16px;
+    }
+
+    .settings-title{
+        font-size:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =================================================
+     HEADER PERUSAHAAN
+================================================== -->
+
+<div class="company-header">
+
+<img
+    class="company-logo"
+    src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png"
+    alt="Logo PT BEHAESTEX"
+>
+
+
+<div class="company-title">
+
+    <div class="company-main">
+        DEPARTMENT PRINTING
+    </div>
+
+
+    <div class="company-sub">
+        PT BEHAESTEX
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =================================================
+     MENU UTAMA APLIKASI
+===================================================== -->
+
+<div class="app-menu">
+
+<div class="app-menu-title">
+    MENU SISTEM PRODUKSI
+</div>
+
+
+<div class="app-menu-grid">
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
+    >
+
+        <div class="app-menu-icon">
+            🏭
+        </div>
+
+        <div class="app-menu-name">
+            PRODUKSI
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
+    >
+
+        <div class="app-menu-icon">
+            🛠️
+        </div>
+
+        <div class="app-menu-name">
+            DEFECT FLAT
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
+    >
+
+        <div class="app-menu-icon washing-machine-icon">
+
+            <div class="washing-door">
+
+                <div class="washing-inner"></div>
+
+            </div>
+
+        </div>
+
+        <div class="app-menu-name">
+            CUCI
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='./lapak.html'"
+    >
+
+        <div class="app-menu-icon">
+            📋
+        </div>
+
+        <div class="app-menu-name">
+            LAPORAN HARIAN
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="bukaPengaturan()"
+    >
+
+        <div class="app-menu-icon">
+            ⚙️
+        </div>
+
+        <div class="app-menu-name">
+            PENGATURAN
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="bukaPencarianRoll()"
+    >
+
+        <div class="app-menu-icon">
+            🔎
+        </div>
+
+        <div class="app-menu-name">
+            CEK ROLL ID
+        </div>
+
+    </button>
+
+
+</div>
+
+</div>
+
+
+<!-- =================================================
+     PENGATURAN APLIKASI
+===================================================== -->
+
+<div id="pengaturanArea">
+
+    <div class="settings-box">
+
+        <div class="settings-title">
+            ⚙️ PENGATURAN APLIKASI
+        </div>
+
+        <div class="settings-subtitle">
+            Pengaturan sistem Department Printing
+        </div>
+
+
+        <div class="settings-grid">
+
+
+            <button
+                class="settings-item"
+                onclick="refreshAplikasi()"
+            >
+
+                <div class="settings-icon">
+                    🔄
+                </div>
+
+                <div class="settings-name">
+                    REFRESH APLIKASI
+                </div>
+
+                <div class="settings-desc">
+                    Memuat ulang aplikasi dan mengambil tampilan terbaru.
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="hapusRollTerakhir()"
+            >
+
+                <div class="settings-icon">
+                    🧹
+                </div>
+
+                <div class="settings-name">
+                    HAPUS ROLL TERAKHIR
+                </div>
+
+                <div class="settings-desc">
+                    Menghapus Roll ID terakhir yang tersimpan di perangkat.
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="informasiAplikasi()"
+            >
+
+                <div class="settings-icon">
+                    ℹ️
+                </div>
+
+                <div class="settings-name">
+                    INFORMASI APLIKASI
+                </div>
+
+                <div class="settings-desc">
+                    Melihat informasi aplikasi Department Printing.
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="cekModeAplikasi()"
+            >
+
+                <div class="settings-icon">
+                    📱
+                </div>
+
+                <div class="settings-name">
+                    PERANGKAT
+                </div>
+
+                <div class="settings-desc">
+                    Melihat apakah aplikasi sedang digunakan di HP atau desktop.
+                </div>
+
+            </button>
+
+
+        </div>
+
+
+        <button
+            class="settings-back"
+            onclick="tutupPengaturan()"
+        >
+
+            ↩️ KEMBALI KE MENU UTAMA
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     AREA PENELUSURAN
+================================================== -->
+
+<div id="searchArea">
+
+<div class="search-box">
+
+    <label
+        class="search-label"
+        for="rollID"
+    >
+
+        PENELUSURAN ROLL ID
+
+    </label>
+
+
+    <div class="search-row">
+
+        <input
+            type="text"
+            id="rollID"
+            placeholder="Masukkan Roll ID..."
+            autocomplete="off"
+        >
+
+
+        <button
+            class="btn-cari"
+            onclick="cariRoll()"
+        >
+
+            CARI
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="loading">
+
+    ⏳ SABAR..biar di sayang Allah ﷻ
+
+</div>
+
+</div>
+
+
+<!-- =================================================
+     HASIL PENELUSURAN
+===================================================== -->
+
+<div id="hasil">
+
+<div class="info-box">
+
+
+    <div class="roll-section">
+
+        <div class="section-title">
+            NOMOR ROLL ID
+        </div>
+
+        <div
+            class="roll-value"
+            id="nomorRoll"
+        >
+            -
+        </div>
+
+    </div>
+
+
+    <div class="product-section">
+
+        <div class="section-title">
+            INFORMASI PRODUK
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Motif
+                </span>
+
+                <div
+                    class="product-value"
+                    id="motif"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Warna
+                </span>
+
+                <div
+                    class="product-value"
+                    id="warna"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Isian Warna
+                </span>
+
+                <div
+                    class="product-value"
+                    id="isianWarna"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Kode Produk
+                </span>
+
+                <div
+                    class="product-value"
+                    id="kodeProduk"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Qty
+                </span>
+
+                <div
+                    class="product-value"
+                    id="qty"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="status-section">
+
+        <div class="section-title">
+            STATUS PERJALANAN ROLL
+        </div>
+
+
+        <div class="status-grid">
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    FLAT
+                </div>
+
+                <div
+                    class="status-icon"
+                    id="statusFlat"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    STEAM
+                </div>
+
+                <div
+                    class="status-icon"
+                    id="statusSteam"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    CURING
+                </div>
+
+                <div
+                    class="status-icon"
+                    id="statusCuring"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="status-item">
+
+                <div class="status-name">
+                    WASHING
+                </div>
+
+                <div
+                    class="status-icon"
+                    id="statusWashing"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="table-title">
+    INFORMASI PROSES PRODUKSI
+</div>
+
+
+<div class="table-wrap">
+
+
+    <table class="process-table">
+
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    URAIAN
+                </th>
+
+                <th>
+                    FLAT
+                </th>
+
+                <th>
+                    STEAM
+                </th>
+
+                <th>
+                    CURING
+                </th>
+
+                <th>
+                    WASHING
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+            <tr>
+
+                <td>
+                    TANGGAL
+                </td>
+
+                <td id="flatTanggal">
+                    -
+                </td>
+
+                <td id="steamTanggal">
+                    -
+                </td>
+
+                <td id="curingTanggal">
+                    -
+                </td>
+
+                <td id="washingTanggal">
+                    -
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    MESIN
+                </td>
+
+                <td id="flatMesin">
+                    -
+                </td>
+
+                <td id="steamMesin">
+                    -
+                </td>
+
+                <td id="curingMesin">
+                    -
+                </td>
+
+                <td id="washingMesin">
+                    -
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    GRUP / SHIFT
+                </td>
+
+                <td id="flatGrupShift">
+                    -
+                </td>
+
+                <td id="steamGrupShift">
+                    -
+                </td>
+
+                <td id="curingGrupShift">
+                    -
+                </td>
+
+                <td id="washingGrupShift">
+                    -
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    NAMA
+                </td>
+
+                <td id="flatNama">
+                    -
+                </td>
+
+                <td id="steamNama">
+                    -
+                </td>
+
+                <td id="curingNama">
+                    -
+                </td>
+
+                <td id="washingNama">
+                    -
+                </td>
+
+            </tr>
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   URL APPS SCRIPT
+===================================================== */
+
+const WEB_APP_URL =
+    "https://script.google.com/macros/s/AKfycbyCnKXqqgxhn3lfES6DoDAUw8BuF10u0hwSlqe_J4R5lOqmMa8bVUCkvYQHhazTa-4j/exec";
+
+
+/* =====================================================
+   BUKA / TUTUP PENELUSURAN ROLL ID
+===================================================== */
+
+function bukaPencarianRoll(){
+
+    const searchArea =
+        document.getElementById("searchArea");
+
+    const pengaturanArea =
+        document.getElementById("pengaturanArea");
+
+    if(!searchArea) return;
+
+
+    if(pengaturanArea){
+
+        pengaturanArea.style.display =
+            "none";
+
+    }
+
+
+    const sedangTerbuka =
+        searchArea.style.display === "block";
+
+
+    if(sedangTerbuka){
+
+        searchArea.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    searchArea.style.display =
+        "block";
+
+
+    const input =
+        document.getElementById("rollID");
+
+    if(input){
+
+        input.focus();
+
+    }
+
+}
+
+
+/* =====================================================
+   HELPER
+===================================================== */
+
+function isi(id,nilai){
+
+    const el =
+        document.getElementById(id);
+
+    if(!el) return;
+
+
+    if(
+        nilai === null ||
+        nilai === undefined ||
+        String(nilai).trim() === ""
+    ){
+
+        el.textContent = "-";
+
+    }else{
+
+        el.textContent = nilai;
+
+    }
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function tampilStatus(id,nilai){
+
+    const el =
+        document.getElementById(id);
+
+    if(!el) return;
+
+
+    if(String(nilai) === "✓"){
+
+        el.textContent = "✓";
+
+        el.className =
+            "status-icon status-ok";
+
+    }else{
+
+        el.textContent = "–";
+
+        el.className =
+            "status-icon status-no";
+
+    }
+
+}
+
+
+/* =====================================================
+   RESET TAMPILAN
+===================================================== */
+
+function resetTampilan(){
+
+    const ids = [
+
+        "nomorRoll",
+
+        "motif",
+        "warna",
+        "isianWarna",
+        "kodeProduk",
+        "qty",
+
+        "flatTanggal",
+        "steamTanggal",
+        "curingTanggal",
+        "washingTanggal",
+
+        "flatMesin",
+        "steamMesin",
+        "curingMesin",
+        "washingMesin",
+
+        "flatGrupShift",
+        "steamGrupShift",
+        "curingGrupShift",
+        "washingGrupShift",
+
+        "flatNama",
+        "steamNama",
+        "curingNama",
+        "washingNama"
+
+    ];
+
+
+    ids.forEach(function(id){
+
+        isi(id,"-");
+
+    });
+
+
+    [
+        "statusFlat",
+        "statusSteam",
+        "statusCuring",
+        "statusWashing"
+
+    ].forEach(function(id){
+
+        tampilStatus(id,"-");
+
+    });
+
+}
+
+
+/* =====================================================
+   TAMPILKAN DATA PROSES
+===================================================== */
+
+function tampilProses(prefix,data){
+
+    if(
+        !data ||
+        typeof data !== "object"
+    ){
+
+        return;
+
+    }
+
+
+    isi(
+        prefix + "Tanggal",
+        data["TANGGAL"]
+    );
+
+
+    isi(
+        prefix + "Mesin",
+        data["MESIN"]
+    );
+
+
+    isi(
+        prefix + "Nama",
+        data["NAMA"]
+    );
+
+}
+
+
+/* =====================================================
+   CARI ROLL ID
+===================================================== */
+
+async function cariRoll(){
+
+    const input =
+        document.getElementById("rollID");
+
+    const rollID =
+        input.value.trim();
+
+
+    localStorage.setItem(
+        "LAST_ROLL_ID",
+        rollID
+    );
+
+
+    if(!rollID){
+
+        alert(
+            "Silakan masukkan Nomor Roll ID."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    const loading =
+        document.getElementById("loading");
+
+    const hasil =
+        document.getElementById("hasil");
+
+
+    loading.style.display =
+        "block";
+
+    hasil.style.display =
+        "none";
+
+
+    resetTampilan();
+
+
+    try{
+
+        const url =
+    WEB_APP_URL +
+    "?rollID=" +
+    encodeURIComponent(rollID) +
+    "&_t=" +
+    Date.now();
+
+
+const response =
+    await fetch(url, {
+        cache: "no-store"
+    });
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(!data.sukses){
+
+            throw new Error(
+                data.pesan ||
+                "Data tidak ditemukan."
+            );
+
+        }
+
+
+        isi(
+            "nomorRoll",
+            data.rollID
+        );
+
+
+        tampilStatus(
+            "statusFlat",
+            data.status
+                ? data.status.FLAT
+                : "-"
+        );
+
+
+        tampilStatus(
+            "statusSteam",
+            data.status
+                ? data.status.STEAM
+                : "-"
+        );
+
+
+        tampilStatus(
+            "statusCuring",
+            data.status
+                ? data.status.CURING
+                : "-"
+        );
+
+
+        tampilStatus(
+            "statusWashing",
+            data.status
+                ? data.status.WASHING
+                : "-"
+        );
+
+
+        const flat =
+            data.data &&
+            data.data.FLAT;
+
+
+        if(
+            flat &&
+            typeof flat === "object"
+        ){
+
+            isi(
+                "motif",
+                flat["Motif Printing"]
+            );
+
+
+            isi(
+                "warna",
+                flat["WARNA"]
+            );
+
+
+            isi(
+                "isianWarna",
+                flat["ISIAN WARNA"]
+            );
+
+
+            isi(
+                "kodeProduk",
+                flat["KODE PRODUK"]
+            );
+
+
+            isi(
+                "qty",
+                flat["QTY"]
+                    ? flat["QTY"] + " Pcs"
+                    : "-"
+            );
+
+
+            tampilProses(
+                "flat",
+                flat
+            );
+
+
+            isi(
+                "flatGrupShift",
+                flat["GRUB"]
+            );
+
+        }
+
+
+        const steam =
+            data.data &&
+            data.data.STEAM;
+
+
+        if(
+            steam &&
+            typeof steam === "object"
+        ){
+
+            tampilProses(
+                "steam",
+                steam
+            );
+
+
+            isi(
+                "steamGrupShift",
+                steam["SHIFT"]
+            );
+
+        }
+
+
+        const curing =
+            data.data &&
+            data.data.CURING;
+
+
+        if(
+            curing &&
+            typeof curing === "object"
+        ){
+
+            tampilProses(
+                "curing",
+                curing
+            );
+
+
+            isi(
+                "curingGrupShift",
+                curing["SHIFT"]
+            );
+
+        }
+
+
+        const washing =
+            data.data &&
+            data.data.WASHING;
+
+
+        if(
+            washing &&
+            typeof washing === "object"
+        ){
+
+            tampilProses(
+                "washing",
+                washing
+            );
+
+
+            isi(
+                "washingGrupShift",
+                washing["SHIFT"]
+            );
+
+        }
+
+
+        hasil.style.display =
+            "block";
+
+
+    }catch(error){
+
+        alert(
+            error.message ||
+            "Terjadi kesalahan saat mengambil data."
+        );
+
+
+        hasil.style.display =
+            "none";
+
+    }finally{
+
+        loading.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =====================================================
+   ENTER = CARI
+===================================================== */
+
+document
+    .getElementById("rollID")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "Enter"
+            ){
+
+                cariRoll();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   PENGATURAN
+===================================================== */
+
+function bukaPengaturan(){
+
+    const pengaturanArea =
+        document.getElementById(
+            "pengaturanArea"
+        );
+
+    const searchArea =
+        document.getElementById(
+            "searchArea"
+        );
+
+    const hasil =
+        document.getElementById(
+            "hasil"
+        );
+
+
+    if(!pengaturanArea) return;
+
+
+    if(searchArea){
+
+        searchArea.style.display =
+            "none";
+
+    }
+
+
+    if(hasil){
+
+        hasil.style.display =
+            "none";
+
+    }
+
+
+    const sedangTerbuka =
+        pengaturanArea.style.display === "block";
+
+
+    if(sedangTerbuka){
+
+        pengaturanArea.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    pengaturanArea.style.display =
+        "block";
+
+
+    setTimeout(function(){
+
+        pengaturanArea.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    },50);
+
+}
+
+
+/* =====================================================
+   TUTUP PENGATURAN
+===================================================== */
+
+function tutupPengaturan(){
+
+    const pengaturanArea =
+        document.getElementById(
+            "pengaturanArea"
+        );
+
+
+    if(!pengaturanArea) return;
+
+
+    pengaturanArea.style.display =
+        "none";
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   REFRESH APLIKASI
+===================================================== */
+
+function refreshAplikasi(){
+
+    window.location.reload();
+
+}
+
+
+/* =====================================================
+   HAPUS ROLL ID TERAKHIR
+===================================================== */
+
+function hapusRollTerakhir(){
+
+    const roll =
+        localStorage.getItem(
+            "LAST_ROLL_ID"
+        );
+
+
+    if(!roll){
+
+        alert(
+            "Belum ada Roll ID yang tersimpan."
+        );
+
+        return;
+
+    }
+
+
+    const yakin =
+        confirm(
+            "Hapus Roll ID terakhir?\n\n" +
+            roll
+        );
+
+
+    if(!yakin) return;
+
+
+    localStorage.removeItem(
+        "LAST_ROLL_ID"
+    );
+
+
+    const input =
+        document.getElementById(
+            "rollID"
+        );
+
+
+    if(input){
+
+        input.value = "";
+
+    }
+
+
+    alert(
+        "Roll ID terakhir berhasil dihapus."
+    );
+
+}
+
+
+/* =====================================================
+   INFORMASI APLIKASI
+===================================================== */
+
+function informasiAplikasi(){
+
+    alert(
+
+        "DEPARTMENT PRINTING\n\n" +
+
+        "PT BEHAESTEX\n\n" +
+
+        "Menu utama untuk mengakses:\n" +
+
+        "• Produksi\n" +
+
+        "• Defect Flat\n" +
+
+        "• Cuci\n" +
+
+        "• Laporan Harian\n" +
+
+        "• Cek Roll ID\n\n" +
+
+        "Versi aplikasi: PWA"
+
+    );
+
+}
+
+
+/* =====================================================
+   CEK PERANGKAT
+===================================================== */
+
+function cekModeAplikasi(){
+
+    const lebar =
+        window.innerWidth;
+
+
+    if(lebar <= 600){
+
+        alert(
+            "PERANGKAT SAAT INI\n\n" +
+            "📱 HP / Layar kecil\n\n" +
+            "Tampilan otomatis menggunakan mode HP."
+        );
+
+    }else{
+
+        alert(
+            "PERANGKAT SAAT INI\n\n" +
+            "💻 DESKTOP / KOMPUTER\n\n" +
+            "Tampilan otomatis menggunakan mode Desktop."
+        );
+
+    }
+
+}
+
+</script>
+
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        function() {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+
+                .then(function() {
+
+                    console.log(
+                        "PWA Service Worker aktif"
+                    );
+
+                })
+
+                .catch(function(error) {
+
+                    console.log(
+                        "PWA Service Worker gagal:",
+                        error
+                    );
+
+                });
+
+        }
+    );
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
