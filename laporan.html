@@ -1527,7 +1527,11 @@ TANGGAL :
 
 <tr>
 
-<th>
+<th
+    onclick="bukaGoogleFormMC()"
+    title="Klik untuk mengisi Google Form"
+    style="cursor:pointer;"
+>
     MC
 </th>
 
@@ -1666,6 +1670,20 @@ DEPARTEMEN PRINTING
 
 const WEB_APP_URL =
 "https://script.google.com/macros/s/AKfycbwzhYbVJLh8X6yOveOsz1mpXVoOrGTXXOzPM-zpo6_sh31tTeeM5YFT1B2SZ2xTfAdt/exec";
+
+
+const GOOGLE_FORM_MC =
+"https://docs.google.com/forms/d/e/1FAIpQLSde-nj59gpM9nISfiEZU4cIv_HAySazINepoymq0AsSb3y56w/viewform?usp=pp_url&entry.922184662=2026-10-07&entry.163001228=GANI&entry.1351560521=3&entry.544065537=A&entry.1240215039=&entry.2040102633=&entry.1338920070=D";
+
+
+function bukaGoogleFormMC(){
+
+    window.open(
+        GOOGLE_FORM_MC,
+        "_blank"
+    );
+
+}
 
 
 const STORAGE_KEY_GRUP =
