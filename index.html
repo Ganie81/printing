@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -78,6 +79,18 @@ body{
   font-size:clamp(24px,5vw,38px);
   letter-spacing:1px;
   font-weight:800;
+}
+
+/* TAMBAHAN: JUDUL HEADER BISA DIKLIK KE HOME */
+.header h1 a{
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.header h1 a:hover{
+  opacity:.85;
 }
 
 .header p{
@@ -506,7 +519,12 @@ body{
   <!-- HEADER -->
   <div class="header">
 
-    <h1>📚 KATALOG DOKUMEN PDF</h1>
+    <h1>
+      <a href="https://ganie81.github.io/website-saya/cek.html"
+         title="Kembali ke Home">
+        📚 KATALOG DOKUMEN PDF
+      </a>
+    </h1>
 
     <p>
       Pencarian dokumen berdasarkan nama PDF
