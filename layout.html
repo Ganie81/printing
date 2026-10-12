@@ -29,11 +29,22 @@ body{
 .header h1{
   margin:0;
   font-size:24px;
-  cursor:pointer;
 }
 
-.header h1:hover{
+.homeLink{
+  display:inline-block;
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.homeLink:hover{
   opacity:.85;
+}
+
+.homeLink:active{
+  transform:scale(.98);
 }
 
 .header p{
@@ -129,23 +140,41 @@ body{
 
 <body>
 
+<!-- =====================================================
+     HEADER DIKLIK LANGSUNG MENUJU HOME
+===================================================== -->
+
 <div class="header">
-  <h1
-    onclick="keHome()"
-    title="Kembali ke Home"
-  >KATALOG DOKUMEN PDF</h1>
+
+  <h1>
+    <a
+      class="homeLink"
+      href="https://ganie81.github.io/website-saya/cek.html"
+      title="Kembali ke Home"
+      aria-label="Kembali ke Home"
+    >KATALOG DOKUMEN PDF</a>
+  </h1>
 
   <p>Dokumen dari Google Drive</p>
+
 </div>
 
+
+<!-- =====================================================
+     PENCARIAN
+===================================================== -->
+
 <div class="searchBox">
+
   <input
     type="search"
     id="searchInput"
     placeholder="Cari judul PDF, WOM, atau isi OCR..."
     autocomplete="off"
   >
+
 </div>
+
 
 <div id="statusHasil" class="statusHasil"></div>
 
@@ -155,6 +184,7 @@ body{
 
 <div id="daftar"></div>
 
+
 <script>
 
 /* =========================================================
@@ -163,18 +193,6 @@ body{
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbznX4q8l1urowCrgvI8E-rRxlXG0MS2AzfOIN_rd6keO4WO16ZRu7QtZv587-dY8wtY/exec";
-
-
-/* =========================================================
-   HOME - KLIK JUDUL HEADER
-========================================================= */
-
-function keHome(){
-
-  window.location.href =
-    "https://ganie81.github.io/website-saya/cek.html";
-
-}
 
 
 /* =========================================================
@@ -228,6 +246,7 @@ function muatDaftarPDF(){
         escapeHTML(error.message);
 
     });
+
 }
 
 
@@ -297,6 +316,7 @@ function tampilkanPDF(data){
     daftar.appendChild(item);
 
   });
+
 }
 
 
