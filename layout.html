@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -28,6 +29,11 @@ body{
 .header h1{
   margin:0;
   font-size:24px;
+  cursor:pointer;
+}
+
+.header h1:hover{
+  opacity:.85;
 }
 
 .header p{
@@ -124,7 +130,11 @@ body{
 <body>
 
 <div class="header">
-  <h1>KATALOG DOKUMEN PDF</h1>
+  <h1
+    onclick="keHome()"
+    title="Kembali ke Home"
+  >KATALOG DOKUMEN PDF</h1>
+
   <p>Dokumen dari Google Drive</p>
 </div>
 
@@ -137,7 +147,7 @@ body{
   >
 </div>
 
-<div id="statusHasil"></div>
+<div id="statusHasil" class="statusHasil"></div>
 
 <div id="loading">
   Memuat daftar dokumen...
@@ -153,6 +163,18 @@ body{
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbznX4q8l1urowCrgvI8E-rRxlXG0MS2AzfOIN_rd6keO4WO16ZRu7QtZv587-dY8wtY/exec";
+
+
+/* =========================================================
+   HOME - KLIK JUDUL HEADER
+========================================================= */
+
+function keHome(){
+
+  window.location.href =
+    "https://ganie81.github.io/website-saya/cek.html";
+
+}
 
 
 /* =========================================================
