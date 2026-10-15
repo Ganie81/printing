@@ -55,12 +55,7 @@ body {
   padding: 20px 18px;
   border-radius: 17px;
   border: 1px solid rgba(110,190,255,.35);
-  background: linear-gradient(
-    135deg,
-    #164c80,
-    #0b2340 65%,
-    #102e50
-  );
+  background: linear-gradient(135deg, #164c80, #0b2340 65%, #102e50);
   box-shadow:
     0 8px 20px rgba(0,0,0,.24),
     inset 0 1px 1px rgba(255,255,255,.16);
@@ -252,56 +247,54 @@ table {
 }
 
 /* =====================================================
-   HEADER ASLI SPREADSHEET
-   TIDAK MENAMBAHKAN HEADER PRODUKSI/WARNA
+   HEADER TIGA TINGKAT
 ===================================================== */
 
 thead th {
   position: sticky;
-  padding: 12px 11px;
+  padding: 11px 10px;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
   color: #fff;
   background: linear-gradient(180deg, #1769a7, #104674);
   border-right: 1px solid rgba(255,255,255,.12);
-  border-bottom: 2px solid #43d9ff;
+  border-bottom: 1px solid rgba(255,255,255,.2);
   font-size: 15px;
   font-weight: 900;
 }
 
-/* Baris pertama header asli */
+/* Tingkat pertama */
 
-thead tr:nth-child(1) th {
+thead tr.header-level-1 th {
   top: 0;
-  z-index: 8;
+  z-index: 9;
+  height: 40px;
+  border-bottom: 2px solid #43d9ff;
 }
 
-/* Baris kedua header asli */
+/* Tingkat kedua */
 
-thead tr:nth-child(2) th {
+thead tr.header-level-2 th {
   top: 40px;
-  z-index: 7;
+  z-index: 8;
+  height: 40px;
+  border-bottom: 2px solid #43d9ff;
 }
 
-/* Baris ketiga header asli */
+/* Tingkat ketiga */
 
-thead tr:nth-child(3) th {
+thead tr.header-level-3 th {
   top: 80px;
-  z-index: 6;
+  z-index: 7;
+  height: 38px;
+  border-bottom: 2px solid #43d9ff;
 }
 
-/* Header keempat dan seterusnya, jika ada */
-
-thead tr:nth-child(n+4) th {
-  position: static;
-}
-
-/* Header DEV (Pcs) tetap mengikuti warna header */
+/* DEV header tetap putih */
 
 thead th.dev-header {
-  color: #ffffff !important;
-  font-weight: 900 !important;
+  color: #fff !important;
 }
 
 /* =====================================================
@@ -347,36 +340,27 @@ tbody tr.fp-7 td {
   background-color: #ead6c3;
 }
 
-/* GARIS PEMISAH */
-
 tbody tr td {
   border-right-color: rgba(30,55,80,.13);
   border-bottom-color: rgba(30,55,80,.13);
 }
 
-/* HOVER */
-
 tbody tr:hover td {
   filter: brightness(.96);
 }
-
-/* KOLOM PERTAMA */
 
 tbody td:first-child {
   font-weight: 900;
 }
 
 /* =====================================================
-   DEV (Pcs) - MERAH DARAH
-   HANYA ISI DATA, BUKAN HEADER
+   DEV (PCS) - MERAH DARAH
 ===================================================== */
 
 tbody td.dev-pcs {
   color: #c00000 !important;
   font-weight: 900 !important;
 }
-
-/* Warna merah tetap terlihat ketika baris di-hover */
 
 tbody tr:hover td.dev-pcs {
   color: #c00000 !important;
@@ -514,7 +498,7 @@ tbody tr:hover td.dev-pcs {
   }
 
   thead th {
-    padding: 12px 10px;
+    padding: 11px 9px;
     font-size: 15px;
   }
 
@@ -523,16 +507,19 @@ tbody tr:hover td.dev-pcs {
     font-size: 15px;
   }
 
-  thead tr:nth-child(1) th {
+  thead tr.header-level-1 th {
     top: 0;
+    height: 40px;
   }
 
-  thead tr:nth-child(2) th {
+  thead tr.header-level-2 th {
     top: 40px;
+    height: 40px;
   }
 
-  thead tr:nth-child(3) th {
+  thead tr.header-level-3 th {
     top: 80px;
+    height: 38px;
   }
 
   .footer {
@@ -552,8 +539,6 @@ tbody tr:hover td.dev-pcs {
       SPREADSHEET PROTOTYPE#4
     </p>
   </header>
-
-  <!-- STATUS SATU BARIS -->
 
   <section class="status-grid">
 
@@ -604,7 +589,6 @@ tbody tr:hover td.dev-pcs {
     <div class="table-wrapper">
       <table>
         <thead id="kepalaTabel"></thead>
-
         <tbody id="isiTabel">
           <tr>
             <td class="empty">Sedang mengambil data...</td>
@@ -625,40 +609,19 @@ tbody tr:hover td.dev-pcs {
 <script>
 'use strict';
 
-// =====================================================
-// URL WEB APP GOOGLE APPS SCRIPT
-// =====================================================
-
 const API_URL =
   'https://script.google.com/macros/s/AKfycby6Rt8Xv-bXS8BaFcQ7vDk7ZBg1PZeVvgly8wDokO2f9ZKcGGGWnyU2z0AkI2CL0iP1Zw/exec';
 
-// =====================================================
-// PENYIMPANAN DATA
-// =====================================================
-
 let semuaData = [];
-
-/*
- * headerRows menyimpan header asli.
- * Jika API mengirim 3 baris, ketiganya dipertahankan.
- * Jika API hanya mengirim 1 baris, tidak dibuat header
- * tambahan Produksi atau Warna.
- */
-
-let headerRows = [];
 let headerData = [];
-
+let headerRows = [];
 let sedangMemuat = false;
-
-// =====================================================
-// ELEMEN HTML
-// =====================================================
 
 const el = id => document.getElementById(id);
 
-// =====================================================
-// ESCAPE HTML
-// =====================================================
+/* =====================================================
+   FUNGSI DASAR
+===================================================== */
 
 function aman(teks) {
   return String(teks ?? '').replace(/[&<>"']/g, function(c) {
@@ -672,10 +635,6 @@ function aman(teks) {
   });
 }
 
-// =====================================================
-// NORMALISASI NAMA KOLOM
-// =====================================================
-
 function normalisasi(teks) {
   return String(teks ?? '')
     .toLocaleLowerCase('id-ID')
@@ -683,176 +642,157 @@ function normalisasi(teks) {
     .trim();
 }
 
-// =====================================================
-// MENYIAPKAN STRUKTUR HEADER API
-// =====================================================
+/* =====================================================
+   MENYIAPKAN HEADER DARI API
+===================================================== */
 
 function siapkanHeader(headerAPI) {
 
   if (!Array.isArray(headerAPI)) {
-    throw new Error('Format header API tidak berupa array.');
+    throw new Error('Format header API tidak valid.');
   }
 
-  /*
-   * API dapat mengirim:
-   *
-   * Format A:
-   * header: ["HARI", "TANGGAL", "FP", ...]
-   *
-   * Format B:
-   * header: [
-   *   ["HARI", "TANGGAL", "FP", ...],
-   *   ["", "", "", ...],
-   *   ["", "", "", ...]
-   * ]
-   *
-   * Tidak membuat kelompok Produksi/Warna tambahan.
-   */
-
-  if (
-    headerAPI.length > 0 &&
-    Array.isArray(headerAPI[0])
-  ) {
-
-    headerRows = headerAPI.map(function(baris) {
-      return Array.isArray(baris) ? baris : [];
-    });
-
+  if (headerAPI.length && Array.isArray(headerAPI[0])) {
+    headerRows = headerAPI.map(baris =>
+      Array.isArray(baris) ? baris : []
+    );
   } else {
-
     headerRows = [headerAPI];
-
   }
-
-  /*
-   * Baris header terakhir dipakai sebagai nama kolom utama.
-   * Jika nama kolom pada posisi tertentu kosong, pencarian
-   * nama kolom akan memeriksa baris header lainnya.
-   */
-
-  headerData = headerRows.length
-    ? headerRows[headerRows.length - 1].slice()
-    : [];
 
   const jumlahKolom = Math.max(
     0,
     ...headerRows.map(baris => baris.length)
   );
 
-  while (headerData.length < jumlahKolom) {
-    headerData.push('');
-  }
-
   /*
-   * Jika sel di baris header terakhir kosong, gunakan nama
-   * dari baris header sebelumnya pada posisi yang sama.
-   * Ini membantu pencarian kolom FP dan DEV (Pcs).
+   * Nama kolom data menggunakan header terakhir.
    */
 
-  for (let kolom = 0; kolom < jumlahKolom; kolom++) {
+  headerData = Array.from(
+    { length: jumlahKolom },
+    (_, c) => {
+      for (let r = headerRows.length - 1; r >= 0; r--) {
+        const nilai = String(headerRows[r][c] ?? '').trim();
 
-    if (String(headerData[kolom] ?? '').trim() !== '') {
-      continue;
-    }
-
-    for (let baris = headerRows.length - 2; baris >= 0; baris--) {
-
-      const nilai = String(
-        headerRows[baris][kolom] ?? ''
-      ).trim();
-
-      if (nilai !== '') {
-        headerData[kolom] = nilai;
-        break;
+        if (nilai !== '') {
+          return nilai;
+        }
       }
 
+      return '';
     }
-
-  }
+  );
 
 }
 
-// =====================================================
-// MENCARI INDEKS KOLOM DARI SEMUA HEADER ASLI
-// =====================================================
+/* =====================================================
+   CARI KOLOM BERDASARKAN NAMA
+===================================================== */
 
 function cariKolom(nama) {
 
   const target = normalisasi(nama);
 
-  const jumlahKolom = Math.max(
-    headerData.length,
-    ...headerRows.map(baris => baris.length)
-  );
-
-  for (let kolom = 0; kolom < jumlahKolom; kolom++) {
-
-    /*
-     * Prioritaskan nama kolom pada header terakhir.
-     */
-
-    if (normalisasi(headerData[kolom]) === target) {
-      return kolom;
+  for (let c = 0; c < headerData.length; c++) {
+    if (normalisasi(headerData[c]) === target) {
+      return c;
     }
+  }
 
-    /*
-     * Jika belum ketemu, periksa tiga baris header asli.
-     */
-
-    for (let baris = headerRows.length - 1; baris >= 0; baris--) {
-
-      if (
-        normalisasi(headerRows[baris][kolom]) === target
-      ) {
-        return kolom;
+  for (let c = 0; c < headerData.length; c++) {
+    for (let r = headerRows.length - 1; r >= 0; r--) {
+      if (normalisasi(headerRows[r][c]) === target) {
+        return c;
       }
-
     }
-
   }
 
   return -1;
-
 }
 
-// =====================================================
-// INDEKS FP
-// =====================================================
+/* =====================================================
+   CARI POSISI ANAK HEADER
+===================================================== */
 
-function indeksFP() {
-  return cariKolom('FP');
-}
+function cariKolomSalahSatu(daftar) {
 
-// =====================================================
-// INDEKS DEV (Pcs)
-// =====================================================
-
-function indeksDev() {
-
-  const variasi = [
-    'dev (pcs)',
-    'dev(pcs)',
-    'dev pcs',
-    'dev'
-  ];
-
-  for (const nama of variasi) {
-
+  for (const nama of daftar) {
     const index = cariKolom(nama);
 
     if (index !== -1) {
       return index;
     }
-
   }
 
   return -1;
-
 }
 
-// =====================================================
-// FILTER BARIS TANPA FP
-// =====================================================
+function indeksFP() {
+  return cariKolom('FP');
+}
+
+function indeksDev() {
+  return cariKolomSalahSatu([
+    'DEV (PCS)',
+    'DEV(PCS)',
+    'DEV PCS',
+    'DEV'
+  ]);
+}
+
+/* =====================================================
+   MENEMUKAN AWAL ISIAN
+===================================================== */
+
+function indeksIsian() {
+
+  /*
+   * Prioritaskan nama ISIAN yang berdiri sendiri.
+   */
+
+  for (let c = 0; c < headerData.length; c++) {
+    if (normalisasi(headerData[c]) === 'isian') {
+      return c;
+    }
+  }
+
+  /*
+   * Jika API menamai kolom ISIAN 1, ISIAN 2, dst.,
+   * gunakan posisi ISIAN 1.
+   */
+
+  for (let c = 0; c < headerData.length; c++) {
+    const nama = normalisasi(headerData[c]);
+
+    if (
+      nama === 'isian 1' ||
+      nama === 'isian1' ||
+      nama === 'isian - 1'
+    ) {
+      return c;
+    }
+  }
+
+  /*
+   * Jika API mengirim 3 baris header asli,
+   * cari ISIAN di seluruh baris.
+   */
+
+  for (let c = 0; c < headerData.length; c++) {
+    for (let r = headerRows.length - 1; r >= 0; r--) {
+      if (normalisasi(headerRows[r][c]) === 'isian') {
+        return c;
+      }
+    }
+  }
+
+  return -1;
+}
+
+/* =====================================================
+   FILTER BARIS TANPA FP
+===================================================== */
 
 function dataDenganFP() {
 
@@ -863,16 +803,14 @@ function dataDenganFP() {
   }
 
   return semuaData.filter(function(baris) {
-
     return String(baris[index] ?? '').trim() !== '';
-
   });
 
 }
 
-// =====================================================
-// KELAS WARNA FP
-// =====================================================
+/* =====================================================
+   WARNA BERDASARKAN FP
+===================================================== */
 
 function kelasFP(baris) {
 
@@ -897,37 +835,29 @@ function kelasFP(baris) {
 
 }
 
-// =====================================================
-// PESAN STATUS
-// =====================================================
+/* =====================================================
+   PESAN
+===================================================== */
 
 function tampilPesan(teks, jenis) {
-
   const kotak = el('pesan');
-
   kotak.className = 'message ' + jenis;
   kotak.textContent = teks;
-
 }
 
 function hapusPesan() {
-
   const kotak = el('pesan');
-
   kotak.className = 'message';
   kotak.textContent = '';
-
 }
 
-// =====================================================
-// AMBIL DATA APPS SCRIPT
-// =====================================================
+/* =====================================================
+   MEMUAT DATA API
+===================================================== */
 
 async function muatData() {
 
-  if (sedangMemuat) {
-    return;
-  }
+  if (sedangMemuat) return;
 
   sedangMemuat = true;
 
@@ -938,10 +868,8 @@ async function muatData() {
   hapusPesan();
 
   if (semuaData.length === 0) {
-
     el('isiTabel').innerHTML =
       '<tr><td class="empty">Sedang mengambil data...</td></tr>';
-
   }
 
   try {
@@ -963,28 +891,21 @@ async function muatData() {
     const hasil = await response.json();
 
     if (!hasil || hasil.sukses !== true) {
-
       throw new Error(
         hasil && hasil.error
           ? hasil.error
           : 'Format data API tidak sesuai.'
       );
-
     }
 
     if (
       !Array.isArray(hasil.header) ||
       !Array.isArray(hasil.data)
     ) {
-
-      throw new Error(
-        'Header atau data tidak ditemukan.'
-      );
-
+      throw new Error('Header atau data tidak ditemukan.');
     }
 
     siapkanHeader(hasil.header);
-
     semuaData = hasil.data;
 
     el('statusData').textContent = 'ONLINE';
@@ -996,20 +917,16 @@ async function muatData() {
     tampilkanTabel();
 
     if (indeksFP() === -1) {
-
       tampilPesan(
-        'Data berhasil dimuat, tetapi header FP tidak ditemukan. ' +
+        'Data berhasil dimuat, tetapi kolom FP tidak ditemukan. ' +
         'Periksa nama kolom FP pada spreadsheet.',
         'error'
       );
-
     } else {
-
       tampilPesan(
         'Data berhasil dimuat. Baris tanpa FP disembunyikan.',
         'success'
       );
-
     }
 
   } catch (error) {
@@ -1019,16 +936,13 @@ async function muatData() {
     el('statusData').textContent = 'ERROR';
 
     tampilPesan(
-      'Data gagal dimuat. Periksa deployment Apps Script, ' +
-      'izin akses Web App, dan apakah API dapat dibuka. ' +
+      'Data gagal dimuat. Periksa deployment Apps Script dan izin akses. ' +
       'Detail: ' + error.message,
       'error'
     );
 
     if (semuaData.length === 0) {
-
       el('kepalaTabel').innerHTML = '';
-
       el('isiTabel').innerHTML =
         '<tr><td class="empty">' +
         'Data belum berhasil dimuat. Tekan MUAT ULANG setelah memperbaiki API.' +
@@ -1036,13 +950,11 @@ async function muatData() {
 
       el('infoJumlah').textContent = 'Data tidak tersedia';
       el('hasilData').textContent = '0';
-
     }
 
   } finally {
 
     sedangMemuat = false;
-
     el('btnMuat').disabled = false;
     el('btnMuat').textContent = '↻ MUAT ULANG';
 
@@ -1050,60 +962,158 @@ async function muatData() {
 
 }
 
-// =====================================================
-// MEMBANGUN HEADER ASLI
-//
-// Tidak membuat header kelompok Produksi/Warna.
-// Semua baris header yang dikirim API dipertahankan.
-// =====================================================
+/* =====================================================
+   MEMBANGUN HEADER 3 TINGKAT
+
+   PRODUKSI:
+   ORDER (PCS) | ACV (PCS) | DEV (PCS)
+
+   WARNA:
+   KAIN | BLOK | ISIAN (1, 2, 3, 4)
+===================================================== */
 
 function buatHeader() {
 
-  if (!headerRows.length) {
+  const jumlahKolom = headerData.length;
 
+  if (!jumlahKolom) {
     el('kepalaTabel').innerHTML = '';
     return;
+  }
+
+  const idxOrder = cariKolomSalahSatu([
+    'ORDER (PCS)',
+    'ORDER(PCS)',
+    'ORDER PCS'
+  ]);
+
+  const idxAcv = cariKolomSalahSatu([
+    'ACV (PCS)',
+    'ACV(PCS)',
+    'ACV PCS'
+  ]);
+
+  const idxDev = indeksDev();
+
+  const idxKain = cariKolom('KAIN');
+  const idxBlok = cariKolom('BLOK');
+  const idxIsian = indeksIsian();
+
+  /*
+   * Header kelompok hanya dibuat jika keenam bagian
+   * utama ditemukan dan susunan kolomnya berurutan.
+   */
+
+  const strukturValid =
+    idxOrder >= 0 &&
+    idxAcv === idxOrder + 1 &&
+    idxDev === idxOrder + 2 &&
+    idxKain === idxDev + 1 &&
+    idxBlok === idxKain + 1 &&
+    idxIsian === idxBlok + 1 &&
+    idxIsian + 3 < jumlahKolom;
+
+  /*
+   * Jika struktur API tidak sesuai asumsi di atas,
+   * gunakan header asli agar tidak merusak tabel.
+   */
+
+  if (!strukturValid) {
+
+    const html = '<tr>' +
+      headerData.map(function(nama, c) {
+
+        const kelas = c === idxDev ? ' class="dev-header"' : '';
+
+        return '<th' + kelas + '>' +
+          aman(nama) +
+          '</th>';
+
+      }).join('') +
+      '</tr>';
+
+    el('kepalaTabel').innerHTML = html;
+
+    return;
+  }
+
+  const awalProduksi = idxOrder;
+  const akhirProduksi = idxDev;
+
+  const awalWarna = idxKain;
+  const akhirWarna = idxIsian + 3;
+
+  let baris1 = '<tr class="header-level-1">';
+  let baris2 = '<tr class="header-level-2">';
+  let baris3 = '<tr class="header-level-3">';
+
+  let c = 0;
+
+  while (c < jumlahKolom) {
+
+    /*
+     * Kelompok PRODUKSI
+     */
+
+    if (c === awalProduksi) {
+
+      baris1 += '<th colspan="3">PRODUKSI</th>';
+
+      baris2 += '<th>ORDER (PCS)</th>';
+      baris2 += '<th>ACV (PCS)</th>';
+      baris2 += '<th class="dev-header">DEV (PCS)</th>';
+
+      c = akhirProduksi + 1;
+      continue;
+    }
+
+    /*
+     * Kelompok WARNA
+     */
+
+    if (c === awalWarna) {
+
+      baris1 += '<th colspan="6">WARNA</th>';
+
+      baris2 += '<th rowspan="2">KAIN</th>';
+      baris2 += '<th rowspan="2">BLOK</th>';
+      baris2 += '<th colspan="4">ISIAN</th>';
+
+      baris3 += '<th>1</th>';
+      baris3 += '<th>2</th>';
+      baris3 += '<th>3</th>';
+      baris3 += '<th>4</th>';
+
+      c = akhirWarna + 1;
+      continue;
+    }
+
+    /*
+     * Kolom lain tetap memakai nama header API.
+     * Header membentang tiga tingkat.
+     */
+
+    baris1 +=
+      '<th rowspan="3">' +
+      aman(headerData[c] ?? '') +
+      '</th>';
+
+    c++;
 
   }
 
-  const jumlahKolom = Math.max(
-    0,
-    ...headerRows.map(baris => baris.length)
-  );
+  baris1 += '</tr>';
+  baris2 += '</tr>';
+  baris3 += '</tr>';
 
-  const indexDev = indeksDev();
-
-  const html = headerRows.map(function(baris) {
-
-    let sel = '';
-
-    for (let kolom = 0; kolom < jumlahKolom; kolom++) {
-
-      const nilai = baris[kolom] ?? '';
-
-      const kelasDev =
-        kolom === indexDev
-          ? ' class="dev-header"'
-          : '';
-
-      sel +=
-        '<th' + kelasDev + '>' +
-        aman(nilai) +
-        '</th>';
-
-    }
-
-    return '<tr>' + sel + '</tr>';
-
-  }).join('');
-
-  el('kepalaTabel').innerHTML = html;
+  el('kepalaTabel').innerHTML =
+    baris1 + baris2 + baris3;
 
 }
 
-// =====================================================
-// TAMPILKAN TABEL
-// =====================================================
+/* =====================================================
+   MENAMPILKAN DATA
+===================================================== */
 
 function tampilkanTabel() {
 
@@ -1116,11 +1126,9 @@ function tampilkanTabel() {
   const hasil = dataAktif.filter(function(baris) {
 
     return baris.some(function(nilai) {
-
       return String(nilai ?? '')
         .toLocaleLowerCase('id-ID')
         .includes(kata);
-
     });
 
   });
@@ -1142,7 +1150,7 @@ function tampilkanTabel() {
 
   } else {
 
-    const indexDev = indeksDev();
+    const idxDev = indeksDev();
 
     el('isiTabel').innerHTML = hasil.map(function(baris) {
 
@@ -1151,7 +1159,7 @@ function tampilkanTabel() {
       const sel = headerData.map(function(_, index) {
 
         const kelasDev =
-          index === indexDev
+          index === idxDev
             ? ' class="dev-pcs"'
             : '';
 
@@ -1184,18 +1192,15 @@ function tampilkanTabel() {
 
 }
 
-// =====================================================
-// PENCARIAN LANGSUNG
-// =====================================================
+/* =====================================================
+   PENCARIAN LANGSUNG
+===================================================== */
 
-el('cari').addEventListener(
-  'input',
-  tampilkanTabel
-);
+el('cari').addEventListener('input', tampilkanTabel);
 
-// =====================================================
-// MULAI APLIKASI
-// =====================================================
+/* =====================================================
+   MULAI APLIKASI
+===================================================== */
 
 muatData();
 
