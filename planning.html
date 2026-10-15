@@ -293,14 +293,14 @@ thead th.dev-header {
 
 /* =====================================================
    ISI TABEL
-   GARIS VERTIKAL DAN HORIZONTAL HITAM TIPIS
+   GARIS HITAM TIPIS UNTUK SEL SELAIN KEY BERWARNA
 ===================================================== */
 
 tbody td {
   padding: 12px 11px;
   white-space: nowrap;
-  border-right: 1px solid #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   color: #111111;
   font-size: 15px;
   font-weight: 900;
@@ -336,9 +336,10 @@ tbody tr.fp-7 td {
   background-color: #ead6c3;
 }
 
+/* Garis hitam tipis pada seluruh isi tabel */
 tbody tr td {
-  border-right: 1px solid #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
 }
 
 tbody tr:hover td {
@@ -351,7 +352,7 @@ tbody td:first-child {
 
 /* =====================================================
    WARNA KHUSUS KOLOM KEY
-   BERDASARKAN DUA HURUF PERTAMA
+   DUA HURUF AWAL MENENTUKAN WARNA
 
    AH... = HITAM
    AM... = MERAH MARUN
@@ -359,15 +360,14 @@ tbody td:first-child {
    AB... = BIRU DONGKER
    AC... = COKELAT TUA
 
-   WARNA KEY TIDAK TERPENGARUH WARNA BARIS FP
+   GARIS PEMISAH KEY BERWARNA = PUTIH TIPIS
 ===================================================== */
 
 tbody tr td.key-ah {
   background: #111111 !important;
   background-color: #111111 !important;
   color: #ffffff !important;
-  border-right: 1px solid #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
@@ -375,8 +375,7 @@ tbody tr td.key-am {
   background: #800020 !important;
   background-color: #800020 !important;
   color: #ffffff !important;
-  border-right: 1px solid #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
@@ -384,8 +383,7 @@ tbody tr td.key-ag {
   background: #005b35 !important;
   background-color: #005b35 !important;
   color: #ffffff !important;
-  border-right: 1px solid #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
@@ -393,8 +391,7 @@ tbody tr td.key-ab {
   background: #071a44 !important;
   background-color: #071a44 !important;
   color: #ffffff !important;
-  border-right: 1px solid #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
@@ -402,9 +399,34 @@ tbody tr td.key-ac {
   background: #4a2c20 !important;
   background-color: #4a2c20 !important;
   color: #ffffff !important;
-  border-right: 1px solid #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  border: 1px solid #ffffff !important;
   font-weight: 900 !important;
+}
+
+/* Warna KEY tetap jelas saat baris disentuh atau diarahkan */
+tbody tr:hover td.key-ah {
+  background: #111111 !important;
+  background-color: #111111 !important;
+}
+
+tbody tr:hover td.key-am {
+  background: #800020 !important;
+  background-color: #800020 !important;
+}
+
+tbody tr:hover td.key-ag {
+  background: #005b35 !important;
+  background-color: #005b35 !important;
+}
+
+tbody tr:hover td.key-ab {
+  background: #071a44 !important;
+  background-color: #071a44 !important;
+}
+
+tbody tr:hover td.key-ac {
+  background: #4a2c20 !important;
+  background-color: #4a2c20 !important;
 }
 
 /* =====================================================
@@ -879,14 +901,15 @@ function nilaiNegatif(nilai) {
    WARNA KEY BERDASARKAN DUA HURUF PERTAMA
 ===================================================== */
 
-function warnaKEY(nilai) {
-  const key = String(nilai ?? '')
+function awalanKEY(nilai) {
+  return String(nilai ?? '')
     .replace(/\u00a0/g, ' ')
     .trim()
-    .toUpperCase();
+    .toUpperCase()
+    .substring(0, 2);
+}
 
-  const awalan = key.substring(0, 2);
-
+function warnaKEY(nilai) {
   const daftarWarna = {
     'AH': '#111111',
     'AM': '#800020',
@@ -895,17 +918,10 @@ function warnaKEY(nilai) {
     'AC': '#4A2C20'
   };
 
-  return daftarWarna[awalan] || '';
+  return daftarWarna[awalanKEY(nilai)] || '';
 }
 
 function kelasKEY(nilai) {
-  const key = String(nilai ?? '')
-    .replace(/\u00a0/g, ' ')
-    .trim()
-    .toUpperCase();
-
-  const awalan = key.substring(0, 2);
-
   const daftarKelas = {
     'AH': 'key-ah',
     'AM': 'key-am',
@@ -914,7 +930,7 @@ function kelasKEY(nilai) {
     'AC': 'key-ac'
   };
 
-  return daftarKelas[awalan] || '';
+  return daftarKelas[awalanKEY(nilai)] || '';
 }
 
 /* =====================================================
@@ -1119,7 +1135,8 @@ function tampilkanTabel() {
 
         /*
          * KEY = KOLOM F / INDEX 5.
-         * Warna ditentukan dari dua huruf pertama.
+         * Warna berdasarkan dua huruf pertama.
+         * Garis pemisah sel KEY berwarna menggunakan putih tipis.
          */
 
         if (index === 5) {
@@ -1128,10 +1145,11 @@ function tampilkanTabel() {
 
           if (warna && kelasWarna) {
             return '<td class="' + kelasWarna + '"' +
-              ' style="background-color:' + warna +
-              ' !important;color:#ffffff !important;' +
-              'border-right:1px solid #000000 !important;' +
-              'border-bottom:1px solid #000000 !important;">' +
+              ' style="' +
+              'background-color:' + warna + ' !important;' +
+              'color:#ffffff !important;' +
+              'border:1px solid #ffffff !important;' +
+              'box-sizing:border-box;">' +
               aman(nilai) +
               '</td>';
           }
