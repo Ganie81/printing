@@ -18,6 +18,11 @@
   --muted: #9fb4ce;
   --border: rgba(151,190,235,.19);
   --green: #20d6a0;
+
+  /* Lebar tiga kolom pertama untuk freeze */
+  --col-hari: 90px;
+  --col-tanggal: 125px;
+  --col-fp: 65px;
 }
 
 * {
@@ -231,10 +236,13 @@ button:disabled {
   width: 100%;
   max-height: 72vh;
   overflow: auto;
+  position: relative;
+  isolation: isolate;
   border: 1px solid #ffffff;
   border-radius: 10px;
   background: #081729;
   -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: auto;
 }
 
 table {
@@ -242,13 +250,32 @@ table {
   min-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  table-layout: fixed;
   font-size: 15px;
   font-weight: 900;
 }
 
+/* Lebar kolom 1, 2, dan 3 */
+thead tr > th:nth-child(1),
+tbody tr > td:nth-child(1) {
+  min-width: var(--col-hari);
+  width: var(--col-hari);
+}
+
+thead tr > th:nth-child(2),
+tbody tr > td:nth-child(2) {
+  min-width: var(--col-tanggal);
+  width: var(--col-tanggal);
+}
+
+thead tr > th:nth-child(3),
+tbody tr > td:nth-child(3) {
+  min-width: var(--col-fp);
+  width: var(--col-fp);
+}
+
 /* =====================================================
    HEADER TIGA TINGKAT
-   GARIS HEADER TETAP PUTIH
 ===================================================== */
 
 thead th {
@@ -268,21 +295,21 @@ thead th {
 
 thead tr.header-level-1 th {
   top: 0;
-  z-index: 9;
+  z-index: 20;
   height: 40px;
   border-bottom: 2px solid #ffffff;
 }
 
 thead tr.header-level-2 th {
   top: 40px;
-  z-index: 8;
+  z-index: 19;
   height: 40px;
   border-bottom: 2px solid #ffffff;
 }
 
 thead tr.header-level-3 th {
   top: 80px;
-  z-index: 7;
+  z-index: 18;
   height: 38px;
   border-bottom: 2px solid #ffffff;
 }
@@ -292,8 +319,80 @@ thead th.dev-header {
 }
 
 /* =====================================================
+   FREEZE KOLOM 1, 2, DAN 3
+   HARI | TANGGAL | FP
+
+   Berlaku saat scroll horizontal.
+   Posisi kiri dihitung berdasarkan lebar kolom.
+===================================================== */
+
+/* Kolom pertama: HARI */
+thead tr.header-level-1 th:nth-child(1),
+tbody tr > td:nth-child(1) {
+  position: sticky;
+  left: 0;
+}
+
+/* Kolom kedua: TANGGAL */
+thead tr.header-level-1 th:nth-child(2),
+tbody tr > td:nth-child(2) {
+  position: sticky;
+  left: var(--col-hari);
+}
+
+/* Kolom ketiga: FP */
+thead tr.header-level-1 th:nth-child(3),
+tbody tr > td:nth-child(3) {
+  position: sticky;
+  left: calc(var(--col-hari) + var(--col-tanggal));
+}
+
+/*
+   Karena header memiliki colspan dan rowspan,
+   penentuan posisi header freeze juga menggunakan
+   kelas khusus yang dipasang melalui JavaScript.
+*/
+
+thead th.freeze-col-1 {
+  left: 0 !important;
+}
+
+thead th.freeze-col-2 {
+  left: var(--col-hari) !important;
+}
+
+thead th.freeze-col-3 {
+  left: calc(var(--col-hari) + var(--col-tanggal)) !important;
+}
+
+/* Lapisan header freeze berada di atas header biasa */
+thead th.freeze-col-1,
+thead th.freeze-col-2,
+thead th.freeze-col-3 {
+  z-index: 40 !important;
+  background: linear-gradient(180deg, #1769a7, #104674) !important;
+  background-clip: padding-box;
+}
+
+/* Latar kolom freeze mengikuti warna baris */
+tbody tr > td:nth-child(1),
+tbody tr > td:nth-child(2),
+tbody tr > td:nth-child(3) {
+  z-index: 5;
+  background-clip: padding-box;
+}
+
+/* Bayangan pembatas kolom yang dibekukan */
+tbody tr > td:nth-child(3) {
+  box-shadow: 3px 0 5px rgba(0,0,0,.28);
+}
+
+thead th.freeze-col-3 {
+  box-shadow: 3px 0 5px rgba(0,0,0,.28);
+}
+
+/* =====================================================
    ISI TABEL
-   GARIS HITAM TIPIS UNTUK SEL SELAIN KEY BERWARNA
 ===================================================== */
 
 tbody td {
@@ -352,15 +451,6 @@ tbody td:first-child {
 
 /* =====================================================
    WARNA KHUSUS KOLOM KEY
-   DUA HURUF AWAL MENENTUKAN WARNA
-
-   AH... = HITAM
-   AM... = MERAH MARUN
-   AG... = HIJAU BOTOL
-   AB... = BIRU DONGKER
-   AC... = COKELAT TUA
-
-   GARIS PEMISAH KEY BERWARNA = PUTIH TIPIS
 ===================================================== */
 
 tbody tr td.key-ah {
@@ -403,7 +493,7 @@ tbody tr td.key-ac {
   font-weight: 900 !important;
 }
 
-/* Warna KEY tetap jelas saat baris disentuh atau diarahkan */
+/* Warna KEY tetap jelas saat baris disentuh */
 tbody tr:hover td.key-ah {
   background: #111111 !important;
   background-color: #111111 !important;
@@ -427,6 +517,59 @@ tbody tr:hover td.key-ab {
 tbody tr:hover td.key-ac {
   background: #4a2c20 !important;
   background-color: #4a2c20 !important;
+}
+
+/* =====================================================
+   WARNA ANAK HEADER BLOK
+   MENGIKUTI NILAI KOLOM KEY
+
+   Nilai BLOK yang cocok dengan awalan KEY
+   mendapatkan warna yang sama.
+===================================================== */
+
+tbody tr td.blok-ah {
+  background: #111111 !important;
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-am {
+  background: #800020 !important;
+  background-color: #800020 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-ag {
+  background: #005b35 !important;
+  background-color: #005b35 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-ab {
+  background: #071a44 !important;
+  background-color: #071a44 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-ac {
+  background: #4a2c20 !important;
+  background-color: #4a2c20 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+/* Pertahankan warna BLOK ketika baris disentuh */
+tbody tr:hover td[class*="blok-"] {
+  filter: brightness(1);
 }
 
 /* =====================================================
@@ -715,7 +858,6 @@ const el = id => document.getElementById(id);
 
 /* =====================================================
    STRUKTUR KOLOM
-   A-R = 18 KOLOM
 ===================================================== */
 
 const NAMA_KOLOM = [
@@ -898,7 +1040,8 @@ function nilaiNegatif(nilai) {
 }
 
 /* =====================================================
-   WARNA KEY BERDASARKAN DUA HURUF PERTAMA
+   WARNA KEY DAN BLOK
+   MENGGUNAKAN ATURAN WARNA YANG SAMA
 ===================================================== */
 
 function awalanKEY(nilai) {
@@ -931,6 +1074,49 @@ function kelasKEY(nilai) {
   };
 
   return daftarKelas[awalanKEY(nilai)] || '';
+}
+
+/*
+ * BLOK menggunakan peta warna yang sama.
+ * Nilai BLOK diperiksa berdasarkan dua huruf awalnya.
+ */
+
+function kelasBLOK(nilai) {
+  const daftarKelas = {
+    'AH': 'blok-ah',
+    'AM': 'blok-am',
+    'AG': 'blok-ag',
+    'AB': 'blok-ab',
+    'AC': 'blok-ac'
+  };
+
+  return daftarKelas[awalanKEY(nilai)] || '';
+}
+
+/* =====================================================
+   FREEZE HEADER TIGA KOLOM
+===================================================== */
+
+function pasangFreezeHeader() {
+  const kepala = el('kepalaTabel');
+
+  /*
+   * Kolom HARI, TANGGAL, dan FP adalah sel rowspan=3
+   * pada baris header pertama.
+   */
+  const barisPertama = kepala.querySelector(
+    'tr.header-level-1'
+  );
+
+  if (!barisPertama) return;
+
+  const sel = barisPertama.querySelectorAll('th');
+
+  if (sel.length >= 3) {
+    sel[0].classList.add('freeze-col-1');
+    sel[1].classList.add('freeze-col-2');
+    sel[2].classList.add('freeze-col-3');
+  }
 }
 
 /* =====================================================
@@ -1093,6 +1279,8 @@ function buatHeader() {
 
   el('kepalaTabel').innerHTML =
     finalBaris1 + finalBaris2 + finalBaris3;
+
+  pasangFreezeHeader();
 }
 
 /* =====================================================
@@ -1135,13 +1323,32 @@ function tampilkanTabel() {
 
         /*
          * KEY = KOLOM F / INDEX 5.
-         * Warna berdasarkan dua huruf pertama.
-         * Garis pemisah sel KEY berwarna menggunakan putih tipis.
          */
 
         if (index === 5) {
           const warna = warnaKEY(nilai);
           const kelasWarna = kelasKEY(nilai);
+
+          if (warna && kelasWarna) {
+            return '<td class="' + kelasWarna + '"' +
+              ' style="' +
+              'background-color:' + warna + ' !important;' +
+              'color:#ffffff !important;' +
+              'border:1px solid #ffffff !important;' +
+              'box-sizing:border-box;">' +
+              aman(nilai) +
+              '</td>';
+          }
+        }
+
+        /*
+         * BLOK = KOLOM M / INDEX 12.
+         * Mengikuti aturan warna KEY.
+         */
+
+        if (index === 12) {
+          const warna = warnaKEY(nilai);
+          const kelasWarna = kelasBLOK(nilai);
 
           if (warna && kelasWarna) {
             return '<td class="' + kelasWarna + '"' +
