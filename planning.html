@@ -231,7 +231,7 @@ button:disabled {
   width: 100%;
   max-height: 72vh;
   overflow: auto;
-  border: 1px solid var(--border);
+  border: 1px solid #ffffff;
   border-radius: 10px;
   background: #081729;
   -webkit-overflow-scrolling: touch;
@@ -258,31 +258,32 @@ thead th {
   white-space: nowrap;
   color: #fff;
   background: linear-gradient(180deg, #1769a7, #104674);
-  border-right: 1px solid rgba(255,255,255,.12);
-  border-bottom: 1px solid rgba(255,255,255,.2);
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
   font-size: 15px;
   font-weight: 900;
+  text-shadow: 0 1px 1px rgba(0,0,0,.45);
 }
 
 thead tr.header-level-1 th {
   top: 0;
   z-index: 9;
   height: 40px;
-  border-bottom: 2px solid #43d9ff;
+  border-bottom: 2px solid #ffffff;
 }
 
 thead tr.header-level-2 th {
   top: 40px;
   z-index: 8;
   height: 40px;
-  border-bottom: 2px solid #43d9ff;
+  border-bottom: 2px solid #ffffff;
 }
 
 thead tr.header-level-3 th {
   top: 80px;
   z-index: 7;
   height: 38px;
-  border-bottom: 2px solid #43d9ff;
+  border-bottom: 2px solid #ffffff;
 }
 
 thead th.dev-header {
@@ -290,18 +291,19 @@ thead th.dev-header {
 }
 
 /* =====================================================
-   ISI TABEL
+   ISI TABEL - TULISAN TEGAS DAN GARIS PUTIH
 ===================================================== */
 
 tbody td {
   padding: 12px 11px;
   white-space: nowrap;
-  border-right: 1px solid rgba(20,50,70,.12);
-  border-bottom: 1px solid rgba(20,50,70,.12);
-  color: #17283b;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  color: #111111;
   font-size: 15px;
   font-weight: 900;
   vertical-align: middle;
+  text-shadow: none;
 }
 
 /* =====================================================
@@ -332,9 +334,10 @@ tbody tr.fp-7 td {
   background-color: #ead6c3;
 }
 
+/* Garis putih tetap jelas pada seluruh baris */
 tbody tr td {
-  border-right-color: rgba(30,55,80,.13);
-  border-bottom-color: rgba(30,55,80,.13);
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
 }
 
 tbody tr:hover td {
@@ -346,15 +349,78 @@ tbody td:first-child {
 }
 
 /* =====================================================
-   DEV (PCS) - MERAH DARAH
+   KOLOM KEY - WARNA KHUSUS
+   AH = HITAM
+   AM = MERAH MARUN
+   AG = HIJAU BOTOL
+   AC = COKELAT TUA
+   AB = BIRU DONGKER
+===================================================== */
+
+tbody td.key-ah {
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody td.key-am {
+  background-color: #800020 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody td.key-ag {
+  background-color: #005b35 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody td.key-ac {
+  background-color: #4a2c20 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody td.key-ab {
+  background-color: #071a44 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+/* =====================================================
+   KOLOM ORDER, ACV, DEV
+   ANGKA DAN PCS RATA KANAN
+===================================================== */
+
+tbody td.pcs-cell {
+  text-align: right !important;
+  padding-right: 10px !important;
+  font-variant-numeric: tabular-nums;
+  font-weight: 900 !important;
+}
+
+/* =====================================================
+   DEV (PCS)
+   NEGATIF MERAH, NOL/POSITIF HITAM
 ===================================================== */
 
 tbody td.dev-pcs {
+  color: #111111 !important;
+  font-weight: 900 !important;
+  text-align: right !important;
+}
+
+tbody td.dev-pcs.dev-negative {
   color: #c00000 !important;
   font-weight: 900 !important;
 }
 
-tbody tr:hover td.dev-pcs {
+tbody tr:hover td.dev-pcs.dev-negative {
   color: #c00000 !important;
 }
 
@@ -583,7 +649,7 @@ tbody tr:hover td.dev-pcs {
         <thead id="kepalaTabel"></thead>
         <tbody id="isiTabel">
           <tr>
-            <td class="empty">Sedang mengambil data...</td>
+            <td class="empty" colspan="18">Sedang mengambil data...</td>
           </tr>
         </tbody>
       </table>
@@ -680,22 +746,6 @@ function siapkanDataAPI(hasil) {
     );
   }
 
-  /*
-   * API versi terbaru:
-   * {
-   *   success: true,
-   *   headers: [...],
-   *   data: [{rowNumber: 4, values: [...]}]
-   * }
-   *
-   * API versi lama:
-   * {
-   *   sukses: true,
-   *   header: [...],
-   *   data: [...]
-   * }
-   */
-
   const headerAPI =
     Array.isArray(hasil.headers)
       ? hasil.headers
@@ -712,11 +762,6 @@ function siapkanDataAPI(hasil) {
       'Data tidak ditemukan pada respons Apps Script.'
     );
   }
-
-  /*
-   * Data dapat berbentuk array biasa atau objek
-   * dengan properti values.
-   */
 
   const baris = hasil.data.map(function(item) {
 
@@ -773,6 +818,100 @@ function kelasFP(baris) {
 
   return daftar[fp] || '';
 
+}
+
+/* =====================================================
+   FORMAT NILAI PCS
+   - Tidak menggandakan satuan jika sudah ada
+   - Nilai kosong tetap kosong
+   - Mendukung angka dan teks angka
+===================================================== */
+
+function formatPcs(nilai) {
+
+  const teks = String(nilai ?? '').trim();
+
+  if (teks === '') {
+    return '';
+  }
+
+  if (/pcs\s*$/i.test(teks)) {
+    return teks.replace(/\s*pcs\s*$/i, '').trim() + ' Pcs';
+  }
+
+  return teks + ' Pcs';
+}
+
+/* =====================================================
+   MENENTUKAN APAKAH NILAI NEGATIF
+   Mendukung:
+   - -10
+   - -10 Pcs
+   - −10
+   - (10)
+   - (10 Pcs)
+===================================================== */
+
+function nilaiNegatif(nilai) {
+
+  let teks = String(nilai ?? '').trim();
+
+  if (!teks) {
+    return false;
+  }
+
+  teks = teks
+    .replace(/\s*pcs\s*$/i, '')
+    .trim();
+
+  if (/^[−-]\s*\d/.test(teks)) {
+    return true;
+  }
+
+  if (/^\(\s*\d[\d.,]*\s*\)$/.test(teks)) {
+    return true;
+  }
+
+  /*
+   * Format angka Indonesia:
+   * -1.234 = negatif seribu dua ratus tiga puluh empat
+   * -1,5   = negatif satu setengah
+   */
+
+  const angka = teks.replace(/[−]/g, '-');
+
+  if (/^-\d{1,3}(\.\d{3})+(,\d+)?$/.test(angka)) {
+    return true;
+  }
+
+  if (/^-\d+,\d+$/.test(angka)) {
+    return true;
+  }
+
+  const hasil = Number(angka.replace(/,/g, '.'));
+
+  return Number.isFinite(hasil) && hasil < 0;
+}
+
+/* =====================================================
+   KODE WARNA KOLOM KEY
+===================================================== */
+
+function kelasKEY(nilai) {
+
+  const key = String(nilai ?? '')
+    .trim()
+    .toUpperCase();
+
+  const warna = {
+    'AH': 'key-ah',
+    'AM': 'key-am',
+    'AG': 'key-ag',
+    'AC': 'key-ac',
+    'AB': 'key-ab'
+  };
+
+  return warna[key] || '';
 }
 
 /* =====================================================
@@ -841,11 +980,8 @@ async function muatData() {
     const hasil = siapkanDataAPI(hasilJSON);
 
     /*
-     * Data dari Apps Script sudah difilter berdasarkan
-     * tanggal oleh backend.
-     *
-     * Di sisi HTML, FP kosong tetap disaring lagi
-     * sebagai perlindungan tambahan.
+     * Data sudah difilter tanggal oleh Apps Script.
+     * HTML menyaring FP kosong sekali lagi.
      */
 
     semuaData = hasil.data
@@ -900,9 +1036,7 @@ async function muatData() {
         'memastikan Apps Script sudah di-deploy.' +
         '</td></tr>';
 
-      el('infoJumlah').textContent =
-        'Data tidak tersedia';
-
+      el('infoJumlah').textContent = 'Data tidak tersedia';
       el('totalData').textContent = '0';
       el('hasilData').textContent = '0';
 
@@ -921,72 +1055,10 @@ async function muatData() {
 
 /* =====================================================
    MEMBANGUN HEADER 3 TINGKAT
+   TOTAL KOLOM = 18
 ===================================================== */
 
 function buatHeader() {
-
-  /*
-   * Baris pertama:
-   * HARI, TANGGAL, FP, KODE PRODUK, MOTIF, KEY,
-   * WOM, TIPE PRINT, PRODUKSI, WARNA, KETERANGAN
-   *
-   * Baris kedua:
-   * ORDER (PCS), ACV (PCS), DEV (PCS),
-   * KAIN, BLOK, ISIAN
-   *
-   * Baris ketiga:
-   * 1, 2, 3, 4
-   */
-
-  const baris1 = `
-    <tr class="header-level-1">
-      <th rowspan="3">HARI</th>
-      <th rowspan="3">TANGGAL</th>
-      <th rowspan="3">FP</th>
-      <th rowspan="3">KODE PRODUK</th>
-      <th rowspan="3">MOTIF</th>
-      <th rowspan="3">KEY</th>
-      <th rowspan="3">WOM</th>
-      <th rowspan="3">TIPE PRINT</th>
-      <th colspan="3">PRODUKSI</th>
-      <th colspan="6">WARNA</th>
-      <th rowspan="3">KETERANGAN</th>
-    </tr>
-  `;
-
-  const baris2 = `
-    <tr class="header-level-2">
-      <th>ORDER (PCS)</th>
-      <th>ACV (PCS)</th>
-      <th class="dev-header">DEV (PCS)</th>
-
-      <th rowspan="2">KAIN</th>
-      <th rowspan="2">BLOK</th>
-      <th colspan="4">ISIAN</th>
-    </tr>
-  `;
-
-  const baris3 = `
-    <tr class="header-level-3">
-      <th> </th>
-      <th> </th>
-      <th class="dev-header"> </th>
-
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-    </tr>
-  `;
-
-  /*
-   * Sel ORDER, ACV, DEV pada baris kedua sebenarnya
-   * sudah berdiri sendiri. Karena itu, baris ketiga
-   * tidak boleh menambahkan tiga sel kosong di bawahnya.
-   *
-   * Versi final dibangun ulang dengan struktur rowspan
-   * yang tepat agar jumlah kolom header selalu 18.
-   */
 
   const finalBaris1 = `
     <tr class="header-level-1">
@@ -998,10 +1070,8 @@ function buatHeader() {
       <th rowspan="3">KEY</th>
       <th rowspan="3">WOM</th>
       <th rowspan="3">TIPE PRINT</th>
-
       <th colspan="3">PRODUKSI</th>
       <th colspan="6">WARNA</th>
-
       <th rowspan="3">KETERANGAN</th>
     </tr>
   `;
@@ -1011,7 +1081,6 @@ function buatHeader() {
       <th rowspan="2">ORDER (PCS)</th>
       <th rowspan="2">ACV (PCS)</th>
       <th rowspan="2" class="dev-header">DEV (PCS)</th>
-
       <th rowspan="2">KAIN</th>
       <th rowspan="2">BLOK</th>
       <th colspan="4">ISIAN</th>
@@ -1040,9 +1109,7 @@ function buatHeader() {
 
 function tampilkanTabel() {
 
-  const kata = normalisasi(
-    el('cari').value
-  );
+  const kata = normalisasi(el('cari').value);
 
   /*
    * Pastikan FP kosong tidak pernah muncul.
@@ -1061,9 +1128,7 @@ function tampilkanTabel() {
     }
 
     return baris.some(function(nilai) {
-
       return normalisasi(nilai).includes(kata);
-
     });
 
   });
@@ -1089,13 +1154,58 @@ function tampilkanTabel() {
 
       const sel = NAMA_KOLOM.map(function(nama, index) {
 
-        const kelasDev =
-          index === 10
-            ? ' class="dev-pcs"'
-            : '';
+        const nilai = baris[index] ?? '';
+        const kelasTambahan = [];
 
-        return '<td' + kelasDev + '>' +
-          aman(baris[index] ?? '') +
+        /*
+         * KEY adalah kolom F, index 5.
+         * Warna khusus hanya diterapkan pada sel KEY.
+         */
+
+        if (index === 5) {
+          const kelasWarna = kelasKEY(nilai);
+
+          if (kelasWarna) {
+            kelasTambahan.push(kelasWarna);
+          }
+        }
+
+        /*
+         * ORDER, ACV, DEV adalah kolom I, J, K.
+         * Semuanya rata kanan dan memakai satuan Pcs.
+         */
+
+        let nilaiTampil = nilai;
+
+        if (index === 8 || index === 9 || index === 10) {
+
+          kelasTambahan.push('pcs-cell');
+
+          nilaiTampil = formatPcs(nilai);
+
+        }
+
+        /*
+         * DEV negatif berwarna merah.
+         * DEV nol atau positif tetap hitam.
+         */
+
+        if (index === 10) {
+
+          kelasTambahan.push('dev-pcs');
+
+          if (nilaiNegatif(nilai)) {
+            kelasTambahan.push('dev-negative');
+          }
+
+        }
+
+        const atributClass = kelasTambahan.length
+          ? ' class="' + kelasTambahan.join(' ') + '"'
+          : '';
+
+        return '<td' + atributClass + '>' +
+          aman(nilaiTampil) +
           '</td>';
 
       }).join('');
