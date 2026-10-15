@@ -248,6 +248,7 @@ table {
 
 /* =====================================================
    HEADER TIGA TINGKAT
+   GARIS HEADER TETAP PUTIH
 ===================================================== */
 
 thead th {
@@ -292,13 +293,14 @@ thead th.dev-header {
 
 /* =====================================================
    ISI TABEL
+   GARIS VERTIKAL DAN HORIZONTAL HITAM TIPIS
 ===================================================== */
 
 tbody td {
   padding: 12px 11px;
   white-space: nowrap;
-  border-right: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
   color: #111111;
   font-size: 15px;
   font-weight: 900;
@@ -335,8 +337,8 @@ tbody tr.fp-7 td {
 }
 
 tbody tr td {
-  border-right-color: #ffffff;
-  border-bottom-color: #ffffff;
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
 }
 
 tbody tr:hover td {
@@ -348,57 +350,60 @@ tbody td:first-child {
 }
 
 /* =====================================================
-   PERBAIKAN UTAMA KOLOM KEY
-   PRIORITAS WARNA TINGGI
-   AH = HITAM
-   AM = MERAH MARUN
-   AG = HIJAU BOTOL
-   AC = COKELAT TUA
-   AB = BIRU DONGKER
+   WARNA KHUSUS KOLOM KEY
+   BERDASARKAN DUA HURUF PERTAMA
+
+   AH... = HITAM
+   AM... = MERAH MARUN
+   AG... = HIJAU BOTOL
+   AB... = BIRU DONGKER
+   AC... = COKELAT TUA
+
+   WARNA KEY TIDAK TERPENGARUH WARNA BARIS FP
 ===================================================== */
 
-tbody tr td.key-ah,
-tbody tr td.key-ah:hover {
+tbody tr td.key-ah {
   background: #111111 !important;
   background-color: #111111 !important;
   color: #ffffff !important;
-  border: 1px solid #ffffff !important;
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
   font-weight: 900 !important;
 }
 
-tbody tr td.key-am,
-tbody tr td.key-am:hover {
+tbody tr td.key-am {
   background: #800020 !important;
   background-color: #800020 !important;
   color: #ffffff !important;
-  border: 1px solid #ffffff !important;
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
   font-weight: 900 !important;
 }
 
-tbody tr td.key-ag,
-tbody tr td.key-ag:hover {
+tbody tr td.key-ag {
   background: #005b35 !important;
   background-color: #005b35 !important;
   color: #ffffff !important;
-  border: 1px solid #ffffff !important;
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
   font-weight: 900 !important;
 }
 
-tbody tr td.key-ac,
-tbody tr td.key-ac:hover {
-  background: #4a2c20 !important;
-  background-color: #4a2c20 !important;
-  color: #ffffff !important;
-  border: 1px solid #ffffff !important;
-  font-weight: 900 !important;
-}
-
-tbody tr td.key-ab,
-tbody tr td.key-ab:hover {
+tbody tr td.key-ab {
   background: #071a44 !important;
   background-color: #071a44 !important;
   color: #ffffff !important;
-  border: 1px solid #ffffff !important;
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.key-ac {
+  background: #4a2c20 !important;
+  background-color: #4a2c20 !important;
+  color: #ffffff !important;
+  border-right: 1px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
   font-weight: 900 !important;
 }
 
@@ -674,6 +679,10 @@ tbody tr:hover td.dev-pcs.dev-negative {
 <script>
 'use strict';
 
+/* =====================================================
+   API GOOGLE APPS SCRIPT
+===================================================== */
+
 const API_URL =
   'https://script.google.com/macros/s/AKfycbyYpUDf9FDKgX8AgoDavdcQtUi1jzxc6OTHsfsRF5N2fRBX7LytBYM6zIFlOG1IOJAL/exec';
 
@@ -681,6 +690,11 @@ let semuaData = [];
 let sedangMemuat = false;
 
 const el = id => document.getElementById(id);
+
+/* =====================================================
+   STRUKTUR KOLOM
+   A-R = 18 KOLOM
+===================================================== */
 
 const NAMA_KOLOM = [
   'HARI',
@@ -703,6 +717,10 @@ const NAMA_KOLOM = [
   'KETERANGAN'
 ];
 
+/* =====================================================
+   FUNGSI DASAR
+===================================================== */
+
 function aman(teks) {
   return String(teks ?? '').replace(/[&<>"']/g, function(c) {
     return {
@@ -721,6 +739,10 @@ function normalisasi(teks) {
     .replace(/\s+/g, ' ')
     .trim();
 }
+
+/* =====================================================
+   MEMBACA FORMAT API BARU DAN LAMA
+===================================================== */
 
 function siapkanDataAPI(hasil) {
   if (!hasil || typeof hasil !== 'object') {
@@ -770,11 +792,19 @@ function siapkanDataAPI(hasil) {
   };
 }
 
+/* =====================================================
+   FILTER FP KOSONG
+===================================================== */
+
 function dataDenganFP() {
   return semuaData.filter(function(baris) {
     return String(baris[2] ?? '').trim() !== '';
   });
 }
+
+/* =====================================================
+   WARNA BARIS BERDASARKAN FP
+===================================================== */
 
 function kelasFP(baris) {
   const fp = String(baris[2] ?? '').trim();
@@ -791,6 +821,10 @@ function kelasFP(baris) {
   return daftar[fp] || '';
 }
 
+/* =====================================================
+   FORMAT NILAI PCS
+===================================================== */
+
 function formatPcs(nilai) {
   const teks = String(nilai ?? '').trim();
 
@@ -804,6 +838,10 @@ function formatPcs(nilai) {
 
   return teks + ' Pcs';
 }
+
+/* =====================================================
+   MENENTUKAN NILAI NEGATIF
+===================================================== */
 
 function nilaiNegatif(nilai) {
   let teks = String(nilai ?? '').trim();
@@ -838,9 +876,7 @@ function nilaiNegatif(nilai) {
 }
 
 /* =====================================================
-   PERBAIKAN WARNA KEY
-   Nilai KEY dibersihkan dari spasi dan huruf kecil/besar.
-   Warna dikembalikan sebagai kode hex langsung.
+   WARNA KEY BERDASARKAN DUA HURUF PERTAMA
 ===================================================== */
 
 function warnaKEY(nilai) {
@@ -849,16 +885,41 @@ function warnaKEY(nilai) {
     .trim()
     .toUpperCase();
 
+  const awalan = key.substring(0, 2);
+
   const daftarWarna = {
     'AH': '#111111',
     'AM': '#800020',
     'AG': '#005B35',
-    'AC': '#4A2C20',
-    'AB': '#071A44'
+    'AB': '#071A44',
+    'AC': '#4A2C20'
   };
 
-  return daftarWarna[key] || '';
+  return daftarWarna[awalan] || '';
 }
+
+function kelasKEY(nilai) {
+  const key = String(nilai ?? '')
+    .replace(/\u00a0/g, ' ')
+    .trim()
+    .toUpperCase();
+
+  const awalan = key.substring(0, 2);
+
+  const daftarKelas = {
+    'AH': 'key-ah',
+    'AM': 'key-am',
+    'AG': 'key-ag',
+    'AB': 'key-ab',
+    'AC': 'key-ac'
+  };
+
+  return daftarKelas[awalan] || '';
+}
+
+/* =====================================================
+   PESAN STATUS
+===================================================== */
 
 function tampilPesan(teks, jenis) {
   const kotak = el('pesan');
@@ -871,6 +932,10 @@ function hapusPesan() {
   kotak.className = 'message';
   kotak.textContent = '';
 }
+
+/* =====================================================
+   MEMUAT DATA API
+===================================================== */
 
 async function muatData() {
   if (sedangMemuat) return;
@@ -969,6 +1034,10 @@ async function muatData() {
   }
 }
 
+/* =====================================================
+   MEMBANGUN HEADER 3 TINGKAT
+===================================================== */
+
 function buatHeader() {
   const finalBaris1 = `
     <tr class="header-level-1">
@@ -1010,6 +1079,10 @@ function buatHeader() {
     finalBaris1 + finalBaris2 + finalBaris3;
 }
 
+/* =====================================================
+   MENAMPILKAN DATA
+===================================================== */
+
 function tampilkanTabel() {
   const kata = normalisasi(el('cari').value);
   const dataAktif = dataDenganFP();
@@ -1045,30 +1118,27 @@ function tampilkanTabel() {
         let nilaiTampil = nilai;
 
         /*
-         * KEY adalah kolom F / indeks 5.
-         * Background diterapkan langsung ke elemen sel.
-         * !important digunakan untuk mengalahkan warna baris FP.
+         * KEY = KOLOM F / INDEX 5.
+         * Warna ditentukan dari dua huruf pertama.
          */
 
         if (index === 5) {
           const warna = warnaKEY(nilai);
+          const kelasWarna = kelasKEY(nilai);
 
-          kelasTambahan.push('key-cell');
-
-          if (warna) {
-            kelasTambahan.push('key-berwarna');
-
-            return '<td class="' + kelasTambahan.join(' ') + '"' +
+          if (warna && kelasWarna) {
+            return '<td class="' + kelasWarna + '"' +
               ' style="background-color:' + warna +
               ' !important;color:#ffffff !important;' +
-              'border:1px solid #ffffff !important;">' +
+              'border-right:1px solid #000000 !important;' +
+              'border-bottom:1px solid #000000 !important;">' +
               aman(nilai) +
               '</td>';
           }
         }
 
         /*
-         * ORDER, ACV, DEV adalah kolom I, J, K.
+         * ORDER, ACV, DEV = KOLOM I, J, K.
          */
 
         if (index === 8 || index === 9 || index === 10) {
@@ -1099,7 +1169,6 @@ function tampilkanTabel() {
       }).join('');
 
       return '<tr class="' + kelas + '">' + sel + '</tr>';
-
     }).join('');
   }
 
@@ -1117,7 +1186,15 @@ function tampilkanTabel() {
     ' baris ber-FP';
 }
 
+/* =====================================================
+   PENCARIAN LANGSUNG
+===================================================== */
+
 el('cari').addEventListener('input', tampilkanTabel);
+
+/* =====================================================
+   MULAI APLIKASI
+===================================================== */
 
 muatData();
 </script>
