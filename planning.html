@@ -92,7 +92,7 @@ body {
 }
 
 /* =====================================================
-   STATUS - SATU BARIS SLIM
+   STATUS
 ===================================================== */
 
 .status-grid {
@@ -291,7 +291,7 @@ thead th.dev-header {
 }
 
 /* =====================================================
-   ISI TABEL - TULISAN TEGAS DAN GARIS PUTIH
+   ISI TABEL
 ===================================================== */
 
 tbody td {
@@ -334,7 +334,6 @@ tbody tr.fp-7 td {
   background-color: #ead6c3;
 }
 
-/* Garis putih tetap jelas pada seluruh baris */
 tbody tr td {
   border-right-color: #ffffff;
   border-bottom-color: #ffffff;
@@ -349,7 +348,8 @@ tbody td:first-child {
 }
 
 /* =====================================================
-   KOLOM KEY - WARNA KHUSUS
+   PERBAIKAN UTAMA KOLOM KEY
+   PRIORITAS WARNA TINGGI
    AH = HITAM
    AM = MERAH MARUN
    AG = HIJAU BOTOL
@@ -357,35 +357,45 @@ tbody td:first-child {
    AB = BIRU DONGKER
 ===================================================== */
 
-tbody td.key-ah {
+tbody tr td.key-ah,
+tbody tr td.key-ah:hover {
+  background: #111111 !important;
   background-color: #111111 !important;
   color: #ffffff !important;
   border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
-tbody td.key-am {
+tbody tr td.key-am,
+tbody tr td.key-am:hover {
+  background: #800020 !important;
   background-color: #800020 !important;
   color: #ffffff !important;
   border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
-tbody td.key-ag {
+tbody tr td.key-ag,
+tbody tr td.key-ag:hover {
+  background: #005b35 !important;
   background-color: #005b35 !important;
   color: #ffffff !important;
   border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
-tbody td.key-ac {
+tbody tr td.key-ac,
+tbody tr td.key-ac:hover {
+  background: #4a2c20 !important;
   background-color: #4a2c20 !important;
   color: #ffffff !important;
   border: 1px solid #ffffff !important;
   font-weight: 900 !important;
 }
 
-tbody td.key-ab {
+tbody tr td.key-ab,
+tbody tr td.key-ab:hover {
+  background: #071a44 !important;
   background-color: #071a44 !important;
   color: #ffffff !important;
   border: 1px solid #ffffff !important;
@@ -393,8 +403,7 @@ tbody td.key-ab {
 }
 
 /* =====================================================
-   KOLOM ORDER, ACV, DEV
-   ANGKA DAN PCS RATA KANAN
+   ORDER, ACV, DEV
 ===================================================== */
 
 tbody td.pcs-cell {
@@ -405,8 +414,7 @@ tbody td.pcs-cell {
 }
 
 /* =====================================================
-   DEV (PCS)
-   NEGATIF MERAH, NOL/POSITIF HITAM
+   DEV NEGATIF MERAH
 ===================================================== */
 
 tbody td.dev-pcs {
@@ -480,7 +488,6 @@ tbody tr:hover td.dev-pcs.dev-negative {
 ===================================================== */
 
 @media (max-width: 600px) {
-
   body {
     padding: 8px;
   }
@@ -667,10 +674,6 @@ tbody tr:hover td.dev-pcs.dev-negative {
 <script>
 'use strict';
 
-/* =====================================================
-   API GOOGLE APPS SCRIPT
-===================================================== */
-
 const API_URL =
   'https://script.google.com/macros/s/AKfycbyYpUDf9FDKgX8AgoDavdcQtUi1jzxc6OTHsfsRF5N2fRBX7LytBYM6zIFlOG1IOJAL/exec';
 
@@ -678,11 +681,6 @@ let semuaData = [];
 let sedangMemuat = false;
 
 const el = id => document.getElementById(id);
-
-/* =====================================================
-   STRUKTUR KOLOM
-   A-R = 18 KOLOM
-===================================================== */
 
 const NAMA_KOLOM = [
   'HARI',
@@ -705,10 +703,6 @@ const NAMA_KOLOM = [
   'KETERANGAN'
 ];
 
-/* =====================================================
-   FUNGSI DASAR
-===================================================== */
-
 function aman(teks) {
   return String(teks ?? '').replace(/[&<>"']/g, function(c) {
     return {
@@ -728,12 +722,7 @@ function normalisasi(teks) {
     .trim();
 }
 
-/* =====================================================
-   MEMBACA FORMAT API BARU DAN LAMA
-===================================================== */
-
 function siapkanDataAPI(hasil) {
-
   if (!hasil || typeof hasil !== 'object') {
     throw new Error('Respons API tidak valid.');
   }
@@ -764,7 +753,6 @@ function siapkanDataAPI(hasil) {
   }
 
   const baris = hasil.data.map(function(item) {
-
     if (Array.isArray(item)) {
       return item;
     }
@@ -774,7 +762,6 @@ function siapkanDataAPI(hasil) {
     }
 
     return null;
-
   }).filter(Boolean);
 
   return {
@@ -783,28 +770,13 @@ function siapkanDataAPI(hasil) {
   };
 }
 
-/* =====================================================
-   FILTER FP KOSONG
-===================================================== */
-
 function dataDenganFP() {
-
   return semuaData.filter(function(baris) {
-
-    const fp = String(baris[2] ?? '').trim();
-
-    return fp !== '';
-
+    return String(baris[2] ?? '').trim() !== '';
   });
-
 }
 
-/* =====================================================
-   WARNA BARIS BERDASARKAN FP
-===================================================== */
-
 function kelasFP(baris) {
-
   const fp = String(baris[2] ?? '').trim();
 
   const daftar = {
@@ -817,18 +789,9 @@ function kelasFP(baris) {
   };
 
   return daftar[fp] || '';
-
 }
 
-/* =====================================================
-   FORMAT NILAI PCS
-   - Tidak menggandakan satuan jika sudah ada
-   - Nilai kosong tetap kosong
-   - Mendukung angka dan teks angka
-===================================================== */
-
 function formatPcs(nilai) {
-
   const teks = String(nilai ?? '').trim();
 
   if (teks === '') {
@@ -842,27 +805,14 @@ function formatPcs(nilai) {
   return teks + ' Pcs';
 }
 
-/* =====================================================
-   MENENTUKAN APAKAH NILAI NEGATIF
-   Mendukung:
-   - -10
-   - -10 Pcs
-   - −10
-   - (10)
-   - (10 Pcs)
-===================================================== */
-
 function nilaiNegatif(nilai) {
-
   let teks = String(nilai ?? '').trim();
 
   if (!teks) {
     return false;
   }
 
-  teks = teks
-    .replace(/\s*pcs\s*$/i, '')
-    .trim();
+  teks = teks.replace(/\s*pcs\s*$/i, '').trim();
 
   if (/^[−-]\s*\d/.test(teks)) {
     return true;
@@ -871,12 +821,6 @@ function nilaiNegatif(nilai) {
   if (/^\(\s*\d[\d.,]*\s*\)$/.test(teks)) {
     return true;
   }
-
-  /*
-   * Format angka Indonesia:
-   * -1.234 = negatif seribu dua ratus tiga puluh empat
-   * -1,5   = negatif satu setengah
-   */
 
   const angka = teks.replace(/[−]/g, '-');
 
@@ -894,54 +838,41 @@ function nilaiNegatif(nilai) {
 }
 
 /* =====================================================
-   KODE WARNA KOLOM KEY
+   PERBAIKAN WARNA KEY
+   Nilai KEY dibersihkan dari spasi dan huruf kecil/besar.
+   Warna dikembalikan sebagai kode hex langsung.
 ===================================================== */
 
-function kelasKEY(nilai) {
-
+function warnaKEY(nilai) {
   const key = String(nilai ?? '')
+    .replace(/\u00a0/g, ' ')
     .trim()
     .toUpperCase();
 
-  const warna = {
-    'AH': 'key-ah',
-    'AM': 'key-am',
-    'AG': 'key-ag',
-    'AC': 'key-ac',
-    'AB': 'key-ab'
+  const daftarWarna = {
+    'AH': '#111111',
+    'AM': '#800020',
+    'AG': '#005B35',
+    'AC': '#4A2C20',
+    'AB': '#071A44'
   };
 
-  return warna[key] || '';
+  return daftarWarna[key] || '';
 }
 
-/* =====================================================
-   PESAN STATUS
-===================================================== */
-
 function tampilPesan(teks, jenis) {
-
   const kotak = el('pesan');
-
   kotak.className = 'message ' + jenis;
   kotak.textContent = teks;
-
 }
 
 function hapusPesan() {
-
   const kotak = el('pesan');
-
   kotak.className = 'message';
   kotak.textContent = '';
-
 }
 
-/* =====================================================
-   MEMUAT DATA API
-===================================================== */
-
 async function muatData() {
-
   if (sedangMemuat) return;
 
   sedangMemuat = true;
@@ -960,7 +891,6 @@ async function muatData() {
   }
 
   try {
-
     const url = API_URL +
       (API_URL.includes('?') ? '&' : '?') +
       '_=' + Date.now();
@@ -976,20 +906,13 @@ async function muatData() {
     }
 
     const hasilJSON = await response.json();
-
     const hasil = siapkanDataAPI(hasilJSON);
-
-    /*
-     * Data sudah difilter tanggal oleh Apps Script.
-     * HTML menyaring FP kosong sekali lagi.
-     */
 
     semuaData = hasil.data
       .filter(function(baris) {
         return String(baris[2] ?? '').trim() !== '';
       })
       .map(function(baris) {
-
         const salin = baris.slice(0, 18);
 
         while (salin.length < 18) {
@@ -997,7 +920,6 @@ async function muatData() {
         }
 
         return salin;
-
       });
 
     el('statusData').textContent = 'ONLINE';
@@ -1014,7 +936,6 @@ async function muatData() {
     );
 
   } catch (error) {
-
     console.error('Kesalahan PLANNING:', error);
 
     el('statusData').textContent = 'ERROR';
@@ -1027,7 +948,6 @@ async function muatData() {
     );
 
     if (semuaData.length === 0) {
-
       el('kepalaTabel').innerHTML = '';
 
       el('isiTabel').innerHTML =
@@ -1039,27 +959,17 @@ async function muatData() {
       el('infoJumlah').textContent = 'Data tidak tersedia';
       el('totalData').textContent = '0';
       el('hasilData').textContent = '0';
-
     }
 
   } finally {
-
     sedangMemuat = false;
 
     el('btnMuat').disabled = false;
     el('btnMuat').textContent = '↻ MUAT ULANG';
-
   }
-
 }
 
-/* =====================================================
-   MEMBANGUN HEADER 3 TINGKAT
-   TOTAL KOLOM = 18
-===================================================== */
-
 function buatHeader() {
-
   const finalBaris1 = `
     <tr class="header-level-1">
       <th rowspan="3">HARI</th>
@@ -1097,46 +1007,24 @@ function buatHeader() {
   `;
 
   el('kepalaTabel').innerHTML =
-    finalBaris1 +
-    finalBaris2 +
-    finalBaris3;
-
+    finalBaris1 + finalBaris2 + finalBaris3;
 }
 
-/* =====================================================
-   MENAMPILKAN DATA
-===================================================== */
-
 function tampilkanTabel() {
-
   const kata = normalisasi(el('cari').value);
-
-  /*
-   * Pastikan FP kosong tidak pernah muncul.
-   */
-
   const dataAktif = dataDenganFP();
 
-  /*
-   * Pencarian berlaku untuk semua kolom.
-   */
-
   const hasil = dataAktif.filter(function(baris) {
-
-    if (kata === '') {
-      return true;
-    }
+    if (kata === '') return true;
 
     return baris.some(function(nilai) {
       return normalisasi(nilai).includes(kata);
     });
-
   });
 
   buatHeader();
 
   if (hasil.length === 0) {
-
     el('isiTabel').innerHTML =
       '<tr><td class="empty" colspan="18">' +
       (
@@ -1147,57 +1035,57 @@ function tampilkanTabel() {
       '</td></tr>';
 
   } else {
-
     el('isiTabel').innerHTML = hasil.map(function(baris) {
-
       const kelas = kelasFP(baris);
 
       const sel = NAMA_KOLOM.map(function(nama, index) {
-
         const nilai = baris[index] ?? '';
         const kelasTambahan = [];
 
+        let nilaiTampil = nilai;
+
         /*
-         * KEY adalah kolom F, index 5.
-         * Warna khusus hanya diterapkan pada sel KEY.
+         * KEY adalah kolom F / indeks 5.
+         * Background diterapkan langsung ke elemen sel.
+         * !important digunakan untuk mengalahkan warna baris FP.
          */
 
         if (index === 5) {
-          const kelasWarna = kelasKEY(nilai);
+          const warna = warnaKEY(nilai);
 
-          if (kelasWarna) {
-            kelasTambahan.push(kelasWarna);
+          kelasTambahan.push('key-cell');
+
+          if (warna) {
+            kelasTambahan.push('key-berwarna');
+
+            return '<td class="' + kelasTambahan.join(' ') + '"' +
+              ' style="background-color:' + warna +
+              ' !important;color:#ffffff !important;' +
+              'border:1px solid #ffffff !important;">' +
+              aman(nilai) +
+              '</td>';
           }
         }
 
         /*
          * ORDER, ACV, DEV adalah kolom I, J, K.
-         * Semuanya rata kanan dan memakai satuan Pcs.
          */
 
-        let nilaiTampil = nilai;
-
         if (index === 8 || index === 9 || index === 10) {
-
           kelasTambahan.push('pcs-cell');
-
           nilaiTampil = formatPcs(nilai);
-
         }
 
         /*
          * DEV negatif berwarna merah.
-         * DEV nol atau positif tetap hitam.
          */
 
         if (index === 10) {
-
           kelasTambahan.push('dev-pcs');
 
           if (nilaiNegatif(nilai)) {
             kelasTambahan.push('dev-negative');
           }
-
         }
 
         const atributClass = kelasTambahan.length
@@ -1210,12 +1098,9 @@ function tampilkanTabel() {
 
       }).join('');
 
-      return '<tr class="' + kelas + '">' +
-        sel +
-        '</tr>';
+      return '<tr class="' + kelas + '">' + sel + '</tr>';
 
     }).join('');
-
   }
 
   el('totalData').textContent =
@@ -1230,24 +1115,11 @@ function tampilkanTabel() {
     ' dari ' +
     dataAktif.length.toLocaleString('id-ID') +
     ' baris ber-FP';
-
 }
 
-/* =====================================================
-   PENCARIAN LANGSUNG
-===================================================== */
-
-el('cari').addEventListener(
-  'input',
-  tampilkanTabel
-);
-
-/* =====================================================
-   MULAI APLIKASI
-===================================================== */
+el('cari').addEventListener('input', tampilkanTabel);
 
 muatData();
-
 </script>
 
 </body>
