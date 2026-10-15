@@ -46,7 +46,7 @@ body {
 }
 
 /* =====================================================
-   HEADER
+   HEADER UTAMA
 ===================================================== */
 
 .header {
@@ -55,7 +55,12 @@ body {
   padding: 20px 18px;
   border-radius: 17px;
   border: 1px solid rgba(110,190,255,.35);
-  background: linear-gradient(135deg, #164c80, #0b2340 65%, #102e50);
+  background: linear-gradient(
+    135deg,
+    #164c80,
+    #0b2340 65%,
+    #102e50
+  );
   box-shadow:
     0 8px 20px rgba(0,0,0,.24),
     inset 0 1px 1px rgba(255,255,255,.16);
@@ -175,12 +180,12 @@ body {
   background: #071629;
   color: white;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .search-box input::placeholder {
   color: #9fb4ce;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .search-box input:focus {
@@ -219,7 +224,7 @@ button:disabled {
   gap: 7px;
   color: var(--muted);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 10px;
 }
 
@@ -242,16 +247,17 @@ table {
   min-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 900;
 }
 
-/* HEADER TABEL */
+/* =====================================================
+   HEADER ASLI SPREADSHEET
+   TIDAK MENAMBAHKAN HEADER PRODUKSI/WARNA
+===================================================== */
 
 thead th {
   position: sticky;
-  top: 0;
-  z-index: 4;
   padding: 12px 11px;
   text-align: center;
   vertical-align: middle;
@@ -260,37 +266,47 @@ thead th {
   background: linear-gradient(180deg, #1769a7, #104674);
   border-right: 1px solid rgba(255,255,255,.12);
   border-bottom: 2px solid #43d9ff;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 900;
 }
 
-/* BARIS HEADER KELOMPOK */
+/* Baris pertama header asli */
 
-thead tr.group-row th {
+thead tr:nth-child(1) th {
   top: 0;
+  z-index: 8;
+}
+
+/* Baris kedua header asli */
+
+thead tr:nth-child(2) th {
+  top: 40px;
+  z-index: 7;
+}
+
+/* Baris ketiga header asli */
+
+thead tr:nth-child(3) th {
+  top: 80px;
   z-index: 6;
-  height: 39px;
-  background: linear-gradient(180deg, #1769a7, #104674);
-  text-align: center;
 }
 
-/* BARIS ANAK HEADER */
+/* Header keempat dan seterusnya, jika ada */
 
-thead tr.child-row th {
-  top: 39px;
-  z-index: 5;
-  height: 39px;
-  background: linear-gradient(180deg, #1769a7, #104674);
-  text-align: center;
+thead tr:nth-child(n+4) th {
+  position: static;
 }
 
-/* HEADER YANG MEMAKAI ROWSPAN */
+/* Header DEV (Pcs) tetap mengikuti warna header */
 
-thead th[rowspan="2"] {
-  vertical-align: middle;
+thead th.dev-header {
+  color: #ffffff !important;
+  font-weight: 900 !important;
 }
 
-/* ISI TABEL */
+/* =====================================================
+   ISI TABEL
+===================================================== */
 
 tbody td {
   padding: 12px 11px;
@@ -298,8 +314,8 @@ tbody td {
   border-right: 1px solid rgba(20,50,70,.12);
   border-bottom: 1px solid rgba(20,50,70,.12);
   color: #17283b;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 900;
   vertical-align: middle;
 }
 
@@ -351,26 +367,24 @@ tbody td:first-child {
 }
 
 /* =====================================================
-   DEV (Pcs)
-   SELURUH ISI KOLOM MERAH DARAH
-   HEADER TETAP PUTIH
+   DEV (Pcs) - MERAH DARAH
+   HANYA ISI DATA, BUKAN HEADER
 ===================================================== */
-
-thead th.dev-header {
-  color: #ffffff !important;
-  font-weight: 900 !important;
-}
 
 tbody td.dev-pcs {
   color: #c00000 !important;
   font-weight: 900 !important;
 }
 
+/* Warna merah tetap terlihat ketika baris di-hover */
+
 tbody tr:hover td.dev-pcs {
   color: #c00000 !important;
 }
 
-/* PESAN KOSONG */
+/* =====================================================
+   PESAN KOSONG
+===================================================== */
 
 .empty {
   padding: 30px !important;
@@ -379,17 +393,19 @@ tbody tr:hover td.dev-pcs {
   background: #081729 !important;
   white-space: normal !important;
   font-size: 14px !important;
-  font-weight: 800 !important;
+  font-weight: 900 !important;
 }
 
-/* PESAN STATUS */
+/* =====================================================
+   PESAN STATUS
+===================================================== */
 
 .message {
   margin: 10px 0;
   padding: 11px 13px;
   border-radius: 10px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.6;
   display: none;
 }
@@ -413,7 +429,7 @@ tbody tr:hover td.dev-pcs {
   text-align: center;
   color: #829ab6;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.8;
 }
 
@@ -494,26 +510,29 @@ tbody tr:hover td.dev-pcs {
   }
 
   table {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   thead th {
     padding: 12px 10px;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   tbody td {
     padding: 12px 10px;
-    font-size: 14px;
+    font-size: 15px;
   }
 
-  thead tr.group-row th {
-    height: 38px;
+  thead tr:nth-child(1) th {
+    top: 0;
   }
 
-  thead tr.child-row th {
-    top: 38px;
-    height: 38px;
+  thead tr:nth-child(2) th {
+    top: 40px;
+  }
+
+  thead tr:nth-child(3) th {
+    top: 80px;
   }
 
   .footer {
@@ -618,7 +637,17 @@ const API_URL =
 // =====================================================
 
 let semuaData = [];
+
+/*
+ * headerRows menyimpan header asli.
+ * Jika API mengirim 3 baris, ketiganya dipertahankan.
+ * Jika API hanya mengirim 1 baris, tidak dibuat header
+ * tambahan Produksi atau Warna.
+ */
+
+let headerRows = [];
 let headerData = [];
+
 let sedangMemuat = false;
 
 // =====================================================
@@ -655,15 +684,135 @@ function normalisasi(teks) {
 }
 
 // =====================================================
-// MENCARI KOLOM
+// MENYIAPKAN STRUKTUR HEADER API
+// =====================================================
+
+function siapkanHeader(headerAPI) {
+
+  if (!Array.isArray(headerAPI)) {
+    throw new Error('Format header API tidak berupa array.');
+  }
+
+  /*
+   * API dapat mengirim:
+   *
+   * Format A:
+   * header: ["HARI", "TANGGAL", "FP", ...]
+   *
+   * Format B:
+   * header: [
+   *   ["HARI", "TANGGAL", "FP", ...],
+   *   ["", "", "", ...],
+   *   ["", "", "", ...]
+   * ]
+   *
+   * Tidak membuat kelompok Produksi/Warna tambahan.
+   */
+
+  if (
+    headerAPI.length > 0 &&
+    Array.isArray(headerAPI[0])
+  ) {
+
+    headerRows = headerAPI.map(function(baris) {
+      return Array.isArray(baris) ? baris : [];
+    });
+
+  } else {
+
+    headerRows = [headerAPI];
+
+  }
+
+  /*
+   * Baris header terakhir dipakai sebagai nama kolom utama.
+   * Jika nama kolom pada posisi tertentu kosong, pencarian
+   * nama kolom akan memeriksa baris header lainnya.
+   */
+
+  headerData = headerRows.length
+    ? headerRows[headerRows.length - 1].slice()
+    : [];
+
+  const jumlahKolom = Math.max(
+    0,
+    ...headerRows.map(baris => baris.length)
+  );
+
+  while (headerData.length < jumlahKolom) {
+    headerData.push('');
+  }
+
+  /*
+   * Jika sel di baris header terakhir kosong, gunakan nama
+   * dari baris header sebelumnya pada posisi yang sama.
+   * Ini membantu pencarian kolom FP dan DEV (Pcs).
+   */
+
+  for (let kolom = 0; kolom < jumlahKolom; kolom++) {
+
+    if (String(headerData[kolom] ?? '').trim() !== '') {
+      continue;
+    }
+
+    for (let baris = headerRows.length - 2; baris >= 0; baris--) {
+
+      const nilai = String(
+        headerRows[baris][kolom] ?? ''
+      ).trim();
+
+      if (nilai !== '') {
+        headerData[kolom] = nilai;
+        break;
+      }
+
+    }
+
+  }
+
+}
+
+// =====================================================
+// MENCARI INDEKS KOLOM DARI SEMUA HEADER ASLI
 // =====================================================
 
 function cariKolom(nama) {
+
   const target = normalisasi(nama);
 
-  return headerData.findIndex(function(h) {
-    return normalisasi(h) === target;
-  });
+  const jumlahKolom = Math.max(
+    headerData.length,
+    ...headerRows.map(baris => baris.length)
+  );
+
+  for (let kolom = 0; kolom < jumlahKolom; kolom++) {
+
+    /*
+     * Prioritaskan nama kolom pada header terakhir.
+     */
+
+    if (normalisasi(headerData[kolom]) === target) {
+      return kolom;
+    }
+
+    /*
+     * Jika belum ketemu, periksa tiga baris header asli.
+     */
+
+    for (let baris = headerRows.length - 1; baris >= 0; baris--) {
+
+      if (
+        normalisasi(headerRows[baris][kolom]) === target
+      ) {
+        return kolom;
+      }
+
+    }
+
+  }
+
+  return -1;
+
 }
 
 // =====================================================
@@ -680,18 +829,24 @@ function indeksFP() {
 
 function indeksDev() {
 
-  return headerData.findIndex(function(h) {
+  const variasi = [
+    'dev (pcs)',
+    'dev(pcs)',
+    'dev pcs',
+    'dev'
+  ];
 
-    const nama = normalisasi(h);
+  for (const nama of variasi) {
 
-    return (
-      nama === 'dev (pcs)' ||
-      nama === 'dev(pcs)' ||
-      nama === 'dev pcs' ||
-      nama === 'dev'
-    );
+    const index = cariKolom(nama);
 
-  });
+    if (index !== -1) {
+      return index;
+    }
+
+  }
+
+  return -1;
 
 }
 
@@ -708,7 +863,9 @@ function dataDenganFP() {
   }
 
   return semuaData.filter(function(baris) {
+
     return String(baris[index] ?? '').trim() !== '';
+
   });
 
 }
@@ -721,7 +878,9 @@ function kelasFP(baris) {
 
   const index = indeksFP();
 
-  if (index === -1) return '';
+  if (index === -1) {
+    return '';
+  }
 
   const fp = String(baris[index] ?? '').trim();
 
@@ -743,15 +902,21 @@ function kelasFP(baris) {
 // =====================================================
 
 function tampilPesan(teks, jenis) {
+
   const kotak = el('pesan');
+
   kotak.className = 'message ' + jenis;
   kotak.textContent = teks;
+
 }
 
 function hapusPesan() {
+
   const kotak = el('pesan');
+
   kotak.className = 'message';
   kotak.textContent = '';
+
 }
 
 // =====================================================
@@ -760,7 +925,9 @@ function hapusPesan() {
 
 async function muatData() {
 
-  if (sedangMemuat) return;
+  if (sedangMemuat) {
+    return;
+  }
 
   sedangMemuat = true;
 
@@ -771,8 +938,10 @@ async function muatData() {
   hapusPesan();
 
   if (semuaData.length === 0) {
+
     el('isiTabel').innerHTML =
       '<tr><td class="empty">Sedang mengambil data...</td></tr>';
+
   }
 
   try {
@@ -794,19 +963,28 @@ async function muatData() {
     const hasil = await response.json();
 
     if (!hasil || hasil.sukses !== true) {
+
       throw new Error(
         hasil && hasil.error
           ? hasil.error
           : 'Format data API tidak sesuai.'
       );
+
     }
 
-    if (!Array.isArray(hasil.header) ||
-        !Array.isArray(hasil.data)) {
-      throw new Error('Header atau data tidak ditemukan.');
+    if (
+      !Array.isArray(hasil.header) ||
+      !Array.isArray(hasil.data)
+    ) {
+
+      throw new Error(
+        'Header atau data tidak ditemukan.'
+      );
+
     }
 
-    headerData = hasil.header;
+    siapkanHeader(hasil.header);
+
     semuaData = hasil.data;
 
     el('statusData').textContent = 'ONLINE';
@@ -864,6 +1042,7 @@ async function muatData() {
   } finally {
 
     sedangMemuat = false;
+
     el('btnMuat').disabled = false;
     el('btnMuat').textContent = '↻ MUAT ULANG';
 
@@ -872,123 +1051,53 @@ async function muatData() {
 }
 
 // =====================================================
-// MEMBANGUN DUA BARIS HEADER
+// MEMBANGUN HEADER ASLI
 //
-// PENTING:
-// headerData berisi nama kolom anak.
-// Header kelompok dibentuk berdasarkan posisi
-// kolom Produksi (3 kolom) dan Warna (6 kolom).
+// Tidak membuat header kelompok Produksi/Warna.
+// Semua baris header yang dikirim API dipertahankan.
 // =====================================================
 
 function buatHeader() {
 
-  const jumlahKolom = headerData.length;
+  if (!headerRows.length) {
 
-  /*
-   * Tentukan indeks kelompok dari header API.
-   * Jika header API berupa anak header, kelompok
-   * dicari berdasarkan posisi/nama yang tersedia.
-   */
-
-  let indexProduksi = cariKolom('PRODUKSI');
-  let indexWarna = cariKolom('WARNA');
-
-  /*
-   * Jika API tidak menyediakan nama PRODUKSI/WARNA
-   * sebagai header kelompok, sesuaikan dua konstanta
-   * ini dengan posisi awal kelompok di spreadsheet.
-   *
-   * Nilai -1 berarti kelompok tidak ditemukan.
-   */
-
-  const AWAL_PRODUKSI = indexProduksi;
-  const AWAL_WARNA = indexWarna;
-
-  let htmlAtas = '<tr class="group-row">';
-  let htmlBawah = '<tr class="child-row">';
-
-  let i = 0;
-
-  while (i < jumlahKolom) {
-
-    const nama = normalisasi(headerData[i]);
-
-    if (i === AWAL_PRODUKSI && AWAL_PRODUKSI >= 0) {
-
-      htmlAtas +=
-        '<th class="group-header" colspan="3">Produksi</th>';
-
-      for (let j = i; j < Math.min(i + 3, jumlahKolom); j++) {
-
-        const namaAnak = normalisasi(headerData[j]);
-
-        const kelasDev =
-          namaAnak === 'dev (pcs)' ||
-          namaAnak === 'dev(pcs)' ||
-          namaAnak === 'dev pcs' ||
-          namaAnak === 'dev'
-            ? ' dev-header'
-            : '';
-
-        htmlBawah +=
-          '<th class="sub-header' + kelasDev + '">' +
-          aman(headerData[j] || '-') +
-          '</th>';
-
-      }
-
-      i += 3;
-      continue;
-
-    }
-
-    if (i === AWAL_WARNA && AWAL_WARNA >= 0) {
-
-      htmlAtas +=
-        '<th class="group-header" colspan="6">Warna</th>';
-
-      for (let j = i; j < Math.min(i + 6, jumlahKolom); j++) {
-
-        const namaAnak = normalisasi(headerData[j]);
-
-        const kelasDev =
-          namaAnak === 'dev (pcs)' ||
-          namaAnak === 'dev(pcs)' ||
-          namaAnak === 'dev pcs' ||
-          namaAnak === 'dev'
-            ? ' dev-header'
-            : '';
-
-        htmlBawah +=
-          '<th class="sub-header' + kelasDev + '">' +
-          aman(headerData[j] || '-') +
-          '</th>';
-
-      }
-
-      i += 6;
-      continue;
-
-    }
-
-    /*
-     * Kolom biasa menempati kedua baris header.
-     * Anak header tidak dibuang.
-     */
-
-    htmlAtas +=
-      '<th rowspan="2">' +
-      aman(headerData[i] || '-') +
-      '</th>';
-
-    i++;
+    el('kepalaTabel').innerHTML = '';
+    return;
 
   }
 
-  htmlAtas += '</tr>';
-  htmlBawah += '</tr>';
+  const jumlahKolom = Math.max(
+    0,
+    ...headerRows.map(baris => baris.length)
+  );
 
-  el('kepalaTabel').innerHTML = htmlAtas + htmlBawah;
+  const indexDev = indeksDev();
+
+  const html = headerRows.map(function(baris) {
+
+    let sel = '';
+
+    for (let kolom = 0; kolom < jumlahKolom; kolom++) {
+
+      const nilai = baris[kolom] ?? '';
+
+      const kelasDev =
+        kolom === indexDev
+          ? ' class="dev-header"'
+          : '';
+
+      sel +=
+        '<th' + kelasDev + '>' +
+        aman(nilai) +
+        '</th>';
+
+    }
+
+    return '<tr>' + sel + '</tr>';
+
+  }).join('');
+
+  el('kepalaTabel').innerHTML = html;
 
 }
 
@@ -1042,7 +1151,9 @@ function tampilkanTabel() {
       const sel = headerData.map(function(_, index) {
 
         const kelasDev =
-          index === indexDev ? ' class="dev-pcs"' : '';
+          index === indexDev
+            ? ' class="dev-pcs"'
+            : '';
 
         return '<td' + kelasDev + '>' +
           aman(baris[index] ?? '') +
@@ -1077,7 +1188,10 @@ function tampilkanTabel() {
 // PENCARIAN LANGSUNG
 // =====================================================
 
-el('cari').addEventListener('input', tampilkanTabel);
+el('cari').addEventListener(
+  'input',
+  tampilkanTabel
+);
 
 // =====================================================
 // MULAI APLIKASI
