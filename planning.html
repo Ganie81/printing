@@ -18,7 +18,6 @@
   --muted: #9fb4ce;
   --border: rgba(151,190,235,.19);
   --green: #20d6a0;
-  --red: #ff667b;
 }
 
 * {
@@ -31,7 +30,7 @@ html {
 
 body {
   margin: 0;
-  padding: 12px;
+  padding: 10px;
   background:
     radial-gradient(ellipse at top left, #17385b 0, transparent 42%),
     linear-gradient(145deg, #06101e, var(--bg));
@@ -99,8 +98,8 @@ body {
 .status-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 7px;
-  margin: 10px 0;
+  gap: 6px;
+  margin: 9px 0;
 }
 
 .status-card {
@@ -109,8 +108,8 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 3px;
-  padding: 8px 10px;
-  border-radius: 10px;
+  padding: 7px 9px;
+  border-radius: 9px;
   background: linear-gradient(145deg, #142b45, #0c1b2e);
   border: 1px solid var(--border);
   box-shadow: inset 0 1px 1px rgba(255,255,255,.05);
@@ -120,7 +119,7 @@ body {
   color: var(--muted);
   font-size: 10px;
   font-weight: 900;
-  letter-spacing: .3px;
+  letter-spacing: .2px;
   line-height: 1.3;
 }
 
@@ -145,9 +144,9 @@ body {
 ===================================================== */
 
 .panel {
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 15px;
+  padding: 11px;
+  margin-top: 9px;
+  border-radius: 14px;
   background: linear-gradient(145deg, #10243b, #0a1728);
   border: 1px solid var(--border);
   box-shadow: 0 8px 22px rgba(0,0,0,.18);
@@ -225,7 +224,7 @@ button:disabled {
 }
 
 /* =====================================================
-   TABLE
+   TABEL
 ===================================================== */
 
 .table-wrapper {
@@ -252,12 +251,12 @@ table {
 thead th {
   position: sticky;
   top: 0;
-  z-index: 3;
-  padding: 13px 12px;
+  z-index: 4;
+  padding: 12px 11px;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
-  color: #ffffff;
+  color: #fff;
   background: linear-gradient(180deg, #1769a7, #104674);
   border-right: 1px solid rgba(255,255,255,.12);
   border-bottom: 2px solid #43d9ff;
@@ -265,26 +264,36 @@ thead th {
   font-weight: 900;
 }
 
-/* HEADER KELOMPOK PRODUKSI DAN WARNA */
+/* BARIS HEADER KELOMPOK */
 
-thead th.group-header {
-  text-align: center !important;
-  vertical-align: middle;
+thead tr.group-row th {
+  top: 0;
+  z-index: 6;
+  height: 39px;
   background: linear-gradient(180deg, #1769a7, #104674);
-  color: #ffffff;
-  font-weight: 900;
+  text-align: center;
 }
 
-/* HEADER SUBKOLOM */
+/* BARIS ANAK HEADER */
 
-thead th.sub-header {
+thead tr.child-row th {
+  top: 39px;
+  z-index: 5;
+  height: 39px;
+  background: linear-gradient(180deg, #1769a7, #104674);
   text-align: center;
+}
+
+/* HEADER YANG MEMAKAI ROWSPAN */
+
+thead th[rowspan="2"] {
+  vertical-align: middle;
 }
 
 /* ISI TABEL */
 
 tbody td {
-  padding: 12px 12px;
+  padding: 12px 11px;
   white-space: nowrap;
   border-right: 1px solid rgba(20,50,70,.12);
   border-bottom: 1px solid rgba(20,50,70,.12);
@@ -298,66 +307,38 @@ tbody td {
    WARNA BARIS BERDASARKAN FP
 ===================================================== */
 
-/* FP 1 - MERAH MUDA SOFT */
-tbody tr.fp-1,
 tbody tr.fp-1 td {
   background-color: #ffdce5;
 }
 
-/* FP 2 - BIRU MUDA SOFT */
-tbody tr.fp-2,
 tbody tr.fp-2 td {
   background-color: #d9edff;
 }
 
-/* FP 4 - KUNING MUDA SOFT */
-tbody tr.fp-4,
 tbody tr.fp-4 td {
   background-color: #fff2bf;
 }
 
-/* FP 5 - HIJAU MUDA SOFT */
-tbody tr.fp-5,
 tbody tr.fp-5 td {
   background-color: #d9f5df;
 }
 
-/* FP 6 - UNGU MUDA SOFT */
-tbody tr.fp-6,
 tbody tr.fp-6 td {
   background-color: #eadfff;
 }
 
-/* FP 7 - COKELAT MUDA SOFT */
-tbody tr.fp-7,
 tbody tr.fp-7 td {
   background-color: #ead6c3;
 }
 
-/* WARNA TEKS UTAMA PADA BARIS */
+/* GARIS PEMISAH */
 
-tbody tr.fp-1 td,
-tbody tr.fp-2 td,
-tbody tr.fp-4 td,
-tbody tr.fp-5 td,
-tbody tr.fp-6 td,
-tbody tr.fp-7 td {
-  color: #17283b;
-}
-
-/* GARIS PEMISAH TETAP HALUS */
-
-tbody tr.fp-1 td,
-tbody tr.fp-2 td,
-tbody tr.fp-4 td,
-tbody tr.fp-5 td,
-tbody tr.fp-6 td,
-tbody tr.fp-7 td {
+tbody tr td {
   border-right-color: rgba(30,55,80,.13);
   border-bottom-color: rgba(30,55,80,.13);
 }
 
-/* HOVER TETAP TERLIHAT */
+/* HOVER */
 
 tbody tr:hover td {
   filter: brightness(.96);
@@ -370,18 +351,23 @@ tbody td:first-child {
 }
 
 /* =====================================================
-   KOLOM DEV (Pcs) - ANGKA MERAH DARAH
+   DEV (Pcs)
+   SELURUH ISI KOLOM MERAH DARAH
+   HEADER TETAP PUTIH
 ===================================================== */
-
-tbody td.dev-pcs {
-  color: #c40018 !important;
-  font-weight: 900 !important;
-}
-
-/* Header DEV tidak terkena perubahan warna angka */
 
 thead th.dev-header {
   color: #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody td.dev-pcs {
+  color: #c00000 !important;
+  font-weight: 900 !important;
+}
+
+tbody tr:hover td.dev-pcs {
+  color: #c00000 !important;
 }
 
 /* PESAN KOSONG */
@@ -395,6 +381,8 @@ thead th.dev-header {
   font-size: 14px !important;
   font-weight: 800 !important;
 }
+
+/* PESAN STATUS */
 
 .message {
   margin: 10px 0;
@@ -451,8 +439,6 @@ thead th.dev-header {
   .header p {
     font-size: 13px;
   }
-
-  /* TIGA STATUS TETAP SATU BARIS */
 
   .status-grid {
     grid-template-columns: 1fr 1fr 1fr;
@@ -512,13 +498,22 @@ thead th.dev-header {
   }
 
   thead th {
-    padding: 12px 11px;
+    padding: 12px 10px;
     font-size: 14px;
   }
 
   tbody td {
-    padding: 12px 11px;
+    padding: 12px 10px;
     font-size: 14px;
+  }
+
+  thead tr.group-row th {
+    height: 38px;
+  }
+
+  thead tr.child-row th {
+    top: 38px;
+    height: 38px;
   }
 
   .footer {
@@ -588,7 +583,6 @@ thead th.dev-header {
     <div id="pesan" class="message"></div>
 
     <div class="table-wrapper">
-
       <table>
         <thead id="kepalaTabel"></thead>
 
@@ -597,9 +591,7 @@ thead th.dev-header {
             <td class="empty">Sedang mengambil data...</td>
           </tr>
         </tbody>
-
       </table>
-
     </div>
 
   </main>
@@ -663,7 +655,7 @@ function normalisasi(teks) {
 }
 
 // =====================================================
-// MENEMUKAN KOLOM BERDASARKAN NAMA HEADER
+// MENCARI KOLOM
 // =====================================================
 
 function cariKolom(nama) {
@@ -675,28 +667,21 @@ function cariKolom(nama) {
 }
 
 // =====================================================
-// MENENTUKAN KOLOM FP
+// INDEKS FP
 // =====================================================
 
 function indeksFP() {
-
-  let index = cariKolom('FP');
-
-  if (index !== -1) return index;
-
-  // Cadangan untuk variasi penulisan header.
-  return headerData.findIndex(function(h) {
-    return normalisasi(h) === 'fp';
-  });
+  return cariKolom('FP');
 }
 
 // =====================================================
-// MENENTUKAN KOLOM DEV (Pcs)
+// INDEKS DEV (Pcs)
 // =====================================================
 
 function indeksDev() {
 
   return headerData.findIndex(function(h) {
+
     const nama = normalisasi(h);
 
     return (
@@ -705,29 +690,40 @@ function indeksDev() {
       nama === 'dev pcs' ||
       nama === 'dev'
     );
+
   });
 
 }
 
 // =====================================================
-// MEMBACA NILAI FP
+// FILTER BARIS TANPA FP
 // =====================================================
 
-function nilaiFP(baris) {
+function dataDenganFP() {
+
   const index = indeksFP();
 
-  if (index === -1) return '';
+  if (index === -1) {
+    return [];
+  }
 
-  return String(baris[index] ?? '').trim();
+  return semuaData.filter(function(baris) {
+    return String(baris[index] ?? '').trim() !== '';
+  });
+
 }
 
 // =====================================================
-// WARNA BARIS BERDASARKAN FP
+// KELAS WARNA FP
 // =====================================================
 
 function kelasFP(baris) {
 
-  const fp = nilaiFP(baris);
+  const index = indeksFP();
+
+  if (index === -1) return '';
+
+  const fp = String(baris[index] ?? '').trim();
 
   const daftar = {
     '1': 'fp-1',
@@ -738,27 +734,7 @@ function kelasFP(baris) {
     '7': 'fp-7'
   };
 
-  return daftar[fp] || 'fp-lain';
-
-}
-
-// =====================================================
-// FILTER: SEMBUNYIKAN BARIS TANPA FP
-// =====================================================
-
-function dataDenganFP() {
-
-  const index = indeksFP();
-
-  // Jika kolom FP tidak ditemukan, jangan menebak
-  // kolom lain sebagai FP.
-  if (index === -1) {
-    return [];
-  }
-
-  return semuaData.filter(function(baris) {
-    return String(baris[index] ?? '').trim() !== '';
-  });
+  return daftar[fp] || '';
 
 }
 
@@ -779,7 +755,7 @@ function hapusPesan() {
 }
 
 // =====================================================
-// AMBIL DATA DARI APPS SCRIPT
+// AMBIL DATA APPS SCRIPT
 // =====================================================
 
 async function muatData() {
@@ -787,6 +763,7 @@ async function muatData() {
   if (sedangMemuat) return;
 
   sedangMemuat = true;
+
   el('btnMuat').disabled = true;
   el('btnMuat').textContent = 'MEMUAT...';
   el('statusData').textContent = 'MEMUAT';
@@ -832,12 +809,6 @@ async function muatData() {
     headerData = hasil.header;
     semuaData = hasil.data;
 
-    // Total data dihitung setelah baris tanpa FP dibuang.
-    const dataAktif = dataDenganFP();
-
-    el('totalData').textContent =
-      dataAktif.length.toLocaleString('id-ID');
-
     el('statusData').textContent = 'ONLINE';
 
     el('waktuUpdate').textContent =
@@ -849,8 +820,8 @@ async function muatData() {
     if (indeksFP() === -1) {
 
       tampilPesan(
-        'Data berhasil dimuat, tetapi kolom FP tidak ditemukan. ' +
-        'Periksa nama header FP pada spreadsheet.',
+        'Data berhasil dimuat, tetapi header FP tidak ditemukan. ' +
+        'Periksa nama kolom FP pada spreadsheet.',
         'error'
       );
 
@@ -901,70 +872,112 @@ async function muatData() {
 }
 
 // =====================================================
-// MEMBENTUK HEADER KELOMPOK
-// Produksi = 3 kolom
-// Warna = 6 kolom
+// MEMBANGUN DUA BARIS HEADER
+//
+// PENTING:
+// headerData berisi nama kolom anak.
+// Header kelompok dibentuk berdasarkan posisi
+// kolom Produksi (3 kolom) dan Warna (6 kolom).
 // =====================================================
 
 function buatHeader() {
 
   const jumlahKolom = headerData.length;
 
-  const indexProduksi = cariKolom('PRODUKSI');
-  const indexWarna = cariKolom('WARNA');
-
   /*
-   * Penggabungan dilakukan jika nama kolom PRODUKSI
-   * dan WARNA merupakan header pertama dari kelompoknya.
-   *
-   * Jika API mengirim header satu baris dengan nama
-   * PRODUKSI/WARNA hanya pada kolom pertama kelompok,
-   * header kelompok akan dibuat menggunakan colspan.
+   * Tentukan indeks kelompok dari header API.
+   * Jika header API berupa anak header, kelompok
+   * dicari berdasarkan posisi/nama yang tersedia.
    */
 
-  let html = '<tr>';
+  let indexProduksi = cariKolom('PRODUKSI');
+  let indexWarna = cariKolom('WARNA');
+
+  /*
+   * Jika API tidak menyediakan nama PRODUKSI/WARNA
+   * sebagai header kelompok, sesuaikan dua konstanta
+   * ini dengan posisi awal kelompok di spreadsheet.
+   *
+   * Nilai -1 berarti kelompok tidak ditemukan.
+   */
+
+  const AWAL_PRODUKSI = indexProduksi;
+  const AWAL_WARNA = indexWarna;
+
+  let htmlAtas = '<tr class="group-row">';
+  let htmlBawah = '<tr class="child-row">';
+
   let i = 0;
 
   while (i < jumlahKolom) {
 
     const nama = normalisasi(headerData[i]);
 
-    // Kelompok Produksi: 3 kolom
-    if (nama === 'produksi') {
+    if (i === AWAL_PRODUKSI && AWAL_PRODUKSI >= 0) {
 
-      html +=
-        '<th class="group-header" colspan="3">' +
-        'Produksi' +
-        '</th>';
+      htmlAtas +=
+        '<th class="group-header" colspan="3">Produksi</th>';
+
+      for (let j = i; j < Math.min(i + 3, jumlahKolom); j++) {
+
+        const namaAnak = normalisasi(headerData[j]);
+
+        const kelasDev =
+          namaAnak === 'dev (pcs)' ||
+          namaAnak === 'dev(pcs)' ||
+          namaAnak === 'dev pcs' ||
+          namaAnak === 'dev'
+            ? ' dev-header'
+            : '';
+
+        htmlBawah +=
+          '<th class="sub-header' + kelasDev + '">' +
+          aman(headerData[j] || '-') +
+          '</th>';
+
+      }
 
       i += 3;
       continue;
 
     }
 
-    // Kelompok Warna: 6 kolom
-    if (nama === 'warna') {
+    if (i === AWAL_WARNA && AWAL_WARNA >= 0) {
 
-      html +=
-        '<th class="group-header" colspan="6">' +
-        'Warna' +
-        '</th>';
+      htmlAtas +=
+        '<th class="group-header" colspan="6">Warna</th>';
+
+      for (let j = i; j < Math.min(i + 6, jumlahKolom); j++) {
+
+        const namaAnak = normalisasi(headerData[j]);
+
+        const kelasDev =
+          namaAnak === 'dev (pcs)' ||
+          namaAnak === 'dev(pcs)' ||
+          namaAnak === 'dev pcs' ||
+          namaAnak === 'dev'
+            ? ' dev-header'
+            : '';
+
+        htmlBawah +=
+          '<th class="sub-header' + kelasDev + '">' +
+          aman(headerData[j] || '-') +
+          '</th>';
+
+      }
 
       i += 6;
       continue;
 
     }
 
-    const kelasDev =
-      nama === 'dev (pcs)' ||
-      nama === 'dev(pcs)' ||
-      nama === 'dev pcs' ||
-      nama === 'dev'
-        ? ' dev-header'
-        : '';
+    /*
+     * Kolom biasa menempati kedua baris header.
+     * Anak header tidak dibuang.
+     */
 
-    html +=
-      '<th class="sub-header' + kelasDev + '">' +
+    htmlAtas +=
+      '<th rowspan="2">' +
       aman(headerData[i] || '-') +
       '</th>';
 
@@ -972,9 +985,10 @@ function buatHeader() {
 
   }
 
-  html += '</tr>';
+  htmlAtas += '</tr>';
+  htmlBawah += '</tr>';
 
-  el('kepalaTabel').innerHTML = html;
+  el('kepalaTabel').innerHTML = htmlAtas + htmlBawah;
 
 }
 
@@ -990,7 +1004,6 @@ function tampilkanTabel() {
 
   const dataAktif = dataDenganFP();
 
-  // Cari hanya pada baris yang mempunyai FP.
   const hasil = dataAktif.filter(function(baris) {
 
     return baris.some(function(nilai) {
@@ -1003,10 +1016,8 @@ function tampilkanTabel() {
 
   });
 
-  // HEADER
   buatHeader();
 
-  // BARIS DATA
   if (hasil.length === 0) {
 
     el('isiTabel').innerHTML =
@@ -1047,15 +1058,12 @@ function tampilkanTabel() {
 
   }
 
-  // TOTAL DATA AKTIF
   el('totalData').textContent =
     dataAktif.length.toLocaleString('id-ID');
 
-  // HASIL PENCARIAN
   el('hasilData').textContent =
     hasil.length.toLocaleString('id-ID');
 
-  // INFORMASI
   el('infoJumlah').textContent =
     'Menampilkan ' +
     hasil.length.toLocaleString('id-ID') +
