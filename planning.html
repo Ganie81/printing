@@ -31,7 +31,7 @@ html {
 
 body {
   margin: 0;
-  padding: 16px;
+  padding: 12px;
   background:
     radial-gradient(ellipse at top left, #17385b 0, transparent 42%),
     linear-gradient(145deg, #06101e, var(--bg));
@@ -46,17 +46,19 @@ body {
   margin: auto;
 }
 
-/* HEADER */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header {
   position: relative;
   overflow: hidden;
-  padding: 24px 22px;
-  border-radius: 20px;
+  padding: 20px 18px;
+  border-radius: 17px;
   border: 1px solid rgba(110,190,255,.35);
   background: linear-gradient(135deg, #164c80, #0b2340 65%, #102e50);
   box-shadow:
-    0 10px 25px rgba(0,0,0,.28),
+    0 8px 20px rgba(0,0,0,.24),
     inset 0 1px 1px rgba(255,255,255,.16);
 }
 
@@ -75,7 +77,7 @@ body {
   position: relative;
   z-index: 1;
   margin: 0;
-  font-size: clamp(22px, 4vw, 34px);
+  font-size: clamp(24px, 4vw, 35px);
   font-weight: 900;
   letter-spacing: 1px;
 }
@@ -83,41 +85,50 @@ body {
 .header p {
   position: relative;
   z-index: 1;
-  margin: 9px 0 0;
+  margin: 7px 0 0;
   color: #c9e6ff;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 700;
   line-height: 1.6;
 }
 
-/* STATUS */
+/* =====================================================
+   STATUS - SATU BARIS SLIM
+===================================================== */
 
 .status-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 16px 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 7px;
+  margin: 10px 0;
 }
 
 .status-card {
   min-width: 0;
-  padding: 17px;
-  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 10px;
+  border-radius: 10px;
   background: linear-gradient(145deg, #142b45, #0c1b2e);
   border: 1px solid var(--border);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,.07);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.05);
 }
 
 .status-label {
   color: var(--muted);
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: .8px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  line-height: 1.3;
 }
 
 .status-value {
-  margin-top: 8px;
-  font-size: clamp(19px, 3vw, 29px);
+  margin: 0;
+  font-size: clamp(17px, 3vw, 23px);
   font-weight: 900;
+  line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
@@ -129,22 +140,24 @@ body {
   color: var(--green);
 }
 
-/* PANEL */
+/* =====================================================
+   PANEL
+===================================================== */
 
 .panel {
-  padding: 17px;
-  margin-top: 15px;
-  border-radius: 18px;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 15px;
   background: linear-gradient(145deg, #10243b, #0a1728);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 25px rgba(0,0,0,.2);
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
 }
 
 .toolbar {
   display: flex;
-  gap: 10px;
+  gap: 9px;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .search-box {
@@ -155,14 +168,20 @@ body {
 
 .search-box input {
   width: 100%;
-  min-height: 46px;
-  padding: 12px 15px;
-  border-radius: 11px;
+  min-height: 44px;
+  padding: 11px 13px;
+  border-radius: 10px;
   outline: none;
   border: 1px solid rgba(109,177,255,.3);
   background: #071629;
   color: white;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.search-box input::placeholder {
+  color: #9fb4ce;
+  font-weight: 600;
 }
 
 .search-box input:focus {
@@ -171,13 +190,13 @@ body {
 }
 
 button {
-  min-height: 44px;
+  min-height: 42px;
   border: 0;
-  border-radius: 11px;
-  padding: 11px 16px;
+  border-radius: 10px;
+  padding: 10px 14px;
   color: white;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 900;
   cursor: pointer;
   background: linear-gradient(145deg, #2095ff, #075ac7);
   box-shadow:
@@ -198,20 +217,23 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 8px;
+  gap: 7px;
   color: var(--muted);
-  font-size: 12px;
-  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 10px;
 }
 
-/* TABLE */
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table-wrapper {
   width: 100%;
   max-height: 72vh;
   overflow: auto;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 10px;
   background: #081729;
   -webkit-overflow-scrolling: touch;
 }
@@ -221,59 +243,165 @@ table {
   min-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 800;
 }
+
+/* HEADER TABEL */
 
 thead th {
   position: sticky;
   top: 0;
   z-index: 3;
-  padding: 13px 14px;
+  padding: 13px 12px;
   text-align: center;
+  vertical-align: middle;
   white-space: nowrap;
   color: #ffffff;
   background: linear-gradient(180deg, #1769a7, #104674);
   border-right: 1px solid rgba(255,255,255,.12);
   border-bottom: 2px solid #43d9ff;
+  font-size: 14px;
+  font-weight: 900;
 }
+
+/* HEADER KELOMPOK PRODUKSI DAN WARNA */
+
+thead th.group-header {
+  text-align: center !important;
+  vertical-align: middle;
+  background: linear-gradient(180deg, #1769a7, #104674);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* HEADER SUBKOLOM */
+
+thead th.sub-header {
+  text-align: center;
+}
+
+/* ISI TABEL */
 
 tbody td {
-  padding: 11px 14px;
+  padding: 12px 12px;
   white-space: nowrap;
-  border-right: 1px solid rgba(151,190,235,.10);
-  border-bottom: 1px solid rgba(151,190,235,.10);
-  color: #e1ecfa;
+  border-right: 1px solid rgba(20,50,70,.12);
+  border-bottom: 1px solid rgba(20,50,70,.12);
+  color: #17283b;
+  font-size: 14px;
+  font-weight: 800;
+  vertical-align: middle;
 }
 
-tbody tr:nth-child(even) {
-  background: rgba(36,75,115,.22);
+/* =====================================================
+   WARNA BARIS BERDASARKAN FP
+===================================================== */
+
+/* FP 1 - MERAH MUDA SOFT */
+tbody tr.fp-1,
+tbody tr.fp-1 td {
+  background-color: #ffdce5;
 }
 
-tbody tr:hover {
-  background: rgba(22,133,255,.16);
+/* FP 2 - BIRU MUDA SOFT */
+tbody tr.fp-2,
+tbody tr.fp-2 td {
+  background-color: #d9edff;
 }
 
-tbody tr:last-child td {
-  border-bottom: none;
+/* FP 4 - KUNING MUDA SOFT */
+tbody tr.fp-4,
+tbody tr.fp-4 td {
+  background-color: #fff2bf;
 }
+
+/* FP 5 - HIJAU MUDA SOFT */
+tbody tr.fp-5,
+tbody tr.fp-5 td {
+  background-color: #d9f5df;
+}
+
+/* FP 6 - UNGU MUDA SOFT */
+tbody tr.fp-6,
+tbody tr.fp-6 td {
+  background-color: #eadfff;
+}
+
+/* FP 7 - COKELAT MUDA SOFT */
+tbody tr.fp-7,
+tbody tr.fp-7 td {
+  background-color: #ead6c3;
+}
+
+/* WARNA TEKS UTAMA PADA BARIS */
+
+tbody tr.fp-1 td,
+tbody tr.fp-2 td,
+tbody tr.fp-4 td,
+tbody tr.fp-5 td,
+tbody tr.fp-6 td,
+tbody tr.fp-7 td {
+  color: #17283b;
+}
+
+/* GARIS PEMISAH TETAP HALUS */
+
+tbody tr.fp-1 td,
+tbody tr.fp-2 td,
+tbody tr.fp-4 td,
+tbody tr.fp-5 td,
+tbody tr.fp-6 td,
+tbody tr.fp-7 td {
+  border-right-color: rgba(30,55,80,.13);
+  border-bottom-color: rgba(30,55,80,.13);
+}
+
+/* HOVER TETAP TERLIHAT */
+
+tbody tr:hover td {
+  filter: brightness(.96);
+}
+
+/* KOLOM PERTAMA */
 
 tbody td:first-child {
-  color: #8fdcff;
-  font-weight: bold;
+  font-weight: 900;
 }
+
+/* =====================================================
+   KOLOM DEV (Pcs) - ANGKA MERAH DARAH
+===================================================== */
+
+tbody td.dev-pcs {
+  color: #c40018 !important;
+  font-weight: 900 !important;
+}
+
+/* Header DEV tidak terkena perubahan warna angka */
+
+thead th.dev-header {
+  color: #ffffff !important;
+}
+
+/* PESAN KOSONG */
 
 .empty {
   padding: 30px !important;
   text-align: center;
   color: var(--muted) !important;
+  background: #081729 !important;
   white-space: normal !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
 }
 
 .message {
-  margin: 12px 0;
-  padding: 12px 14px;
+  margin: 10px 0;
+  padding: 11px 13px;
   border-radius: 10px;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 700;
   line-height: 1.6;
   display: none;
 }
@@ -293,48 +421,74 @@ tbody td:first-child {
 }
 
 .footer {
-  padding: 18px 5px 8px;
+  padding: 15px 5px 7px;
   text-align: center;
   color: #829ab6;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 700;
   line-height: 1.8;
 }
 
+/* =====================================================
+   RESPONSIVE HP
+===================================================== */
+
 @media (max-width: 600px) {
+
   body {
-    padding: 10px;
+    padding: 8px;
   }
 
   .header {
-    padding: 20px 16px;
-    border-radius: 15px;
+    padding: 17px 13px;
+    border-radius: 13px;
   }
 
+  .header h1 {
+    font-size: 25px;
+  }
+
+  .header p {
+    font-size: 13px;
+  }
+
+  /* TIGA STATUS TETAP SATU BARIS */
+
   .status-grid {
-    gap: 7px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    margin: 8px 0;
   }
 
   .status-card {
-    padding: 12px 10px;
-    border-radius: 12px;
+    padding: 7px 6px;
+    border-radius: 9px;
+    gap: 4px;
   }
 
   .status-label {
     font-size: 9px;
     letter-spacing: 0;
+    line-height: 1.25;
   }
 
   .status-value {
-    font-size: 21px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  #statusData {
+    font-size: 14px !important;
   }
 
   .panel {
-    padding: 11px;
-    border-radius: 14px;
+    padding: 9px;
+    border-radius: 12px;
   }
 
   .toolbar {
     flex-wrap: wrap;
+    gap: 7px;
   }
 
   .search-box {
@@ -342,7 +496,11 @@ tbody td:first-child {
   }
 
   .toolbar button {
-    flex: 1;
+    width: 100%;
+  }
+
+  .info-line {
+    font-size: 12px;
   }
 
   .table-wrapper {
@@ -350,12 +508,21 @@ tbody td:first-child {
   }
 
   table {
-    font-size: 11px;
+    font-size: 14px;
   }
 
-  thead th,
+  thead th {
+    padding: 12px 11px;
+    font-size: 14px;
+  }
+
   tbody td {
-    padding: 10px 11px;
+    padding: 12px 11px;
+    font-size: 14px;
+  }
+
+  .footer {
+    font-size: 11px;
   }
 }
 </style>
@@ -372,27 +539,32 @@ tbody td:first-child {
     </p>
   </header>
 
+  <!-- STATUS SATU BARIS -->
+
   <section class="status-grid">
+
     <div class="status-card">
       <div class="status-label">TOTAL DATA</div>
       <div class="status-value blue" id="totalData">0</div>
     </div>
 
     <div class="status-card">
-      <div class="status-label">HASIL PENCARIAN</div>
+      <div class="status-label">HASIL CARI</div>
       <div class="status-value green" id="hasilData">0</div>
     </div>
 
     <div class="status-card">
       <div class="status-label">STATUS</div>
       <div class="status-value" id="statusData"
-           style="font-size:17px">MEMUAT</div>
+           style="font-size:14px">MEMUAT</div>
     </div>
+
   </section>
 
   <main class="panel">
 
     <div class="toolbar">
+
       <div class="search-box">
         <input
           id="cari"
@@ -405,6 +577,7 @@ tbody td:first-child {
       <button id="btnMuat" onclick="muatData()">
         ↻ MUAT ULANG
       </button>
+
     </div>
 
     <div class="info-line">
@@ -415,14 +588,18 @@ tbody td:first-child {
     <div id="pesan" class="message"></div>
 
     <div class="table-wrapper">
+
       <table>
         <thead id="kepalaTabel"></thead>
+
         <tbody id="isiTabel">
           <tr>
             <td class="empty">Sedang mengambil data...</td>
           </tr>
         </tbody>
+
       </table>
+
     </div>
 
   </main>
@@ -459,7 +636,7 @@ let sedangMemuat = false;
 const el = id => document.getElementById(id);
 
 // =====================================================
-// ESCAPE HTML UNTUK KEAMANAN
+// ESCAPE HTML
 // =====================================================
 
 function aman(teks) {
@@ -472,6 +649,117 @@ function aman(teks) {
       "'": '&#39;'
     }[c];
   });
+}
+
+// =====================================================
+// NORMALISASI NAMA KOLOM
+// =====================================================
+
+function normalisasi(teks) {
+  return String(teks ?? '')
+    .toLocaleLowerCase('id-ID')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// =====================================================
+// MENEMUKAN KOLOM BERDASARKAN NAMA HEADER
+// =====================================================
+
+function cariKolom(nama) {
+  const target = normalisasi(nama);
+
+  return headerData.findIndex(function(h) {
+    return normalisasi(h) === target;
+  });
+}
+
+// =====================================================
+// MENENTUKAN KOLOM FP
+// =====================================================
+
+function indeksFP() {
+
+  let index = cariKolom('FP');
+
+  if (index !== -1) return index;
+
+  // Cadangan untuk variasi penulisan header.
+  return headerData.findIndex(function(h) {
+    return normalisasi(h) === 'fp';
+  });
+}
+
+// =====================================================
+// MENENTUKAN KOLOM DEV (Pcs)
+// =====================================================
+
+function indeksDev() {
+
+  return headerData.findIndex(function(h) {
+    const nama = normalisasi(h);
+
+    return (
+      nama === 'dev (pcs)' ||
+      nama === 'dev(pcs)' ||
+      nama === 'dev pcs' ||
+      nama === 'dev'
+    );
+  });
+
+}
+
+// =====================================================
+// MEMBACA NILAI FP
+// =====================================================
+
+function nilaiFP(baris) {
+  const index = indeksFP();
+
+  if (index === -1) return '';
+
+  return String(baris[index] ?? '').trim();
+}
+
+// =====================================================
+// WARNA BARIS BERDASARKAN FP
+// =====================================================
+
+function kelasFP(baris) {
+
+  const fp = nilaiFP(baris);
+
+  const daftar = {
+    '1': 'fp-1',
+    '2': 'fp-2',
+    '4': 'fp-4',
+    '5': 'fp-5',
+    '6': 'fp-6',
+    '7': 'fp-7'
+  };
+
+  return daftar[fp] || 'fp-lain';
+
+}
+
+// =====================================================
+// FILTER: SEMBUNYIKAN BARIS TANPA FP
+// =====================================================
+
+function dataDenganFP() {
+
+  const index = indeksFP();
+
+  // Jika kolom FP tidak ditemukan, jangan menebak
+  // kolom lain sebagai FP.
+  if (index === -1) {
+    return [];
+  }
+
+  return semuaData.filter(function(baris) {
+    return String(baris[index] ?? '').trim() !== '';
+  });
+
 }
 
 // =====================================================
@@ -502,6 +790,7 @@ async function muatData() {
   el('btnMuat').disabled = true;
   el('btnMuat').textContent = 'MEMUAT...';
   el('statusData').textContent = 'MEMUAT';
+
   hapusPesan();
 
   if (semuaData.length === 0) {
@@ -543,21 +832,36 @@ async function muatData() {
     headerData = hasil.header;
     semuaData = hasil.data;
 
+    // Total data dihitung setelah baris tanpa FP dibuang.
+    const dataAktif = dataDenganFP();
+
     el('totalData').textContent =
-      semuaData.length.toLocaleString('id-ID');
+      dataAktif.length.toLocaleString('id-ID');
 
     el('statusData').textContent = 'ONLINE';
 
     el('waktuUpdate').textContent =
-      'Diperbarui: ' + new Date().toLocaleTimeString('id-ID');
+      'Diperbarui: ' +
+      new Date().toLocaleTimeString('id-ID');
 
     tampilkanTabel();
 
-    tampilPesan(
-      'Data berhasil dimuat dari spreadsheet ' +
-      'PROTOTYPE#4, tab PLANNING 1.',
-      'success'
-    );
+    if (indeksFP() === -1) {
+
+      tampilPesan(
+        'Data berhasil dimuat, tetapi kolom FP tidak ditemukan. ' +
+        'Periksa nama header FP pada spreadsheet.',
+        'error'
+      );
+
+    } else {
+
+      tampilPesan(
+        'Data berhasil dimuat. Baris tanpa FP disembunyikan.',
+        'success'
+      );
+
+    }
 
   } catch (error) {
 
@@ -573,13 +877,17 @@ async function muatData() {
     );
 
     if (semuaData.length === 0) {
+
       el('kepalaTabel').innerHTML = '';
+
       el('isiTabel').innerHTML =
         '<tr><td class="empty">' +
         'Data belum berhasil dimuat. Tekan MUAT ULANG setelah memperbaiki API.' +
         '</td></tr>';
+
       el('infoJumlah').textContent = 'Data tidak tersedia';
       el('hasilData').textContent = '0';
+
     }
 
   } finally {
@@ -589,6 +897,85 @@ async function muatData() {
     el('btnMuat').textContent = '↻ MUAT ULANG';
 
   }
+
+}
+
+// =====================================================
+// MEMBENTUK HEADER KELOMPOK
+// Produksi = 3 kolom
+// Warna = 6 kolom
+// =====================================================
+
+function buatHeader() {
+
+  const jumlahKolom = headerData.length;
+
+  const indexProduksi = cariKolom('PRODUKSI');
+  const indexWarna = cariKolom('WARNA');
+
+  /*
+   * Penggabungan dilakukan jika nama kolom PRODUKSI
+   * dan WARNA merupakan header pertama dari kelompoknya.
+   *
+   * Jika API mengirim header satu baris dengan nama
+   * PRODUKSI/WARNA hanya pada kolom pertama kelompok,
+   * header kelompok akan dibuat menggunakan colspan.
+   */
+
+  let html = '<tr>';
+  let i = 0;
+
+  while (i < jumlahKolom) {
+
+    const nama = normalisasi(headerData[i]);
+
+    // Kelompok Produksi: 3 kolom
+    if (nama === 'produksi') {
+
+      html +=
+        '<th class="group-header" colspan="3">' +
+        'Produksi' +
+        '</th>';
+
+      i += 3;
+      continue;
+
+    }
+
+    // Kelompok Warna: 6 kolom
+    if (nama === 'warna') {
+
+      html +=
+        '<th class="group-header" colspan="6">' +
+        'Warna' +
+        '</th>';
+
+      i += 6;
+      continue;
+
+    }
+
+    const kelasDev =
+      nama === 'dev (pcs)' ||
+      nama === 'dev(pcs)' ||
+      nama === 'dev pcs' ||
+      nama === 'dev'
+        ? ' dev-header'
+        : '';
+
+    html +=
+      '<th class="sub-header' + kelasDev + '">' +
+      aman(headerData[i] || '-') +
+      '</th>';
+
+    i++;
+
+  }
+
+  html += '</tr>';
+
+  el('kepalaTabel').innerHTML = html;
+
 }
 
 // =====================================================
@@ -601,21 +988,23 @@ function tampilkanTabel() {
     .trim()
     .toLocaleLowerCase('id-ID');
 
-  const hasil = semuaData.filter(function(baris) {
+  const dataAktif = dataDenganFP();
+
+  // Cari hanya pada baris yang mempunyai FP.
+  const hasil = dataAktif.filter(function(baris) {
+
     return baris.some(function(nilai) {
+
       return String(nilai ?? '')
         .toLocaleLowerCase('id-ID')
         .includes(kata);
+
     });
+
   });
 
   // HEADER
-  el('kepalaTabel').innerHTML =
-    '<tr>' +
-    headerData.map(function(judul) {
-      return '<th>' + aman(judul || '-') + '</th>';
-    }).join('') +
-    '</tr>';
+  buatHeader();
 
   // BARIS DATA
   if (hasil.length === 0) {
@@ -624,36 +1013,55 @@ function tampilkanTabel() {
       '<tr><td class="empty" colspan="' +
       Math.max(headerData.length, 1) +
       '">' +
-      (semuaData.length === 0
-        ? 'Belum ada data.'
-        : 'Data tidak ditemukan.') +
+      (
+        dataAktif.length === 0
+          ? 'Tidak ada baris dengan FP terisi.'
+          : 'Data tidak ditemukan.'
+      ) +
       '</td></tr>';
 
   } else {
 
+    const indexDev = indeksDev();
+
     el('isiTabel').innerHTML = hasil.map(function(baris) {
 
-      return '<tr>' +
-        headerData.map(function(_, index) {
-          return '<td>' +
-            aman(baris[index] ?? '') +
-            '</td>';
-        }).join('') +
+      const kelas = kelasFP(baris);
+
+      const sel = headerData.map(function(_, index) {
+
+        const kelasDev =
+          index === indexDev ? ' class="dev-pcs"' : '';
+
+        return '<td' + kelasDev + '>' +
+          aman(baris[index] ?? '') +
+          '</td>';
+
+      }).join('');
+
+      return '<tr class="' + kelas + '">' +
+        sel +
         '</tr>';
 
     }).join('');
 
   }
 
+  // TOTAL DATA AKTIF
+  el('totalData').textContent =
+    dataAktif.length.toLocaleString('id-ID');
+
+  // HASIL PENCARIAN
   el('hasilData').textContent =
     hasil.length.toLocaleString('id-ID');
 
+  // INFORMASI
   el('infoJumlah').textContent =
     'Menampilkan ' +
     hasil.length.toLocaleString('id-ID') +
     ' dari ' +
-    semuaData.length.toLocaleString('id-ID') +
-    ' baris data';
+    dataAktif.length.toLocaleString('id-ID') +
+    ' baris ber-FP';
 
 }
 
@@ -668,6 +1076,7 @@ el('cari').addEventListener('input', tampilkanTabel);
 // =====================================================
 
 muatData();
+
 </script>
 
 </body>
